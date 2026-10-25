@@ -1,10 +1,21 @@
 {
   "failures": [
-    "G1 judge found an unsupported statement: \"TQ-12 | The approved GitHub connector reported that its credentials (GITHUB_TOKEN) are not configured for this step.\" (This states what an api:github call returned, but there is no saved connector response. The previous refusal says no call to api:github was made in this session)",
-    "G1 judge found an unsupported statement: \"This step could not use the code in the four app repositories as a citable source: the approved GitHub connector (record:brief) could not be used (see TQ-12). S\" (Contradicted by the sources. The brief says \"You may also read any other file in the GitHub checkouts your step needs ... cite it as file:<repository>/<path>\", )",
-    "G1 judge found an unsupported statement: \"R-10 | The current code could not be cited in this step. ... | record:brief\" (The brief does not say this. It explicitly allows code files to be cited as file:<repository>/<path>.)",
-    "G1 judge found an unsupported statement: \"Template | TRD template: components affected, interfaces/contracts, data, security and tenancy, testing approach, risks | record:brief (requirement-steps templa\" (The brief does not contain the TRD template sections. The wording comes from org.templates, which is not a REQ-07 input and is not cited. The content is right, )",
-    "G1 judge found an unsupported statement: \"Inputs | ... | record:brief; mcp:hobasa-context (context_get receipt for org.architecture)\" (There is no saved MCP/context_get response to check against. The receipt is asserted but cannot be verified.)",
-    "G1 judge found an unsupported statement: \"Risk tier (advisory) | T2. \"The risk label is advisory only.\" | feat.prd (header, NFR-6)\" (Minor mis-citation. feat.prd NFR-6 does not mention tier T2; T2 appears in feat.prd's header table and in NFR-7.)"
+    "G2 claim cites file:ap_pipeline/src/ap_pipeline/transform.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_pipeline/src/ap_pipeline/pipeline.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_pipeline/src/ap_pipeline/dq.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_forecast/src/ap_forecast/predict.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_forecast/src/ap_forecast/explain.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_forecast/src/ap_forecast/models.json but the agent never read that file in this session",
+    "G2 claim cites file:ap_aging/src/ap_aging/aging.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_aging/src/ap_aging/aging.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_portal/src/ap_portal/index.js but the agent never read that file in this session",
+    "G2 claim cites file:ap_pipeline/ci.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_forecast/ci.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_aging/ci.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_portal/ci.mjs but the agent never read that file in this session",
+    "G2 claim cites file:ap_pipeline/src/ap_pipeline/__init__.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_forecast/src/ap_forecast/__init__.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_aging/src/ap_aging/__init__.py but the agent never read that file in this session",
+    "G2 claim cites file:ap_portal/package.json but the agent never read that file in this session"
   ]
 }

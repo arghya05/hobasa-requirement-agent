@@ -1,35 +1,17 @@
 {
-  "unsupported": [
-    {
-      "text": "The flow runs in this order: `pipeline.run(feed)` gives the records; `delays_by_vendor(records)` builds the delay lists; ...",
-      "why": "org.architecture names `pipeline.run` but gives neither its arguments nor its return value. The code the agent read (file:ap_pipeline/src/ap_pipeline/pipeline.py) shows `run(csv_text)` returning `(records, quality_report(records, rejected))`, a tuple, not just the records. As written, the statement is unsourced and slightly wrong."
-    },
-    {
-      "text": "R-1 | `bucket_for` may place exactly 30 days differently from the overdue rule (`> 30`); this is unverified (V-5).",
-      "why": "The agent read file:ap_aging/src/ap_aging/aging.py. In that file `bucket_for(30)` returns \"31-60\" (`if days < 30: '1-30'`), so the boundary conflict is real, not hypothetical. Calling it 'unverified' conflicts with a source the agent had in hand."
-    },
-    {
-      "text": "R-2 | An existing ap_portal amount helper may format through a binary float; this is unverified (V-6).",
-      "why": "file:ap_portal/src/ap_portal/index.js has `formatAmount(value) { return Number(value || 0).toFixed(2); }`, an exported helper that formats through a binary float. That conflicts with D-2026-044. The source the agent read settles the point, so it is not unverified."
-    },
-    {
-      "text": "V-3 ... Decides what `vendor_risk([])` returns (PQ-1), and how values near 30 and 10 are classed",
-      "why": "file:ap_forecast/src/ap_forecast/predict.py states the behaviour: the function returns 0 for an empty history, clamps negative delays to 0 and returns a rounded integer mean. So `vendor_risk([])` would be 'low'. The TRD presents this as unknown even though the agent read the file. Clamping negatives also interacts with AC-6/IF-2.3, and the TRD does not surface that."
-    },
-    {
-      "text": "V-1 | What `transform.to_model` puts in a rejected row's `reason` today, and in what form (for example, a field name or an error type)",
-      "why": "file:ap_pipeline/src/ap_pipeline/transform.py shows the reason is `type(e).__name__` (for example 'ValueError'). The record is a plain dict (V-2), and the existing code already uses `date.fromisoformat`. All of this was available but is left as an open check."
-    },
-    {
-      "text": "TRD design (agent judgement): put it in a new module, `ap_pipeline/delays.py` / `ap_forecast/risk.py`",
-      "why": "These are labelled design choices, which is acceptable. But the repositories use a `src/<pkg>/` layout (file:ap_pipeline/src/ap_pipeline/...), so the paths as written do not match the real structure."
-    }
+  "unsupported": [],
+  "improvements": [
+    "Citation repository names: the TRD cites code as `file:ap-pipeline-sample/\u2026`, `file:ap-forecast-sample/\u2026`, `file:ap-aging-sample/\u2026` and `file:ap-portal-sample/\u2026`. This session's read list and the refusal reasons name the same files as `ap_pipeline/\u2026`, `ap_forecast/\u2026`, `ap_aging/\u2026` and `ap_portal/\u2026`. The `-sample` names are not invented: they appear in judge_brief_attempt3.md, which the agent read. But the mismatch may trip the mechanical G2 'never read' check again. Use the repository form that the current read list uses.",
+    "`ap_pipeline/src/ap_pipeline/schedule.json` is in the read list but is not cited. D-1 and NFR-9 ('daily 02:00 Asia/Kolkata unchanged') could be confirmed against the current schedule in code instead of resting only on the org override and the PRD.",
+    "T-3, T-11 and T-16 say existing tests must keep passing, but only `ap_portal/tests/portal.test.js` is cited. Name the existing Python test modules, or say they were not read, so the regression baseline is concrete for the coding lanes.",
+    "IF-1.5 (existing reject reasons take precedence over 'paid_date') narrows AC-3. It is correctly raised as TQ-10, but the Architect should decide it explicitly because it changes test expectations in T-2 and T-3.",
+    "`to_model` strips `vendor`, and `delays_by_vendor` and `overdue_with_risk` key on that stripped value. Saying explicitly in IF-2 or IF-5 that both must use the same `records` (as IF-8 does) would remove a possible key-mismatch ambiguity if the lanes test with hand-built invoices."
   ],
   "scores": {
-    "correct": 4,
-    "complete": 4,
+    "correct": 5,
+    "complete": 5,
     "grounded": 4,
-    "useful": 3
+    "useful": 5
   },
-  "notes": "The previous refusal (G3: numbers '2' and '7' in the template line) is fixed. Lines 24 and 295 now list the TRD template sections without section numbers, and both match file:hobasa-agentic-sdlc/org/org.templates.md exactly. All six template sections are present (components affected, interfaces/contracts, data, security and tenancy, testing approach, risks).\n\nAlmost every statement traces to feat.prd, feat.prototype, org.architecture, the ZD-48600 org overrides or MEMORY.md. Every number checks out against a source: 30/10 thresholds, 02:00 Asia/Kolkata, Python 3.9, Node.js 22, AC-1..AC-23, NFR-1..NFR-11, PQ-P1..PQ-P7, ZD-48470, PROV-ACME-2026-11, and the SYN-INV-004/75/1250.00 example. Design choices are clearly labelled 'TRD design (agent judgement)': CT-1, the `days` integer, header in `<thead>`, `date.fromisoformat`, the minor version bump, module names, the escaping and allow-list recommendations, and T-A1..T-A5. PRD and prototype open questions are carried, not silently resolved.\n\nMain weakness: the workbook action is to draft the TRD from the 'current architecture'. The agent read the app code (it is in its read list) but chose to treat existing-function behaviour as unknown (V-1..V-8, R-1, R-2, R-5, TQ-3, TQ-10, TQ-11). The code already answers several of those checks, and two answers are real conflicts the Architect should see at this gate:\n- `bucket_for(30)` returns '31-60' (aging.py), which conflicts with the `> 30` overdue rule.\n- The exported `formatAmount` uses `Number(...).toFixed(2)` (index.js), which violates D-2026-044.\n\nThe code also answers other open points:\n- `predict_delay_days([])` returns 0, so `vendor_risk([])` is 'low'.\n- `predict_delay_days` clamps negative delays to 0.\n- The reject reason is the exception type name.\n- Records are dicts.\n- `pipeline.run(csv_text)` returns a tuple of `(records, report)`, so IF-7.1's wiring statement is inaccurate.\n- The ap_portal VERSION is '2.3.0' in index.js.\n\nNone of this invents facts, but it leaves known conflicts framed as 'may' and pushes verifiable work to the build lanes. That lowers usefulness and slightly lowers correctness. Traceability (section 8) and the validation check are thorough and consistent with the PRD."
+  "notes": "I checked every code finding F-1 to F-15 against the files.\n- transform.py: records are plain dicts; `amount` is `Decimal(r[\"amount\"])` and is not quantised; `paid` compares the lower-cased value to \"true\"; the reject reason is `type(e).__name__`.\n- ingest.py: uses `csv.DictReader`.\n- dq.py: `reject_reasons` is the sorted set of reasons.\n- pipeline.py: `run` returns a tuple `(records, report)`.\n- predict.py: rounded mean, 0 when the history is empty, negative delays clamped to 0. The note on Python rounding half-way values to the even integer is also correct.\n- explain.py and models.json: the prompt text quoted exactly; provider `acme-llm`, model `acme-text-2`; `load_config` exists.\n- aging.py: `days_past_due` floors at 0; `bucket_for(30)` returns '31-60'; `aging_buckets` skips `inv.get(\"paid\")` and converts with `Decimal(...)`.\n- index.js: `formatAmount` is `Number(...).toFixed(2)`; `renderAgingSummary` escapes nothing and uses `class=\"amount\"`.\n- Versions: 0.4.0, 0.9.0, 1.4.0, and 2.3.0 in both index.js and package.json.\n- `__all__` lists in the `__init__.py` files.\n- CI rules: coverage at least 90%; print/eval/exec/bare except/140 characters for Python; console.log/eval(/140 characters for ap_portal; NODE_PATH=src.\n\nAll of these are accurate.\n\nPRD and prototype references are also accurate: AC-1 to AC-23, NFR-1 to NFR-11, OQ-B6/B8/B9/B10, PQ-1 to PQ-6, PROV-ACME-2026-11, ZD-48470, the SYN-INV dataset (75, 42, 31, 30; \"1250.00\", \"15.00\", \"980.50\"), DL-1 to DL-4, ST-1 to ST-5, SD-1 and SD-6. Org overrides check out: feed v3 columns, 02:00 Asia/Kolkata, T2, the routing map, the model dependency map. So do the decision-log and lesson IDs.\n\nDesign choices are consistently labelled as TRD design or agent judgement and are raised as TQ-1 to TQ-11 and T-A1 to T-A6: module placement, the CT-1 contract, the serialiser, amount padding, escaping, the class allow-list, check precedence and version steps. None of them invents facts.\n\nThis attempt fixes every substantive issue from the earlier judges. The `bucket_for` and `formatAmount` conflicts are now stated as cited findings, `vendor_risk([])` is shown to be 'low', the clamping of negative delays is surfaced (R-5, TQ-5), and the `pipeline.run` tuple is used correctly in IF-8. All six template sections are present, and traceability to the PRD and prototype is complete.\n\nI found no hallucinations. The only grounding concern is the repository naming used in citations (see improvements)."
 }
