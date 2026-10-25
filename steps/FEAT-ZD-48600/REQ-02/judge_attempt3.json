@@ -1,0 +1,23 @@
+{
+  "unsupported": [
+    {
+      "text": "The routing map is not one of this step's contract inputs, so this routing rests on the role each repository has in the brief (see OQ-C2).",
+      "why": "This contradicts the brief. The brief's 'Impacted repositories' section names `hobasa-agentic-sdlc/org/org.routing_map.md`, says 'read it' and says 'Cite the routing map.' The earlier refusal was about the feature-level override file features/FEAT-ZD-48600/org-overrides/org.routing_map.md, not the org routing map. The output never cites org.routing_map. It also never states what that file says: 'Component ap_aging -> Backend Coding Agent; owner: backend developer.'"
+    },
+    {
+      "text": "OQ-C2: Please add the routing map to this step's contract inputs, and confirm the routing of each repository to its area agent and of the end-to-end flow (CR-7) to testing.",
+      "why": "The routing map is already in the brief, so the request rests on a false premise. Routing CR-7 'to testing' appears in no input, in the brief or in the routing map, which covers only ap_aging -> Backend."
+    },
+    {
+      "text": "Items that touch the same overdue rule in ap_aging, the same vendor feed in ap_pipeline, the `build_explanation_request` signature in ap_forecast, or the portal aging table are the most likely to overlap.",
+      "why": "This is left over from the out-of-context search the last refusal flagged: ZD-48211/ZD-48501 (overdue rule), ZD-48470 (feed), PROV-ACME-2026-11 (keep the signature) and ZD-48455 (portal aging table). No input mentions a 'portal aging table'. The intake's CR-6 is an 'overdue-risk' table. Nothing in the inputs raises the 'signature' of build_explanation_request as an overlap risk."
+    }
+  ],
+  "scores": {
+    "correct": 3,
+    "complete": 3,
+    "grounded": 4,
+    "useful": 3
+  },
+  "notes": "The output fixes most of the seven earlier refusal points. The IDs ZD-48211, ZD-48501, ZD-48455 and ZD-48470, PROV-ACME-2026-11, the content of the override routing file and the 'no ticketing write access' claim are all gone. These parts trace to feat.intake, feat.prebacklog or the brief:\n- the ticket fields: trace ID, title, source, channel, persona, R-AP-12 and Q4 2026;\n- the category and qualifier;\n- the CR-1 to CR-7 table, with areas, function names and the 30-day threshold;\n- the four impacted repositories, which match the brief's bindings and the intake;\n- the duplicate check, which finds no duplicates and carries OQ-2 forward;\n- the decisions D-2026-031, D-2026-044 and D-2026-050, assumptions A-1 to A-6 and open questions OQ-1 to OQ-6 carried forward.\n\nThe category label and the Technical Only split (CR-1, CR-2, CR-4, CR-7) are design choices. The output says so (OQ-C1, OQ-C5) and invents no facts. Calling CR-4 Technical Only is debatable, because the explanation prompt may reach users, but it is flagged for confirmation.\n\nMain defect: the agent over-corrected on routing. The brief explicitly requires reading and citing org/org.routing_map.md. The output instead claims the routing map is not a contract input and does not cite it. That is a factual error about the brief and a missed brief requirement. The 'Impacted repositories:' line is present and correct, but it does not cite the routing map. The output also leaves out that the org routing map covers only ap_aging -> Backend, which matters for routing the other three repositories.\n\nOQ-C3 still carries hints from the forbidden search ('portal aging table', 'build_explanation_request signature'). It routes CR-7 'to testing' without any source.\n\nAgainst the workbook action and outcome: no ticket is created; the output provides ticket content and leaves the creator open in OQ-C4, which is acceptable given the GET-only connector. The entry is classified by category. No duplicates were merged, because the Pre Backlog sheet and the DevOps board were unavailable, and the output says so correctly."
+}

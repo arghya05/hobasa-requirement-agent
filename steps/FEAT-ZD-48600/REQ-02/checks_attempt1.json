@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G3 numbers ['11'] in \"The open items ZD-48211 and ZD-48501 use the same 'more than 30 days past due' rule in ap_aging, ZD-\" do not appear in Grep:hobasa-agentic-sdlc/requirements; feat.intake"
+  ]
+}

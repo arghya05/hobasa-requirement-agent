@@ -1,0 +1,39 @@
+{
+  "unsupported": [
+    {
+      "text": "ZD-48211 and ZD-48501 use the same \"more than 30 days past due\" rule in ap_aging as CR-5.",
+      "why": "Neither feat.intake, feat.prebacklog nor the brief mentions ZD-48211 or ZD-48501. The IDs and the numbers in them (48211, 48501) come from a search outside the step's context. The previous attempt was refused for exactly this, under G3 ('11') and under G2 for the Grep:requirements citation. This attempt drops the citation but keeps the statement. The requirements/ files do say this, but they are not inputs to this step."
+    },
+    {
+      "text": "ZD-48455 changes the portal aging table and uses the words \"overdue risk\".",
+      "why": "ZD-48455 does not appear in any input or in the brief. The ID and its number come from an out-of-context search of requirements/."
+    },
+    {
+      "text": "ZD-48470 changes the same vendor feed and its row rejection in ap_pipeline as CR-1. In what order should the two feed changes land?",
+      "why": "ZD-48470 does not appear in any input or in the brief. The source is out of context and the statement is uncited."
+    },
+    {
+      "text": "PROV-ACME-2026-11 says to keep the signature of `build_explanation_request`.",
+      "why": "PROV-ACME-2026-11 and its 'keep signature' instruction are not in feat.intake, feat.prebacklog or the brief. This content comes from an out-of-context requirements file."
+    },
+    {
+      "text": "A feature-level override for FEAT-ZD-48600 lists ap_pipeline -> Data Engineering, ap_forecast -> Data Science, ap_aging -> Backend, ap_portal -> Frontend, and end-to-end tests -> Testing Agent.",
+      "why": "This repeats the contents of features/FEAT-ZD-48600/org-overrides/org.routing_map.md. The previous refusal flagged that file under G2 as not in this step's context. The statement is accurate to the file but has no in-context source."
+    },
+    {
+      "text": "A search outside this step's contract found other open requirement items that touch the same functions or the same feed.",
+      "why": "The output itself says this rests on a search outside the step's contract. No input supports it."
+    },
+    {
+      "text": "This agent has no write access to a ticketing system.",
+      "why": "No input or brief states this. The brief lists only an approved GET-only api:github connector. 'No ticketing access' is an inference and is not cited."
+    }
+  ],
+  "scores": {
+    "correct": 4,
+    "complete": 4,
+    "grounded": 2,
+    "useful": 4
+  },
+  "notes": "The core classification is well grounded and matches the workbook action and outcome. The ticket fields (trace ID, title, source, channel, persona, R-AP-12) come from feat.intake and feat.prebacklog. The regulatory, model-change and connector rows match feat.prebacklog. The CR-1..CR-7 split matches feat.intake. The Technical Only sub-category follows the trigger text in record:brief. The carried-forward decisions D-2026-031/044/050 and A-1..A-6 / OQ-1..OQ-6 match feat.prebacklog. The 'Impacted repositories' line is present. Naming all four repositories follows from the CRs and the role binding in the brief. The output says the routing map at org/org.routing_map.md lists only ap_aging, which is true.\n\nThe duplicate check reports 'none merged' within the context it had and correctly keeps the Pre Backlog / DevOps gap open (OQ-2 / OQ-C3). The category label is flagged as proposed (OQ-C1), which is an acceptable design choice.\n\nMain problem: this attempt was meant to fix refusals under G3 (the number '11' in 'ZD-48211\u2026') and G2 (citations to the org-overrides routing map and Grep:requirements). It removed the citations but kept the statements: OQ-C3 still names ZD-48211, ZD-48501, ZD-48455, ZD-48470 and PROV-ACME-2026-11, and OQ-C2 still reproduces the override routing map. These numbers and items appear in no in-context source, so the same G3/G2 failures will recur. I checked the repo: the statements are factually accurate against requirements/*.md and org-overrides/org.routing_map.md, so correctness stays at 4. Grounding drops to 2 because the explicitly refused out-of-context material is still in the output.\n\nMinor: classing CR-4 (the prompt gains a risk suffix in the user-facing explanation) as Technical Only is debatable but defensible, and it is raised for confirmation in OQ-C5."
+}
