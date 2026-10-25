@@ -1,0 +1,10 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"The flow runs in this order: `pipeline.run(feed)` gives the records; `delays_by_vendor(records)` builds the delay lists; ...\" (org.architecture names `pipeline.run` but gives neither its arguments nor its return value. The code the agent read (file:ap_pipeline/src/ap_pipeline/pipeline.p)",
+    "G1 judge found an unsupported statement: \"R-1 | `bucket_for` may place exactly 30 days differently from the overdue rule (`> 30`); this is unverified (V-5).\" (The agent read file:ap_aging/src/ap_aging/aging.py. In that file `bucket_for(30)` returns \"31-60\" (`if days < 30: '1-30'`), so the boundary conflict is real, no)",
+    "G1 judge found an unsupported statement: \"R-2 | An existing ap_portal amount helper may format through a binary float; this is unverified (V-6).\" (file:ap_portal/src/ap_portal/index.js has `formatAmount(value) { return Number(value || 0).toFixed(2); }`, an exported helper that formats through a binary floa)",
+    "G1 judge found an unsupported statement: \"V-3 ... Decides what `vendor_risk([])` returns (PQ-1), and how values near 30 and 10 are classed\" (file:ap_forecast/src/ap_forecast/predict.py states the behaviour: the function returns 0 for an empty history, clamps negative delays to 0 and returns a rounded)",
+    "G1 judge found an unsupported statement: \"V-1 | What `transform.to_model` puts in a rejected row's `reason` today, and in what form (for example, a field name or an error type)\" (file:ap_pipeline/src/ap_pipeline/transform.py shows the reason is `type(e).__name__` (for example 'ValueError'). The record is a plain dict (V-2), and the exist)",
+    "G1 judge found an unsupported statement: \"TRD design (agent judgement): put it in a new module, `ap_pipeline/delays.py` / `ap_forecast/risk.py`\" (These are labelled design choices, which is acceptable. But the repositories use a `src/<pkg>/` layout (file:ap_pipeline/src/ap_pipeline/...), so the paths as w)"
+  ]
+}

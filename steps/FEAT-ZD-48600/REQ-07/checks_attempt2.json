@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G3 numbers ['2', '7'] in \"The TRD template sections are components affected, interfaces/contracts, data, security and tenancy,\" do not appear in file:hobasa-agentic-sdlc/org/org.templates.md"
+  ]
+}
