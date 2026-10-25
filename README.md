@@ -20,3 +20,11 @@ Requirement Agent in the Hobasa agentic SDLC. Owner: PM, with leadership and dom
 | REQ-08 | User Story Preparation | feat.prd, feat.prototype, feat.trd, org.templates | feat.stories | PM |
 | CMP-P01 | Regulatory impact analysis (proposed) | feat.intake, org.regulatory_sources, org.rule_catalogue | feat.rule_impact | Compliance SME |
 | CMP-P02 | Rule specification and ground truth (proposed) | feat.rule_impact | feat.rule_spec | Compliance SME |
+
+<!-- work:FEAT-ZD-48600:start -->
+## Work done for FEAT-ZD-48600
+
+| Step | Name | Status | Input | Output | Details |
+|---|---|---|---|---|---|
+| REQ-01 | Requirement Intake | done | `org.roadmap`, `org.regulatory_sources`, `org.connector_inventory`, `org.model_dependency_map`, `org.decision_log` | `feat.intake`: [Markdown](https://github.com/arghya05/hobasa-requirement-agent/blob/main/outputs/FEAT-ZD-48600/feat.intake.md) · [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/arghya05/hobasa-requirement-agent/main/docs/FEAT-ZD-48600/REQ-01_feat-intake.html) · [PDF](https://github.com/arghya05/hobasa-requirement-agent/blob/main/docs/FEAT-ZD-48600/REQ-01_feat-intake.pdf)<br>`feat.prebacklog`: [Markdown](https://github.com/arghya05/hobasa-requirement-agent/blob/main/outputs/FEAT-ZD-48600/feat.prebacklog.md) · [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/arghya05/hobasa-requirement-agent/main/docs/FEAT-ZD-48600/REQ-01_feat-prebacklog.html) · [PDF](https://github.com/arghya05/hobasa-requirement-agent/blob/main/docs/FEAT-ZD-48600/REQ-01_feat-prebacklog.pdf) | [step record](https://github.com/arghya05/hobasa-requirement-agent/blob/main/steps/FEAT-ZD-48600/REQ-01/README.md) |
+<!-- work:FEAT-ZD-48600:end -->
