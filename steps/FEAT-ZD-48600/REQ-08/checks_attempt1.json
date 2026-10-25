@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G3 numbers ['06'] in \"STORY-02 depends on STORY-01; STORY-06 depends on STORY-05; STORY-07 depends only on the CT-1 contra\" do not appear in feat.trd; feat.prd"
+  ]
+}
