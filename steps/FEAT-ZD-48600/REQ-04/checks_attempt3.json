@@ -1,5 +1,7 @@
 {
   "failures": [
-    "G1 judge found an unsupported statement: \"| PM | Owner of the Pre Backlog entry. | Pending | journey:feat.prebacklog |\" (SKILL.md names the REQ-04 gate as Leadership only. No source says a PM approval of the BRD is pending. feat.prebacklog only says the PM owns the entry. Listing )"
+    "G1 judge found an unsupported statement: \"SM-5 | ... The new behaviour comes from new functions (`delays_by_vendor`, `vendor_risk`, `overdue_with_risk`, `renderOverdueRisk`). The only change to an exist\" (The cited source says otherwise. feat.classification (line 27) says \"Two changes touch existing behaviour, and both are additive\". It names both CR-4 and feed i)",
+    "G1 judge found an unsupported statement: \"The outcome delivers the roadmap item R-AP-12, \"give AP managers earlier visibility of overdue payables\" (Q4 2026 roadmap, AP module).\" (feat.fitment only says, as agent judgement, that the entry \"matches\" R-AP-12 and \"fits\" it. Saying it \"delivers\" the roadmap item overstates the source, and the)",
+    "G1 judge found an unsupported statement: \"Every rule in this BRD is explicit. The vendor risk rule \"uses no LLM; it is a rule on the predicted delay\". An invalid `paid_date` is rejected with a named rea\" (The quoted facts are supported. The claim that these support the auditability promise is labelled agent judgement in feat.fitment, but here it is not marked as )"
   ]
 }

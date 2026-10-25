@@ -17,6 +17,11 @@
 - `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md`
 - `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md`
 - `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md`
+- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-04/README.md`
+- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-04/checks_attempt1.json`
+- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-04/checks_attempt3.json`
+- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-04/judge_attempt2.json`
+- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-04/judge_attempt3.json`
 - `hobasa-agentic-sdlc/features/FEAT-ZD-48600/COMMUNICATION.md`
 - `hobasa-agentic-sdlc/requirements/ZD-48600.md`
 
@@ -27,7 +32,8 @@ Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC re
 Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again.
 
 ## Refusal reasons
-G2 claim cites mcp:hobasa-context but that connector was not used in this session
+G1 judge found an unsupported statement: "SM-3 | Amounts stay Decimal from the feed to the portal and are shown to two decimals; no step converts them to float." (Not quite accurate. The architecture override in requirements/ZD-48600.md says JSON between services carries amounts as two-decimal strings, and ap_portal is No)
+G1 judge found an unsupported statement: "journey:feat.prebacklog / journey:feat.classification (used as citations in OS-4, OS-6, OS-7, BR-7, SM-2, BQ-9, B-A2 to B-A5, B-A7, OQ-B5, OQ-B6, OQ-B8 and the " (Wrong citation form. The brief allows only input item names, tool views, api:, mcp:, record:* and file:<repository>/<path> for other GitHub files. These should )
 
 ## Step brief (unchanged except the attempt number)
 # Step REQ-04: BRD Preparation (attempt 2) for FEAT-ZD-48600
@@ -35,13 +41,15 @@ G2 claim cites mcp:hobasa-context but that connector was not used in this sessio
 - Workbook trigger: Previous Step
 - Workbook action: asks the business question set, drafts the BRD against the template and runs the validation check
 - Workbook outcome: Business Requirement Document
+- Owner of this step: PM
+- Gate (who approves this output): Leadership
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.fitment (Fitment verdict with evidence and reason code): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.fitment.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md at commit 3603ae6)
-- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit fd588b3)
-- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit bf63f34)
-- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit bf63f34)
-- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit bf63f34)
+- feat.fitment (Fitment verdict with evidence and reason code): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.fitment.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md at commit 2bf67bd)
+- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit 9919dd4)
+- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit 9fbbfba)
+- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
+- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
 - feat.brd (Approved BRD): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md`

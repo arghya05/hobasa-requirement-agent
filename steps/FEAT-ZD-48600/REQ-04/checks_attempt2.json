@@ -1,7 +1,5 @@
 {
   "failures": [
-    "G1 judge found an unsupported statement: \"**Business Requirement Document, status: Draft for the Leadership gate.** ... Leadership approves; the PM owns the item. (record:brief; feat.fitment)\" (Neither the brief nor feat.fitment says who approves the REQ-04 BRD gate. The brief names no gate role for this step. feat.fitment only names PM as the R-AP-12 )",
-    "G1 judge found an unsupported statement: \"Leadership | Approve this BRD (REQ-04 gate); decide OQ-B1 with the PM; decide OQ-B2 | Pending | record:brief; feat.fitment (OQ-F1, OQ-F3)\" (The cited sources do not establish that the REQ-04 gate is a Leadership approval. record:brief does not name an approver role for the BRD. The OQ-B1 and OQ-B2 a)",
-    "G1 judge found an unsupported statement: \"BR-10 | When a risk level is given, the payment-delay explanation ends with \" Risk level: <risk>.\". Without it, the explanation is unchanged.\" (CR-4 in feat.intake says the *prompt* built by build_explanation_request ends with ' Risk level: <risk>.', not the explanation itself. The explanation is the mo)"
+    "G1 judge found an unsupported statement: \"SM-5 | No existing function signature changes. | feat.intake\" (This rewords the source too strongly. feat.intake gives the architecture rule as \"Keep every existing signature; add new functions\". The same source, in CR-4, s)"
   ]
 }

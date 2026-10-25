@@ -1,6 +1,6 @@
 {
   "structured": {
-    "approach": "Attempt 3 fixes the three G1 refusals, and I rewrote feat.brd in full. (1) Header: I removed the uncited sentence \"Leadership approves; the PM owns the item\". The header table now has two separately sourced rows. The REQ-04 gate is Leadership, from the requirement-steps skill file (REQ-04, \"Gate: Leadership\"), which I read with Grep. The owner of the Pre Backlog entry is PM, from journey:feat.prebacklog. (2) Approvals: the Leadership row now cites that skill file only, and the PM row cites journey:feat.prebacklog. The OQ-B1 and OQ-B2 owners are stated only as feat.fitment records them: OQ-F1 is owned by PM / Leadership and OQ-F3 by Leadership. The table no longer says those roles \"decide\" them. (3) BR-10 now follows CR-4 exactly: `build_explanation_request` takes an optional `risk` argument, and when it is given the prompt it builds ends with \" Risk level: <risk>.\". The uncited \"explanation is unchanged\" clause became assumption B-A5. S-4 is reworded the same way and cites only feat.intake. Everything else carries over from attempt 2: the template-ordered BRD, the business question set, the validation check, the attempt-1 verifier fixes, and no mcp: citations.",
+    "approach": "Attempt 3 fixes the single G1 refusal, and feat.brd is rewritten in full. SM-5 said \"No existing function signature changes\", which was stronger than the source. It now quotes the architecture rule exactly: \"Keep every existing signature; add new functions\". It says the new behaviour comes from four new functions (CR-2, CR-3, CR-5, CR-6). It names the one change to an existing function: CR-4 adds an optional `risk` argument to `build_explanation_request`, which feat.classification calls additive. That callers who don't pass `risk` get today's prompt stays assumption B-A6. I then searched the file for the same overstatement. Two more places made it, and I reworded both. The section 4 intro said \"Existing behaviour is kept\"; it now quotes the rule and names the two additive changes, CR-1 and CR-4, citing feat.classification. OS-6 now reads \"Changes to existing signatures beyond the two additive changes named in section 4\". Everything else carries over from attempt 2: the file: citation form, the corrected SM-3, the template-ordered sections, the business question set and the validation check.",
     "tools_used": [
       "Skill:requirement-steps",
       "Read",
@@ -15,84 +15,103 @@
     ],
     "claims": [
       {
-        "text": "The gate for step REQ-04 BRD Preparation is Leadership.",
-        "source": "file:hobasa-requirement-agent/.claude/skills/requirement-steps/SKILL.md"
-      },
-      {
-        "text": "The owner of the Pre Backlog entry for FEAT-ZD-48600 is PM.",
-        "source": "journey:feat.prebacklog"
-      },
-      {
-        "text": "The business need is that AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first.",
-        "source": "feat.intake"
-      },
-      {
-        "text": "The BRD follows the template sections problem, business outcome, users, scope, out of scope, business rules, success measures and approvals.",
+        "text": "The BRD follows the template sections problem, business outcome, users, scope, out of scope, business rules, success measures, approvals.",
         "source": "org.templates"
       },
       {
-        "text": "build_explanation_request gains an optional risk argument and, when risk is given, the prompt ends with ' Risk level: <risk>.'.",
+        "text": "The business need is: AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first.",
         "source": "feat.intake"
       },
       {
-        "text": "The step brief describes org.templates as holding a business question set, but the file contains only the BRD, PRD, TRD and story template section lists.",
-        "source": "record:brief; org.templates"
-      },
-      {
-        "text": "The fitment verdict is Yes with reason code FIT-YES-ROADMAP, linked to R-AP-12 'give AP managers earlier visibility of overdue payables', and PM and Leadership approved REQ-03.",
-        "source": "feat.fitment; file:hobasa-agentic-sdlc/features/FEAT-ZD-48600/COMMUNICATION.md"
-      },
-      {
-        "text": "The overdue list covers unpaid invoices more than 30 days past due, sorted by days descending then id, with risk 'unknown' for vendors not in risk_by_vendor.",
-        "source": "feat.intake"
-      },
-      {
-        "text": "Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when it is > 10, otherwise 'low'; the boundary day (exactly 30 days) must be tested explicitly.",
-        "source": "feat.intake; record:memory"
-      },
-      {
-        "text": "Paid invoices are excluded from aging (D-2026-050), monetary amounts use Decimal, never float (D-2026-044), and aging buckets use calendar days after due date (D-2026-031); the BRD has no conflict with these decisions.",
-        "source": "org.decision_log; feat.fitment; journey:feat.prebacklog"
-      },
-      {
-        "text": "The change has no finance posting, authentication, tenancy or payment execution; it is tier T2 and the risk label is advisory only.",
-        "source": "feat.fitment; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
-      },
-      {
-        "text": "OQ-F1 (strategy fit) is addressed to PM / Leadership and OQ-F3 (audit of the risk label) to Leadership; neither is answered in the inputs.",
+        "text": "Fitment is Yes with reason code FIT-Y-ROADMAP, linked to roadmap item R-AP-12 'give AP managers earlier visibility of overdue payables'.",
         "source": "feat.fitment"
       },
       {
-        "text": "The documented AP capability is that the ap_aging service computes aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices; the strategy is to help finance teams pay on time and avoid late-payment penalties, and auditability and traceability are core product promises.",
+        "text": "The REQ-03 fitment gate was approved by PM and Leadership.",
+        "source": "file:hobasa-agentic-sdlc/features/FEAT-ZD-48600/COMMUNICATION.md"
+      },
+      {
+        "text": "The REQ-04 BRD gate is Leadership, and the owner of this step is PM.",
+        "source": "record:brief"
+      },
+      {
+        "text": "Current capability: ap_aging computes aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices. Strategy: help finance teams pay on time and avoid late-payment penalties.",
         "source": "org.strategy_capability"
       },
       {
-        "text": "Related items ZD-48211, ZD-48501, ZD-48470, PROV-ACME-2026-11 and ZD-48377 raise sequencing questions; they were kept separate, not merged.",
-        "source": "journey:feat.classification"
+        "text": "The architecture rule is 'Keep every existing signature; add new functions'. CR-4 adds an optional risk argument to build_explanation_request.",
+        "source": "feat.intake"
       },
       {
-        "text": "No regulatory source applies to this change, so no requirement carries a regulation section or page.",
-        "source": "journey:feat.prebacklog"
+        "text": "Only two changes touch existing behaviour, and both are additive: the paid_date column (CR-1) and the optional risk argument (CR-4).",
+        "source": "file:hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md"
+      },
+      {
+        "text": "Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when > 10, otherwise 'low'. It uses no LLM.",
+        "source": "feat.intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The overdue list covers unpaid invoices more than 30 days past due, sorted by days descending then id. Vendors not in risk_by_vendor get 'unknown'.",
+        "source": "feat.intake"
+      },
+      {
+        "text": "The portal renders <table class=\"overdue-risk\"> with one <tr class=\"risk-RISK\"> per row, showing id, vendor, days and amount to two decimals, and an empty string when there are no rows.",
+        "source": "feat.intake"
+      },
+      {
+        "text": "Invoice amount is Decimal, 2 dp. JSON between services carries amounts as strings with two decimals. ap_portal is Node.js.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "Monetary amounts use Decimal, never float, and Decimal arithmetic is kept.",
+        "source": "org.decision_log; record:memory"
+      },
+      {
+        "text": "No finance posting, authentication, tenancy or payment execution is in this change. Tier is T2, and the risk label is advisory only.",
+        "source": "feat.intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "R-AP-14 (aging export) is out of scope. The regulatory 'Late' label (more than 60 days, REG-LPR-2026-4.2) is distinct from 'overdue'.",
+        "source": "feat.fitment"
+      },
+      {
+        "text": "Assumptions B-A2 to B-A5 and B-A7 come from pre-backlog assumptions A-1 to A-5.",
+        "source": "file:hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md"
+      },
+      {
+        "text": "No conflict with D-2026-031, D-2026-044 or D-2026-050.",
+        "source": "org.decision_log; feat.fitment"
+      },
+      {
+        "text": "Boundary tests are required at exactly 30 days.",
+        "source": "record:memory"
+      },
+      {
+        "text": "org.templates contains the templates but no separate business question set, although the brief describes it as holding one.",
+        "source": "org.templates; record:brief"
       }
     ],
     "open_questions": [
-      "OQ-B1 (PM / Leadership): What do 'vendors that usually pay late' and 'chase them first' mean for an AP (payables) module, and does the entry serve the strategy 'help finance teams pay on time and avoid late-payment penalties'? (carries OQ-F1)",
-      "OQ-B2 (Leadership): Should a business rule require the vendor risk label, and the delay history and predicted delay behind it, to be recorded or explainable for audit? (carries OQ-F3)",
-      "OQ-B3 (PM / Leadership): Which business KPI should measure success beyond the end-to-end proof? The inputs give none.",
-      "OQ-B4 (PM): Edge-case rules the ticket does not define: day unit and early payments in delay_days, paid/paid_date disagreement, risk for an empty history, and HTML-escaping in the portal table (carries OQ-2, OQ-4, OQ-5, OQ-6).",
-      "OQ-B5 (PM): Are there users besides AP managers?",
-      "OQ-B6 (PM): Sequencing with ZD-48211/ZD-48501 (shared overdue rule), ZD-48470 (feed v2/v3), PROV-ACME-2026-11 (explanation request shape) and ZD-48377 (exactly-30-days fix).",
-      "OQ-B7 (PM): Is there an approved business question set for BRD preparation? The step brief says org.templates holds one, but the file lists only the template sections."
+      "OQ-B1 (PM / Leadership): Confirm the business meaning of 'vendors that usually pay late' and 'chase them first' in an AP context (carried from FQ-1).",
+      "OQ-B2: Keep 'overdue' (more than 30 days) and the regulatory 'Late' (more than 60 days, REG-LPR-2026-4.2) as distinct labels.",
+      "OQ-B3: The inputs define no business KPI. What business measure should define success?",
+      "OQ-B4: Confirm calendar days for days past due in overdue_with_risk (D-2026-031), with the 30-day boundary tested (L-007).",
+      "OQ-B5 (PM): Should one overdue definition be shared with ZD-48501 and ZD-48211?",
+      "OQ-B6: How should an unpaid row that has a paid_date be handled?",
+      "OQ-B7: org.templates holds no business question set. Should an approved set be added?",
+      "OQ-B8: Should renderOverdueRisk HTML-escape vendor names and ids?",
+      "OQ-B9: Should the risk level appear as visible text in the portal, or only as the row class?",
+      "OQ-B10: How should ap_portal (Node.js) format the two-decimal amount string without converting it to binary floating point (D-2026-044)?"
     ],
-    "summary": "I rewrote feat.brd for FEAT-ZD-48600 in full; attempt 3 fixes the three G1 refusals. The Leadership gate now cites the requirement-steps skill file (REQ-04 'Gate: Leadership'). PM ownership cites journey:feat.prebacklog. Open-question owners are stated only as feat.fitment records them. BR-10 now says that the prompt built by build_explanation_request ends with ' Risk level: <risk>.' when risk is given. The case without risk is assumption B-A5. The BRD covers all eight template sections. It has 7 scope items and 12 cited business rules: the overdue rule is 'unpaid and more than 30 days past due', and risk is 'high' above 30, 'medium' above 10, 'low' otherwise. It also has 5 success measures, a business question set and a validation check, which found no conflict with D-2026-031, D-2026-044 or D-2026-050. Strategy fit, audit needs, business KPIs, edge cases and sequencing remain non-blocking open questions."
+    "summary": "I rewrote feat.brd in full to fix the SM-5 refusal. SM-5 now quotes the architecture rule exactly ('Keep every existing signature; add new functions'). It names the one additive change to an existing function: CR-4's optional risk argument on build_explanation_request. The same overstatement is also fixed in the section 4 intro and in OS-6. The rest is unchanged from attempt 2: the template sections, business rules BR-1 to BR-16, the business question set, assumptions, open questions OQ-B1 to OQ-B10, and the validation check. The check finds no decision-log conflict; its only gap is the missing business KPI. Nothing blocks."
   },
   "meta": {
     "subtype": "success",
     "is_error": false,
-    "num_turns": 5,
-    "session_id": "ea53d7b0-3f91-4b86-8861-067d76f4aa14",
-    "total_cost_usd": 2.1738099,
+    "num_turns": 3,
+    "session_id": "4665e1d4-a792-4aec-905a-2cba3dbc95fd",
+    "total_cost_usd": 2.1079169,
     "permission_denials": [],
-    "result": "{\"approach\":\"Attempt 3 fixes the three G1 refusals, and I rewrote feat.brd in full. (1) Header: I removed the uncited sentence \\\"Leadership approves; the PM owns the item\\\". The header table now has two separately sourced rows. The REQ-04 gate is Leadership, from the requirement-steps skill file (REQ-04, \\\"Gate: Leadership\\\"), which I read with Grep. The owner of the Pre Backlog entry is PM, from journey:feat.prebacklog. (2) Approvals: the Leadership row now cites that skill file only, and the PM row cites journey:feat.prebacklog. The OQ-B1 and OQ-B2 owners are stated only as feat.fitment records them: OQ-F1 is owned by PM / Leadership and OQ-F3 by Leadership. The table no longer says those roles \\\"decide\\\" them. (3) BR-10 now follows CR-4 exactly: `build_explanation_request` takes an optional `risk` argument, and when it is given the prompt it builds ends with \\\" Risk level: <risk>.\\\". The uncited \\\"explanation is unchanged\\\" clause became assumption B-A5. S-4 is reworded the same way and cites only feat.intake. Everything else carries over from attempt 2: the template-ordered BRD, the business question set, the validation check, the attempt-1 verifier fixes, and no mcp: citations.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"Grep\",\"mcp__hobasa-context__context_list\",\"mcp__hobasa-context__context_get\",\"mcp__hobasa-context__memory_search\",\"Write\",\"Edit\",\"Agent:verifier\"],\"claims\":[{\"text\":\"The gate for step REQ-04 BRD Preparation is Leadership.\",\"source\":\"file:hobasa-requirement-agent/.claude/skills/requirement-steps/SKILL.md\"},{\"text\":\"The owner of the Pre Backlog entry for FEAT-ZD-48600 is PM.\",\"source\":\"journey:feat.prebacklog\"},{\"text\":\"The business need is that AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first.\",\"source\":\"feat.intake\"},{\"text\":\"The BRD follows the template sections problem, business outcome, users, scope, out of scope, business rules, success measures and approvals.\",\"source\":\"org.templates\"},{\"text\":\"build_explanation_request gains an optional risk argument and, when risk is given, the prompt ends with ' Risk level: <risk>.'.\",\"source\":\"feat.intake\"},{\"text\":\"The step brief describes org.templates as holding a business question set, but the file contains only the BRD, PRD, TRD and story template section lists.\",\"source\":\"record:brief; org.templates\"},{\"text\":\"The fitment verdict is Yes with reason code FIT-YES-ROADMAP, linked to R-AP-12 'give AP managers earlier visibility of overdue payables', and PM and Leadership approved REQ-03.\",\"source\":\"feat.fitment; file:hobasa-agentic-sdlc/features/FEAT-ZD-48600/COMMUNICATION.md\"},{\"text\":\"The overdue list covers unpaid invoices more than 30 days past due, sorted by days descending then id, with risk 'unknown' for vendors not in risk_by_vendor.\",\"source\":\"feat.intake\"},{\"text\":\"Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when it is > 10, otherwise 'low'; the boundary day (exactly 30 days) must be tested explicitly.\",\"source\":\"feat.intake; record:memory\"},{\"text\":\"Paid invoices are excluded from aging (D-2026-050), monetary amounts use Decimal, never float (D-2026-044), and aging buckets use calendar days after due date (D-2026-031); the BRD has no conflict with these decisions.\",\"source\":\"org.decision_log; feat.fitment; journey:feat.prebacklog\"},{\"text\":\"The change has no finance posting, authentication, tenancy or payment execution; it is tier T2 and the risk label is advisory only.\",\"source\":\"feat.fitment; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"OQ-F1 (strategy fit) is addressed to PM / Leadership and OQ-F3 (audit of the risk label) to Leadership; neither is answered in the inputs.\",\"source\":\"feat.fitment\"},{\"text\":\"The documented AP capability is that the ap_aging service computes aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices; the strategy is to help finance teams pay on time and avoid late-payment penalties, and auditability and traceability are core product promises.\",\"source\":\"org.strategy_capability\"},{\"text\":\"Related items ZD-48211, ZD-48501, ZD-48470, PROV-ACME-2026-11 and ZD-48377 raise sequencing questions; they were kept separate, not merged.\",\"source\":\"journey:feat.classification\"},{\"text\":\"No regulatory source applies to this change, so no requirement carries a regulation section or page.\",\"source\":\"journey:feat.prebacklog\"}],\"open_questions\":[\"OQ-B1 (PM / Leadership): What do 'vendors that usually pay late' and 'chase them first' mean for an AP (payables) module, and does the entry serve the strategy 'help finance teams pay on time and avoid late-payment penalties'? (carries OQ-F1)\",\"OQ-B2 (Leadership): Should a business rule require the vendor risk label, and the delay history and predicted delay behind it, to be recorded or explainable for audit? (carries OQ-F3)\",\"OQ-B3 (PM / Leadership): Which business KPI should measure success beyond the end-to-end proof? The inputs give none.\",\"OQ-B4 (PM): Edge-case rules the ticket does not define: day unit and early payments in delay_days, paid/paid_date disagreement, risk for an empty history, and HTML-escaping in the portal table (carries OQ-2, OQ-4, OQ-5, OQ-6).\",\"OQ-B5 (PM): Are there users besides AP managers?\",\"OQ-B6 (PM): Sequencing with ZD-48211/ZD-48501 (shared overdue rule), ZD-48470 (feed v2/v3), PROV-ACME-2026-11 (explanation request shape) and ZD-48377 (exactly-30-days fix).\",\"OQ-B7 (PM): Is there an approved business question set for BRD preparation? The step brief says org.templates holds one, but the file lists only the template sections.\"],\"summary\":\"I rewrote feat.brd for FEAT-ZD-48600 in full; attempt 3 fixes the three G1 refusals. The Leadership gate now cites the requirement-steps skill file (REQ-04 'Gate: Leadership'). PM ownership cites journey:feat.prebacklog. Open-question owners are stated only as feat.fitment records them. BR-10 now says that the prompt built by build_explanation_request ends with ' Risk level: <risk>.' when risk is given. The case without risk is assumption B-A5. The BRD covers all eight template sections. It has 7 scope items and 12 cited business rules: the overdue rule is 'unpaid and more than 30 days past due', and risk is 'high' above 30, 'medium' above 10, 'low' otherwise. It also has 5 success measures, a business question set and a validation check, which found no conflict with D-2026-031, D-2026-044 or D-2026-050. Strategy fit, audit needs, business KPIs, edge cases and sequencing remain non-blocking open questions.\"}"
+    "result": "{\"approach\":\"Attempt 3 fixes the single G1 refusal, and feat.brd is rewritten in full. SM-5 said \\\"No existing function signature changes\\\", which was stronger than the source. It now quotes the architecture rule exactly: \\\"Keep every existing signature; add new functions\\\". It says the new behaviour comes from four new functions (CR-2, CR-3, CR-5, CR-6). It names the one change to an existing function: CR-4 adds an optional `risk` argument to `build_explanation_request`, which feat.classification calls additive. That callers who don't pass `risk` get today's prompt stays assumption B-A6. I then searched the file for the same overstatement. Two more places made it, and I reworded both. The section 4 intro said \\\"Existing behaviour is kept\\\"; it now quotes the rule and names the two additive changes, CR-1 and CR-4, citing feat.classification. OS-6 now reads \\\"Changes to existing signatures beyond the two additive changes named in section 4\\\". Everything else carries over from attempt 2: the file: citation form, the corrected SM-3, the template-ordered sections, the business question set and the validation check.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"Grep\",\"mcp__hobasa-context__context_list\",\"mcp__hobasa-context__context_get\",\"mcp__hobasa-context__memory_search\",\"Write\",\"Edit\",\"Agent:verifier\"],\"claims\":[{\"text\":\"The BRD follows the template sections problem, business outcome, users, scope, out of scope, business rules, success measures, approvals.\",\"source\":\"org.templates\"},{\"text\":\"The business need is: AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first.\",\"source\":\"feat.intake\"},{\"text\":\"Fitment is Yes with reason code FIT-Y-ROADMAP, linked to roadmap item R-AP-12 'give AP managers earlier visibility of overdue payables'.\",\"source\":\"feat.fitment\"},{\"text\":\"The REQ-03 fitment gate was approved by PM and Leadership.\",\"source\":\"file:hobasa-agentic-sdlc/features/FEAT-ZD-48600/COMMUNICATION.md\"},{\"text\":\"The REQ-04 BRD gate is Leadership, and the owner of this step is PM.\",\"source\":\"record:brief\"},{\"text\":\"Current capability: ap_aging computes aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices. Strategy: help finance teams pay on time and avoid late-payment penalties.\",\"source\":\"org.strategy_capability\"},{\"text\":\"The architecture rule is 'Keep every existing signature; add new functions'. CR-4 adds an optional risk argument to build_explanation_request.\",\"source\":\"feat.intake\"},{\"text\":\"Only two changes touch existing behaviour, and both are additive: the paid_date column (CR-1) and the optional risk argument (CR-4).\",\"source\":\"file:hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md\"},{\"text\":\"Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when > 10, otherwise 'low'. It uses no LLM.\",\"source\":\"feat.intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The overdue list covers unpaid invoices more than 30 days past due, sorted by days descending then id. Vendors not in risk_by_vendor get 'unknown'.\",\"source\":\"feat.intake\"},{\"text\":\"The portal renders <table class=\\\"overdue-risk\\\"> with one <tr class=\\\"risk-RISK\\\"> per row, showing id, vendor, days and amount to two decimals, and an empty string when there are no rows.\",\"source\":\"feat.intake\"},{\"text\":\"Invoice amount is Decimal, 2 dp. JSON between services carries amounts as strings with two decimals. ap_portal is Node.js.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"Monetary amounts use Decimal, never float, and Decimal arithmetic is kept.\",\"source\":\"org.decision_log; record:memory\"},{\"text\":\"No finance posting, authentication, tenancy or payment execution is in this change. Tier is T2, and the risk label is advisory only.\",\"source\":\"feat.intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"R-AP-14 (aging export) is out of scope. The regulatory 'Late' label (more than 60 days, REG-LPR-2026-4.2) is distinct from 'overdue'.\",\"source\":\"feat.fitment\"},{\"text\":\"Assumptions B-A2 to B-A5 and B-A7 come from pre-backlog assumptions A-1 to A-5.\",\"source\":\"file:hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md\"},{\"text\":\"No conflict with D-2026-031, D-2026-044 or D-2026-050.\",\"source\":\"org.decision_log; feat.fitment\"},{\"text\":\"Boundary tests are required at exactly 30 days.\",\"source\":\"record:memory\"},{\"text\":\"org.templates contains the templates but no separate business question set, although the brief describes it as holding one.\",\"source\":\"org.templates; record:brief\"}],\"open_questions\":[\"OQ-B1 (PM / Leadership): Confirm the business meaning of 'vendors that usually pay late' and 'chase them first' in an AP context (carried from FQ-1).\",\"OQ-B2: Keep 'overdue' (more than 30 days) and the regulatory 'Late' (more than 60 days, REG-LPR-2026-4.2) as distinct labels.\",\"OQ-B3: The inputs define no business KPI. What business measure should define success?\",\"OQ-B4: Confirm calendar days for days past due in overdue_with_risk (D-2026-031), with the 30-day boundary tested (L-007).\",\"OQ-B5 (PM): Should one overdue definition be shared with ZD-48501 and ZD-48211?\",\"OQ-B6: How should an unpaid row that has a paid_date be handled?\",\"OQ-B7: org.templates holds no business question set. Should an approved set be added?\",\"OQ-B8: Should renderOverdueRisk HTML-escape vendor names and ids?\",\"OQ-B9: Should the risk level appear as visible text in the portal, or only as the row class?\",\"OQ-B10: How should ap_portal (Node.js) format the two-decimal amount string without converting it to binary floating point (D-2026-044)?\"],\"summary\":\"I rewrote feat.brd in full to fix the SM-5 refusal. SM-5 now quotes the architecture rule exactly ('Keep every existing signature; add new functions'). It names the one additive change to an existing function: CR-4's optional risk argument on build_explanation_request. The same overstatement is also fixed in the section 4 intro and in OS-6. The rest is unchanged from attempt 2: the template sections, business rules BR-1 to BR-16, the business question set, assumptions, open questions OQ-B1 to OQ-B10, and the validation check. The check finds no decision-log conflict; its only gap is the missing business KPI. Nothing blocks.\"}"
   }
 }

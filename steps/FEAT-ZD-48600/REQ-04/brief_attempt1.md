@@ -1,15 +1,25 @@
+Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again.
+
+## Refusal reasons
+G1 judge found an unsupported statement: "SM-5 | ... The new behaviour comes from new functions (`delays_by_vendor`, `vendor_risk`, `overdue_with_risk`, `renderOverdueRisk`). The only change to an exist" (The cited source says otherwise. feat.classification (line 27) says "Two changes touch existing behaviour, and both are additive". It names both CR-4 and feed i)
+G1 judge found an unsupported statement: "The outcome delivers the roadmap item R-AP-12, "give AP managers earlier visibility of overdue payables" (Q4 2026 roadmap, AP module)." (feat.fitment only says, as agent judgement, that the entry "matches" R-AP-12 and "fits" it. Saying it "delivers" the roadmap item overstates the source, and the)
+G1 judge found an unsupported statement: "Every rule in this BRD is explicit. The vendor risk rule "uses no LLM; it is a rule on the predicted delay". An invalid `paid_date` is rejected with a named rea" (The quoted facts are supported. The claim that these support the auditability promise is labelled agent judgement in feat.fitment, but here it is not marked as )
+
+## Step brief (unchanged except the attempt number)
 # Step REQ-04: BRD Preparation (attempt 1) for FEAT-ZD-48600
 
 - Workbook trigger: Previous Step
 - Workbook action: asks the business question set, drafts the BRD against the template and runs the validation check
 - Workbook outcome: Business Requirement Document
+- Owner of this step: PM
+- Gate (who approves this output): Leadership
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.fitment (Fitment verdict with evidence and reason code): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.fitment.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md at commit 3603ae6)
-- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit fd588b3)
-- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit bf63f34)
-- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit bf63f34)
-- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit bf63f34)
+- feat.fitment (Fitment verdict with evidence and reason code): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.fitment.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md at commit 2bf67bd)
+- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit 9919dd4)
+- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit 9fbbfba)
+- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
+- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
 - feat.brd (Approved BRD): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md`
