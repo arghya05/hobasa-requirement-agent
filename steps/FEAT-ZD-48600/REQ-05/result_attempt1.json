@@ -1,0 +1,77 @@
+{
+  "structured": {
+    "approach": "I read the requirement-steps procedure for REQ-05 and the two contracted inputs, the approved feat.brd and org.templates. I also read the source ticket file to confirm wording; the BRD already cites it. I then drafted feat.prd against the PRD template: summary, user stories, numbered acceptance criteria in EARS form, non-functional requirements and open questions. The PRD carries the BRD's scope, business rules, success measures, out-of-scope items, assumptions and open questions forward without adding scope. It also has a BRD-to-PRD traceability table and a validation check against the template, the BRD, the decision log and the approved lessons. An independent verifier subagent checked the draft. It found that AC-2 silently decided BRD question OQ-B6 (an unpaid row that has a paid_date) and that a few statements were unlabelled extrapolations. I fixed all of these:\n- AC-2 now covers paid rows only.\n- The \"So that\" clauses are marked as agent judgement.\n- The end-to-end match criterion is now assumption P-A4.\n- The PQ-1 and PQ-3 wording no longer goes beyond the sources.",
+    "tools_used": [
+      "Skill (requirement-steps)",
+      "Read",
+      "Write",
+      "Edit",
+      "Agent (verifier)"
+    ],
+    "claims": [
+      {
+        "text": "The PRD template requires summary, user stories, numbered acceptance criteria in EARS form (When <trigger>, the system shall <response>), non-functional requirements and open questions; feat.prd has all five sections.",
+        "source": "org.templates"
+      },
+      {
+        "text": "The approved BRD scopes seven items S-1 to S-7 across ap_pipeline, ap_forecast, ap_aging and ap_portal, and the PRD maps each to user stories and acceptance criteria without adding scope.",
+        "source": "feat.brd"
+      },
+      {
+        "text": "Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when > 10, otherwise 'low'; the thresholds are strict, so exactly 30 is 'medium' and exactly 10 is 'low' (AC-7 to AC-9).",
+        "source": "feat.brd; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The overdue list includes only unpaid invoices more than 30 days past due; an invoice exactly 30 days past due is not listed, and this boundary is tested explicitly (AC-14, NFR-8).",
+        "source": "feat.brd; record:memory"
+      },
+      {
+        "text": "Overdue rows carry id, vendor, days, amount and risk, are sorted by days descending then id, and get risk 'unknown' when the vendor is not in risk_by_vendor (AC-16, AC-17).",
+        "source": "feat.brd"
+      },
+      {
+        "text": "An invalid paid_date rejects the feed row with reason 'paid_date' (AC-3).",
+        "source": "feat.brd"
+      },
+      {
+        "text": "Amounts are Decimal with 2 dp, never float, and travel between services as strings with two decimals; dates travel as ISO strings (AC-18, NFR-1, NFR-2).",
+        "source": "feat.brd; record:memory; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The feed schedule stays daily 02:00 Asia/Kolkata; ap_pipeline, ap_forecast and ap_aging are Python 3.9 and ap_portal is Node.js 22 CommonJS (NFR-9, NFR-10).",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The PRD was checked against decisions D-2026-031, D-2026-044 and D-2026-050 and found no conflict; lessons L-007 and L-011 are applied.",
+        "source": "record:memory; feat.brd"
+      },
+      {
+        "text": "BRD open questions OQ-B1 to OQ-B10 and assumptions B-A1 to B-A7 are carried forward; OQ-B6 is kept open by limiting AC-2 to paid rows.",
+        "source": "feat.brd"
+      },
+      {
+        "text": "This step is triggered by BRD approval; owner and gate are PM.",
+        "source": "record:brief"
+      }
+    ],
+    "open_questions": [
+      "PQ-1: What should vendor_risk return for an empty history? The inputs do not say how predict_delay_days behaves on an empty list, or whether a vendor with no paid history gets an entry in risk_by_vendor.",
+      "PQ-2: Confirm the PRD assumptions P-A1 to P-A4: days in an overdue row is counted from due_date to as_of; the id tie-break is ascending and compares ids as text; an invalid paid_date is non-empty and not a valid ISO date; the end-to-end test checks that the rendered table matches the overdue list.",
+      "PQ-3: Should the overdue list between ap_aging and ap_portal have a named JSON contract, including the type of days? Proposed for the TRD (REQ-07).",
+      "PQ-4: No performance, data volume or availability targets are given.",
+      "PQ-5: Who orders this change and PROV-ACME-2026-11? Both change build_explanation_request.",
+      "PQ-6: Is feed v3 available for CR-1? ZD-48470 brings feed v2.",
+      "Carried from the BRD, still open: OQ-B1 to OQ-B10. Notable among them: OQ-B6 (an unpaid row that has a paid_date), OQ-B8 (HTML escaping), OQ-B9 (whether the risk is shown as visible text) and OQ-B10 (how ap_portal formats the amount without using float)."
+    ],
+    "summary": "I wrote feat.prd for FEAT-ZD-48600. It carries the approved BRD forward and adds no scope:\n- Five user stories.\n- 23 numbered EARS acceptance criteria covering the paid_date feed column, delays_by_vendor, vendor_risk thresholds, the optional risk argument on build_explanation_request, overdue_with_risk, renderOverdueRisk and the end-to-end flow. Boundary cases at exactly 30 days and at risk thresholds 30 and 10 are explicit.\n- Twelve non-functional requirements: Decimal handling, JSON amounts as two-decimal strings, unchanged signatures, the advisory-only risk label, no LLM for the risk level, security scope, testability, schedule and runtimes.\n- BRD assumptions and open questions carried forward, plus four new assumptions (P-A1 to P-A4) and six new non-blocking questions (PQ-1 to PQ-6).\n- A traceability table and a validation check, which found no conflict with the decision log or the BRD.\n\nA verifier pass found one silent resolution of BRD question OQ-B6 and some unlabelled extrapolations; all are fixed. The PRD is ready for the PM gate."
+  },
+  "meta": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 17,
+    "session_id": "029b7a75-4ec2-4f96-81a2-fee1b0b83e38",
+    "total_cost_usd": 1.1054631,
+    "permission_denials": [],
+    "result": "{\"approach\":\"I read the requirement-steps procedure for REQ-05 and the two contracted inputs, the approved feat.brd and org.templates. I also read the source ticket file to confirm wording; the BRD already cites it. I then drafted feat.prd against the PRD template: summary, user stories, numbered acceptance criteria in EARS form, non-functional requirements and open questions. The PRD carries the BRD's scope, business rules, success measures, out-of-scope items, assumptions and open questions forward without adding scope. It also has a BRD-to-PRD traceability table and a validation check against the template, the BRD, the decision log and the approved lessons. An independent verifier subagent checked the draft. It found that AC-2 silently decided BRD question OQ-B6 (an unpaid row that has a paid_date) and that a few statements were unlabelled extrapolations. I fixed all of these:\\n- AC-2 now covers paid rows only.\\n- The \\\"So that\\\" clauses are marked as agent judgement.\\n- The end-to-end match criterion is now assumption P-A4.\\n- The PQ-1 and PQ-3 wording no longer goes beyond the sources.\",\"tools_used\":[\"Skill (requirement-steps)\",\"Read\",\"Write\",\"Edit\",\"Agent (verifier)\"],\"claims\":[{\"text\":\"The PRD template requires summary, user stories, numbered acceptance criteria in EARS form (When <trigger>, the system shall <response>), non-functional requirements and open questions; feat.prd has all five sections.\",\"source\":\"org.templates\"},{\"text\":\"The approved BRD scopes seven items S-1 to S-7 across ap_pipeline, ap_forecast, ap_aging and ap_portal, and the PRD maps each to user stories and acceptance criteria without adding scope.\",\"source\":\"feat.brd\"},{\"text\":\"Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when > 10, otherwise 'low'; the thresholds are strict, so exactly 30 is 'medium' and exactly 10 is 'low' (AC-7 to AC-9).\",\"source\":\"feat.brd; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The overdue list includes only unpaid invoices more than 30 days past due; an invoice exactly 30 days past due is not listed, and this boundary is tested explicitly (AC-14, NFR-8).\",\"source\":\"feat.brd; record:memory\"},{\"text\":\"Overdue rows carry id, vendor, days, amount and risk, are sorted by days descending then id, and get risk 'unknown' when the vendor is not in risk_by_vendor (AC-16, AC-17).\",\"source\":\"feat.brd\"},{\"text\":\"An invalid paid_date rejects the feed row with reason 'paid_date' (AC-3).\",\"source\":\"feat.brd\"},{\"text\":\"Amounts are Decimal with 2 dp, never float, and travel between services as strings with two decimals; dates travel as ISO strings (AC-18, NFR-1, NFR-2).\",\"source\":\"feat.brd; record:memory; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The feed schedule stays daily 02:00 Asia/Kolkata; ap_pipeline, ap_forecast and ap_aging are Python 3.9 and ap_portal is Node.js 22 CommonJS (NFR-9, NFR-10).\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The PRD was checked against decisions D-2026-031, D-2026-044 and D-2026-050 and found no conflict; lessons L-007 and L-011 are applied.\",\"source\":\"record:memory; feat.brd\"},{\"text\":\"BRD open questions OQ-B1 to OQ-B10 and assumptions B-A1 to B-A7 are carried forward; OQ-B6 is kept open by limiting AC-2 to paid rows.\",\"source\":\"feat.brd\"},{\"text\":\"This step is triggered by BRD approval; owner and gate are PM.\",\"source\":\"record:brief\"}],\"open_questions\":[\"PQ-1: What should vendor_risk return for an empty history? The inputs do not say how predict_delay_days behaves on an empty list, or whether a vendor with no paid history gets an entry in risk_by_vendor.\",\"PQ-2: Confirm the PRD assumptions P-A1 to P-A4: days in an overdue row is counted from due_date to as_of; the id tie-break is ascending and compares ids as text; an invalid paid_date is non-empty and not a valid ISO date; the end-to-end test checks that the rendered table matches the overdue list.\",\"PQ-3: Should the overdue list between ap_aging and ap_portal have a named JSON contract, including the type of days? Proposed for the TRD (REQ-07).\",\"PQ-4: No performance, data volume or availability targets are given.\",\"PQ-5: Who orders this change and PROV-ACME-2026-11? Both change build_explanation_request.\",\"PQ-6: Is feed v3 available for CR-1? ZD-48470 brings feed v2.\",\"Carried from the BRD, still open: OQ-B1 to OQ-B10. Notable among them: OQ-B6 (an unpaid row that has a paid_date), OQ-B8 (HTML escaping), OQ-B9 (whether the risk is shown as visible text) and OQ-B10 (how ap_portal formats the amount without using float).\"],\"summary\":\"I wrote feat.prd for FEAT-ZD-48600. It carries the approved BRD forward and adds no scope:\\n- Five user stories.\\n- 23 numbered EARS acceptance criteria covering the paid_date feed column, delays_by_vendor, vendor_risk thresholds, the optional risk argument on build_explanation_request, overdue_with_risk, renderOverdueRisk and the end-to-end flow. Boundary cases at exactly 30 days and at risk thresholds 30 and 10 are explicit.\\n- Twelve non-functional requirements: Decimal handling, JSON amounts as two-decimal strings, unchanged signatures, the advisory-only risk label, no LLM for the risk level, security scope, testability, schedule and runtimes.\\n- BRD assumptions and open questions carried forward, plus four new assumptions (P-A1 to P-A4) and six new non-blocking questions (PQ-1 to PQ-6).\\n- A traceability table and a validation check, which found no conflict with the decision log or the BRD.\\n\\nA verifier pass found one silent resolution of BRD question OQ-B6 and some unlabelled extrapolations; all are fixed. The PRD is ready for the PM gate.\"}"
+  }
+}

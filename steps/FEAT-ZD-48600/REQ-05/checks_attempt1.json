@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"NFR-10 | Runtimes are unchanged: ap_pipeline, ap_forecast and ap_aging are Python 3.9; ap_portal is Node.js 22 CommonJS.\" (The runtime versions come from org.architecture in file:hobasa-agentic-sdlc/requirements/ZD-48600.md. No source turns them into a requirement that runtimes stay)"
+  ]
+}

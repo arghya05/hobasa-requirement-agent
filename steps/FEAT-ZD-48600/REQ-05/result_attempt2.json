@@ -1,0 +1,82 @@
+{
+  "structured": {
+    "approach": "Attempt 2 fixes the single G1 refusal. The old NFR-10, \"Runtimes are unchanged: ... Python 3.9 ... Node.js 22 CommonJS\", turned the runtime description in org.architecture into a requirement that no source states. I removed it from the non-functional requirements. It now appears below the table as a labelled background note: org.architecture describes those runtimes, no input sets a runtime requirement, and runtime matters are left to the TRD. The former NFR-11 (terminology) and NFR-12 (performance targets) are renumbered NFR-10 and NFR-11. Their references in OQ-B2, PQ-4 and the traceability table are updated to match. I checked that the remaining \"unchanged\" statement is sourced. NFR-9, the feed schedule, is backed by BRD S-1 (\"The schedule is unchanged\") and by org.customer_mappings (\"(unchanged)\"), and both are now quoted in its source cell. A new validation-check row confirms that every NFR is backed by a BRD item, a decision, a lesson or a stated source rule. I rewrote feat.prd in full. All other content is the same as attempt 1, after the verifier fixes from that attempt (AC-2 limited to paid rows so OQ-B6 stays open; \"So that\" clauses and P-A4 labelled as judgement).",
+    "tools_used": [
+      "Skill (requirement-steps)",
+      "Read",
+      "Write",
+      "Edit",
+      "Grep",
+      "Agent (verifier, attempt 1)"
+    ],
+    "claims": [
+      {
+        "text": "The PRD template requires summary, user stories, numbered acceptance criteria in EARS form (When <trigger>, the system shall <response>), non-functional requirements and open questions; feat.prd has all five sections.",
+        "source": "org.templates"
+      },
+      {
+        "text": "The approved BRD scopes seven items S-1 to S-7 across ap_pipeline, ap_forecast, ap_aging and ap_portal, and the PRD maps each to user stories and acceptance criteria without adding scope.",
+        "source": "feat.brd"
+      },
+      {
+        "text": "Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when > 10, otherwise 'low'; the thresholds are strict, so exactly 30 is 'medium' and exactly 10 is 'low' (AC-7 to AC-9).",
+        "source": "feat.brd; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The overdue list includes only unpaid invoices more than 30 days past due; an invoice exactly 30 days past due is not listed, and this boundary is tested explicitly (AC-14, NFR-8).",
+        "source": "feat.brd; record:memory"
+      },
+      {
+        "text": "Overdue rows carry id, vendor, days, amount and risk, are sorted by days descending then id, and get risk 'unknown' when the vendor is not in risk_by_vendor (AC-16, AC-17).",
+        "source": "feat.brd"
+      },
+      {
+        "text": "An invalid paid_date rejects the feed row with reason 'paid_date' (AC-3).",
+        "source": "feat.brd"
+      },
+      {
+        "text": "Amounts are Decimal with 2 dp, never float, and travel between services as strings with two decimals; dates travel as ISO strings (AC-18, NFR-1, NFR-2).",
+        "source": "feat.brd; record:memory; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The feed schedule is unchanged at daily 02:00 Asia/Kolkata (NFR-9).",
+        "source": "feat.brd; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "org.architecture describes ap_pipeline, ap_forecast and ap_aging as Python 3.9 and ap_portal as Node.js 22 CommonJS; the PRD records this as background only and sets no runtime requirement.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The PRD was checked against decisions D-2026-031, D-2026-044 and D-2026-050 and found no conflict; lessons L-007 and L-011 are applied.",
+        "source": "record:memory; feat.brd"
+      },
+      {
+        "text": "BRD open questions OQ-B1 to OQ-B10 and assumptions B-A1 to B-A7 are carried forward; OQ-B6 is kept open by limiting AC-2 to paid rows.",
+        "source": "feat.brd"
+      },
+      {
+        "text": "This step is triggered by BRD approval; owner and gate are PM.",
+        "source": "record:brief"
+      }
+    ],
+    "open_questions": [
+      "PQ-1: What should vendor_risk return for an empty history? The inputs do not say how predict_delay_days behaves on an empty list, or whether a vendor with no paid history gets an entry in risk_by_vendor.",
+      "PQ-2: Confirm the PRD assumptions P-A1 to P-A4: days in an overdue row is counted from due_date to as_of; the id tie-break is ascending and compares ids as text; an invalid paid_date is non-empty and not a valid ISO date; the end-to-end test checks that the rendered table matches the overdue list.",
+      "PQ-3: Should the overdue list between ap_aging and ap_portal have a named JSON contract, including the type of days? Proposed for the TRD (REQ-07).",
+      "PQ-4: No performance, data volume or availability targets are given (NFR-11).",
+      "PQ-5: Who orders this change and PROV-ACME-2026-11? Both change build_explanation_request.",
+      "PQ-6: Is feed v3 available for CR-1? ZD-48470 brings feed v2.",
+      "Carried from the BRD, still open: OQ-B1 to OQ-B10. Notable among them: OQ-B6 (an unpaid row that has a paid_date), OQ-B8 (HTML escaping), OQ-B9 (whether the risk is shown as visible text) and OQ-B10 (how ap_portal formats the amount without using float)."
+    ],
+    "summary": "I rewrote feat.prd in full for attempt 2. The refused NFR-10 (\"Runtimes are unchanged\") is no longer a requirement. The Python 3.9 / Node.js 22 runtimes now appear as a labelled background note from org.architecture, and the PRD sets no runtime requirement. NFR-11 and NFR-12 were renumbered to NFR-10 and NFR-11, with all cross-references updated. A validation-check row now confirms that every NFR has a source.\n\nThe rest of the PRD is the same as attempt 1:\n- Five user stories.\n- 23 EARS acceptance criteria covering the paid_date feed column, delays_by_vendor, the vendor_risk thresholds, build_explanation_request's optional risk argument, overdue_with_risk, renderOverdueRisk and the end-to-end flow.\n- Eleven NFRs.\n- BRD assumptions and open questions carried forward, plus new assumptions P-A1 to P-A4 and questions PQ-1 to PQ-6.\n- Traceability to the BRD, and a validation check that found no conflict with the decision log or the BRD.\n\nThe PRD is ready for the PM gate."
+  },
+  "meta": {
+    "subtype": "success",
+    "is_error": false,
+    "num_turns": 5,
+    "session_id": "029b7a75-4ec2-4f96-81a2-fee1b0b83e38",
+    "total_cost_usd": 1.6823203,
+    "permission_denials": [],
+    "result": "{\"approach\":\"Attempt 2 fixes the single G1 refusal. The old NFR-10, \\\"Runtimes are unchanged: ... Python 3.9 ... Node.js 22 CommonJS\\\", turned the runtime description in org.architecture into a requirement that no source states. I removed it from the non-functional requirements. It now appears below the table as a labelled background note: org.architecture describes those runtimes, no input sets a runtime requirement, and runtime matters are left to the TRD. The former NFR-11 (terminology) and NFR-12 (performance targets) are renumbered NFR-10 and NFR-11. Their references in OQ-B2, PQ-4 and the traceability table are updated to match. I checked that the remaining \\\"unchanged\\\" statement is sourced. NFR-9, the feed schedule, is backed by BRD S-1 (\\\"The schedule is unchanged\\\") and by org.customer_mappings (\\\"(unchanged)\\\"), and both are now quoted in its source cell. A new validation-check row confirms that every NFR is backed by a BRD item, a decision, a lesson or a stated source rule. I rewrote feat.prd in full. All other content is the same as attempt 1, after the verifier fixes from that attempt (AC-2 limited to paid rows so OQ-B6 stays open; \\\"So that\\\" clauses and P-A4 labelled as judgement).\",\"tools_used\":[\"Skill (requirement-steps)\",\"Read\",\"Write\",\"Edit\",\"Grep\",\"Agent (verifier, attempt 1)\"],\"claims\":[{\"text\":\"The PRD template requires summary, user stories, numbered acceptance criteria in EARS form (When <trigger>, the system shall <response>), non-functional requirements and open questions; feat.prd has all five sections.\",\"source\":\"org.templates\"},{\"text\":\"The approved BRD scopes seven items S-1 to S-7 across ap_pipeline, ap_forecast, ap_aging and ap_portal, and the PRD maps each to user stories and acceptance criteria without adding scope.\",\"source\":\"feat.brd\"},{\"text\":\"Vendor risk is 'high' when predict_delay_days(history) > 30, 'medium' when > 10, otherwise 'low'; the thresholds are strict, so exactly 30 is 'medium' and exactly 10 is 'low' (AC-7 to AC-9).\",\"source\":\"feat.brd; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The overdue list includes only unpaid invoices more than 30 days past due; an invoice exactly 30 days past due is not listed, and this boundary is tested explicitly (AC-14, NFR-8).\",\"source\":\"feat.brd; record:memory\"},{\"text\":\"Overdue rows carry id, vendor, days, amount and risk, are sorted by days descending then id, and get risk 'unknown' when the vendor is not in risk_by_vendor (AC-16, AC-17).\",\"source\":\"feat.brd\"},{\"text\":\"An invalid paid_date rejects the feed row with reason 'paid_date' (AC-3).\",\"source\":\"feat.brd\"},{\"text\":\"Amounts are Decimal with 2 dp, never float, and travel between services as strings with two decimals; dates travel as ISO strings (AC-18, NFR-1, NFR-2).\",\"source\":\"feat.brd; record:memory; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The feed schedule is unchanged at daily 02:00 Asia/Kolkata (NFR-9).\",\"source\":\"feat.brd; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"org.architecture describes ap_pipeline, ap_forecast and ap_aging as Python 3.9 and ap_portal as Node.js 22 CommonJS; the PRD records this as background only and sets no runtime requirement.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The PRD was checked against decisions D-2026-031, D-2026-044 and D-2026-050 and found no conflict; lessons L-007 and L-011 are applied.\",\"source\":\"record:memory; feat.brd\"},{\"text\":\"BRD open questions OQ-B1 to OQ-B10 and assumptions B-A1 to B-A7 are carried forward; OQ-B6 is kept open by limiting AC-2 to paid rows.\",\"source\":\"feat.brd\"},{\"text\":\"This step is triggered by BRD approval; owner and gate are PM.\",\"source\":\"record:brief\"}],\"open_questions\":[\"PQ-1: What should vendor_risk return for an empty history? The inputs do not say how predict_delay_days behaves on an empty list, or whether a vendor with no paid history gets an entry in risk_by_vendor.\",\"PQ-2: Confirm the PRD assumptions P-A1 to P-A4: days in an overdue row is counted from due_date to as_of; the id tie-break is ascending and compares ids as text; an invalid paid_date is non-empty and not a valid ISO date; the end-to-end test checks that the rendered table matches the overdue list.\",\"PQ-3: Should the overdue list between ap_aging and ap_portal have a named JSON contract, including the type of days? Proposed for the TRD (REQ-07).\",\"PQ-4: No performance, data volume or availability targets are given (NFR-11).\",\"PQ-5: Who orders this change and PROV-ACME-2026-11? Both change build_explanation_request.\",\"PQ-6: Is feed v3 available for CR-1? ZD-48470 brings feed v2.\",\"Carried from the BRD, still open: OQ-B1 to OQ-B10. Notable among them: OQ-B6 (an unpaid row that has a paid_date), OQ-B8 (HTML escaping), OQ-B9 (whether the risk is shown as visible text) and OQ-B10 (how ap_portal formats the amount without using float).\"],\"summary\":\"I rewrote feat.prd in full for attempt 2. The refused NFR-10 (\\\"Runtimes are unchanged\\\") is no longer a requirement. The Python 3.9 / Node.js 22 runtimes now appear as a labelled background note from org.architecture, and the PRD sets no runtime requirement. NFR-11 and NFR-12 were renumbered to NFR-10 and NFR-11, with all cross-references updated. A validation-check row now confirms that every NFR has a source.\\n\\nThe rest of the PRD is the same as attempt 1:\\n- Five user stories.\\n- 23 EARS acceptance criteria covering the paid_date feed column, delays_by_vendor, the vendor_risk thresholds, build_explanation_request's optional risk argument, overdue_with_risk, renderOverdueRisk and the end-to-end flow.\\n- Eleven NFRs.\\n- BRD assumptions and open questions carried forward, plus new assumptions P-A1 to P-A4 and questions PQ-1 to PQ-6.\\n- Traceability to the BRD, and a validation check that found no conflict with the decision log or the BRD.\\n\\nThe PRD is ready for the PM gate.\"}"
+  }
+}
