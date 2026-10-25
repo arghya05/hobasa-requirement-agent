@@ -1,77 +1,68 @@
-<!-- input feat.prebacklog for REQ-02: from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md at commit fd588b3, produced by REQ-01 -->
+<!-- input feat.prebacklog for REQ-02: from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md at commit 9919dd4, produced by REQ-01 -->
 # feat.prebacklog: FEAT-ZD-48600
 
-**Pre Backlog entry, status: Draft for PM review.** This step does not approve or prioritize anything.
+Pre Backlog requirement entry. This is a draft for review at the PM gate.
 
-## 1. Entry
+## Entry
 
 | Field | Value | Source |
 |---|---|---|
 | Trace ID | FEAT-ZD-48600 | record:brief |
-| Title | Overdue invoices ranked by vendor late-payment risk (feed -> delays -> risk -> overdue list -> portal table) | record:intake |
-| Intake | Zendesk ticket ZD-48600 (sample, synthetic), Customer Feedback, received 2026-10-24 | record:intake |
-| Source link | `hobasa-agentic-sdlc/requirements/ZD-48600.md` (full intake in feat.intake) | record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
+| Title | Show which overdue invoices belong to vendors that usually pay late | record:intake |
+| Intake link | ZD-48600, `hobasa-agentic-sdlc/requirements/ZD-48600.md` (full text in feat.intake) | record:intake |
+| Channel / received | Customer Feedback / 2026-10-24 | record:intake |
 | Business need | AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first. | record:intake |
-| Linked roadmap item | **R-AP-12**, "give AP managers earlier visibility of overdue payables" (Q4 2026 roadmap, AP module, owner PM) | org.roadmap |
-| Not linked | R-AP-14, "aging export for finance close". The ticket asks for no export. | org.roadmap; record:intake |
-| Affected components | ap_pipeline (CR-1, CR-2), ap_forecast (CR-3, CR-4), ap_aging (CR-5), ap_portal (CR-6), plus an end-to-end proof across all four (CR-7) | record:intake |
-| Routing named in the source file | ap_pipeline -> Data Engineering Coding Agent; ap_forecast -> Data Science Agent; ap_aging -> Backend Coding Agent; ap_portal -> Frontend Coding Agent; integration and end-to-end tests across all four -> Testing Agent | file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
-| Item type stated in the source file | New Feature | file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
-| Risk note in the source file | No finance posting, authentication, tenancy or payment execution; tier T2; the risk label is advisory only | file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
-| Owner | PM | org.roadmap |
+| Linked roadmap item | **R-AP-12**: "give AP managers earlier visibility of overdue payables" (Q4 2026 roadmap, AP module, owner PM) | org.roadmap |
+| Not linked | R-AP-14 (aging export for finance close). The ticket asks for no export. | org.roadmap; record:intake |
+| Affected components | ap_pipeline (Data engineering), ap_forecast (AI / data science), ap_aging (Backend), ap_portal (Frontend), plus an end-to-end proof of the flow feed -> delays -> risk -> overdue list -> portal table | record:intake |
+| Change requests | CR-0 to CR-7, listed in feat.intake | record:intake |
+| Status | Draft entry for review; gate: PM | record:brief |
 
-## 2. Intake checks
+## Intake checks (workbook action)
 
-| Check (workbook action) | Result | Source |
+| Check | Result | Source |
 |---|---|---|
-| Read the roadmap item and match it to planned work | The item matches R-AP-12. The ticket's goal (seeing overdue invoices so they can be chased first) falls under "earlier visibility of overdue payables". | org.roadmap; record:intake |
-| Check against the Pre Backlog sheet and the DevOps board | **Not possible.** Neither the sheet nor the board was in this step's context. As a substitute I read the related requirement files in the repository. No duplicate was found, but there are three related open items (section 3). | record:brief; file:hobasa-agentic-sdlc/requirements/ZD-48211.md; file:hobasa-agentic-sdlc/requirements/ZD-48455.md; file:hobasa-agentic-sdlc/requirements/ZD-48501.md |
-| Check the decision for conflict with prior decisions | No conflict found (section 4). | org.decision_log; record:memory |
-| Match the change against the connector inventory | **ap_aging (CR-5):** the inventory states that no source-system connector is affected by the ap_aging library. **ap_pipeline, ap_forecast, ap_portal (CR-1 to CR-4, CR-6):** the inventory says nothing about these repositories, so this step cannot confirm whether any connector is affected. CR-1 changes the vendor feed (a new optional `paid_date` column). The source file records this as vendor feed v3, with the daily 02:00 Asia/Kolkata schedule unchanged. Whether that counts as a connector change is open (OQ-3). | org.connector_inventory; record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
-| Capture regulatory section and page, and the rules affected | Not applicable. No regulatory source applies to this change, so there is no section or page to cite and no rule is changed or added. | org.regulatory_sources |
-| Match the change against the model dependency map | ap_forecast uses provider acme-llm, model acme-text-2 (config `src/ap_forecast/models.json`), for the payment-delay explanation. CR-4 changes the prompt of the explanation request, so the feature depends on this model. `vendor_risk` (CR-3) uses no LLM; it is a rule on the predicted delay. The ticket does not mention any change of provider or model. | org.model_dependency_map; record:intake |
-| Gather external patterns and cite each source | Not applicable. This is a customer ticket and no market or competitive input was part of the trigger. | record:intake |
-| Transcript / meeting gateways | Not applicable. The channel is Customer Feedback (a ticket), not a meeting transcript. | record:intake |
+| Read the ticket | Done. The ticket text is captured word for word and split into CR-0 to CR-7 (feat.intake). | record:intake |
+| Read the roadmap item and match it to planned work | Matches **R-AP-12**. The ticket asks to see overdue invoices so they can be chased first. This falls under "earlier visibility of overdue payables". | org.roadmap; record:intake |
+| Check against the Pre Backlog sheet and DevOps board | Neither the Pre Backlog sheet nor the DevOps board is in this step's context. As a substitute, I read the related intake files in `requirements/`. That found no duplicate, but it did find three related open items (see "Related items"). See open question Q-1. | file:hobasa-agentic-sdlc/requirements/ZD-48211.md; file:hobasa-agentic-sdlc/requirements/ZD-48501.md; file:hobasa-agentic-sdlc/requirements/ZD-48455.md |
+| Check the decision for conflict with prior decisions | No conflict found (see "Decision log check"). | org.decision_log; record:intake |
+| Regulatory sources (section and page) | Not applicable: "No regulatory source applies to this change." No section or page is captured, and no rule is affected. | org.regulatory_sources |
+| Connector inventory | The inventory states: "No source-system connector is affected by the ap_aging library." It does not mention the vendor feed that ap_pipeline ingests, and CR-1 changes that feed (new optional `paid_date` column, feed v3). The connector impact of CR-1 is therefore unconfirmed. See open question Q-2. | org.connector_inventory; record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
+| Model dependency map | ap_forecast uses provider acme-llm, model acme-text-2 (config `src/ap_forecast/models.json`), for the payment-delay explanation. CR-4 changes the prompt sent to it (optional trailing `' Risk level: <risk>.'`); the ticket asks for no change of provider or model. `vendor_risk` (CR-3) "uses no LLM; it is a rule on the predicted delay". Affected feature: the payment-delay explanation. | org.model_dependency_map; record:intake |
+| External patterns / market research | Not applicable. The trigger is a customer ticket (channel Customer Feedback), not a market research or competitive analysis change, so no external sources were gathered. | record:intake; record:brief |
+| Notification | Not sent. The only connector approved for this step is api:github, which allows GET only. I filed a capability_request for a notification channel. It is pending approval. See open question Q-3. | mcp:hobasa-context; record:brief |
 
-## 3. Related open requirements (possible overlap)
+## Decision log check
 
-These are not duplicates, but should be considered together when the entry is grouped.
-
-| File | Received / status / repositories | Overlap with this entry | Source |
+| Decision / lesson | Relation to this item | Result | Source |
 |---|---|---|---|
-| `requirements/ZD-48211.md` | 2026-10-20; open; ap_aging | Asks to flag every open invoice more than 30 days past its due date as overdue, and to add an overdue summary (number of overdue invoices and their total amount). Paid invoices never count as overdue. CR-5 in this entry uses the same overdue rule. | file:hobasa-agentic-sdlc/requirements/ZD-48211.md |
-| `requirements/ZD-48501.md` | 2026-10-24; open; ap_aging, ap_portal | Adds `overdue_summary(invoices, as_of)` returning `{'count': int, 'total': Decimal}` for unpaid invoices more than 30 days past due, plus a `badge-overdue` portal badge. Same overdue rule and the same `as_of` parameter style as CR-5; different function and view. | file:hobasa-agentic-sdlc/requirements/ZD-48501.md |
-| `requirements/ZD-48455.md` | 2026-10-22; open; ap_portal | Highlights the 61-90 and 'Over 90 days' aging rows as overdue risk (CSS class `row-overdue`) and adds a total row. The name is similar to this entry's `overdue-risk` table and `risk-*` row classes, but it is a different view (the aging summary table). | file:hobasa-agentic-sdlc/requirements/ZD-48455.md |
+| D-2026-031: aging buckets use calendar days after due date | CR-5 "more than 30 days past due" and CR-2 `delay_days = (paid_date - due_date) in days`. Assumed to be calendar days (A-1). | Consistent | org.decision_log; record:intake |
+| D-2026-044: monetary amounts use Decimal, never float | CR-5 returns `amount`; CR-6 shows amount to two decimals. The data model has `amount (Decimal, 2 dp)`, and JSON between services carries amounts as strings with two decimals. | Consistent, provided amounts stay Decimal or two-decimal strings and never pass through float (A-2) | org.decision_log; record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
+| D-2026-050: paid invoices are excluded from aging | CR-5 covers only unpaid invoices. | Consistent | org.decision_log; record:intake |
+| L-007: test the boundary day (exactly 30 days) explicitly for any day-count rule | CR-5 uses "more than 30 days", so an invoice exactly 30 days past due is not listed. CR-3 uses the strict thresholds `> 30` and `> 10`. Both boundaries need explicit tests. | Carry forward to testing | record:memory; record:intake |
+| L-011: keep Decimal arithmetic; never convert amounts to float | Same as D-2026-044 for CR-5 and CR-6. | Carry forward to design | record:memory |
 
-Comparison against this entry: record:intake
+## Related items (open; not duplicates)
 
-## 4. Decision log and lessons check
+| Item | Overlap | Source |
+|---|---|---|
+| ZD-48501 (open) | `overdue_summary(invoices, as_of)` in ap_aging, for "unpaid invoices more than 30 days past due". This is the same overdue rule as CR-5, but it adds a different function and a portal badge (`badge-overdue`). | file:hobasa-agentic-sdlc/requirements/ZD-48501.md |
+| ZD-48211 (open) | Flag every open invoice "more than 30 days past its due date" as overdue and add an overdue summary. "Paid invoices should never count as overdue." This is the same overdue definition. | file:hobasa-agentic-sdlc/requirements/ZD-48211.md |
+| ZD-48455 (open) | ap_portal aging table: highlight rows as "overdue risk" with CSS class `row-overdue`. This uses similar wording but a different table and class from CR-6 (`overdue-risk`, `risk-RISK`). | file:hobasa-agentic-sdlc/requirements/ZD-48455.md |
 
-| Item | Bearing on this entry | Conflict? | Source |
-|---|---|---|---|
-| D-2026-031: aging buckets use calendar days after due date | Applies to CR-5 "days past due". I assume the overdue count also uses calendar days (A-1). The decision covers aging buckets only, so it does not settle the day unit for `delay_days` in CR-2 (OQ-2). | No | org.decision_log; record:intake |
-| D-2026-044: monetary amounts use Decimal, never float | CR-5 `amount` must stay Decimal. Per the source file, JSON between services carries amounts as strings with two decimals; CR-6 shows them to two decimals. | No | org.decision_log; record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md |
-| D-2026-050: paid invoices are excluded from aging | CR-5 covers unpaid invoices only, which is consistent. CR-2 uses paid records only for delay history, not for aging. | No | org.decision_log; record:intake |
-| L-007: test the boundary day (exactly 30 days) explicitly | Boundaries to test: exactly 30 days past due (CR-5, `> 30`), and predicted delay of exactly 30 and exactly 10 (CR-3, `> 30` / `> 10`). | n/a | record:memory; record:intake |
-| L-011: keep Decimal arithmetic; never convert amounts to float | Applies to amounts carried through CR-5 and CR-7. | n/a | record:memory |
+## Assumptions (non-blocking; please confirm at the PM gate)
 
-## 5. Assumptions (non-blocking)
+- **A-1**: "Days past due" in CR-5 and `delay_days` in CR-2 are calendar days, following D-2026-031. (org.decision_log)
+- **A-2**: Inside ap_aging, `amount` in the CR-5 output is the Invoice `amount (Decimal, 2 dp)`. When the overdue list passes from ap_aging to ap_portal as JSON, the amount travels as a string with two decimals, as the architecture states for all JSON between services. ap_portal (CR-6) then shows it to two decimals. At no point is it converted to float (D-2026-044, L-011). (org.decision_log; record:memory; record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md)
+- **A-3**: The `history` passed to `vendor_risk` (CR-3) is one vendor's list of `delay_days` from `delays_by_vendor` (CR-2). `risk_by_vendor` (CR-5) maps each vendor to that vendor's `vendor_risk` result. This follows the stated flow "feed -> delays -> risk -> overdue list". (record:intake)
+- **A-4**: A negative `delay_days` (paid before the due date) is kept as computed. The ticket defines `delay_days = (paid_date - due_date)` and sets no floor. (record:intake)
+- **A-5**: A record marked paid that has no `paid_date` is left out of `delays_by_vendor`. It is not rejected, because the ticket covers only "paid records with a paid_date". (record:intake)
+- **A-6**: The risk label is advisory only. No finance posting or payment execution is in scope. (file:hobasa-agentic-sdlc/requirements/ZD-48600.md)
 
-- **A-1:** "days past due" in CR-5 means calendar days after the due date, in line with D-2026-031. (org.decision_log)
-- **A-2:** `delay_days` in CR-2 can be zero or negative when a vendor paid on or before the due date. Such values are kept in feed order. (record:intake; see OQ-2)
-- **A-3:** `risk_by_vendor` (CR-5) is built from `vendor_risk` (CR-3) applied to each vendor's `delays_by_vendor` history (CR-2). This follows from the flow named in CR-7. (record:intake)
-- **A-4:** The `RISK` placeholder in `<tr class="risk-RISK">` (CR-6) is the risk value of the row: high, medium, low or unknown. The source file names the classes `risk-high`, `risk-medium`, `risk-low` and `risk-unknown`. (record:intake; file:hobasa-agentic-sdlc/requirements/ZD-48600.md)
+## Open questions (non-blocking)
 
-## 6. Open questions (non-blocking)
-
-- **OQ-1:** The Pre Backlog sheet and the DevOps board were not available, so the duplicate check covered only the repository's requirement files. PM: please confirm there is no existing entry for this need.
-- **OQ-2:** Is the day unit for `delay_days` (CR-2) calendar days, and should early payments (zero or negative delay) be included? D-2026-031 covers aging buckets only.
-- **OQ-3:** The connector inventory covers only ap_aging. Is any source-system connector affected by the ap_pipeline vendor-feed change (the new `paid_date` column, CR-1), or by the ap_forecast or ap_portal changes? Should the feed change be recorded in the connector inventory?
-- **OQ-4:** How should a row be handled if `paid` and `paid_date` disagree (for example, paid with an empty `paid_date`, or unpaid with a date)? The ticket defines only the invalid-date rejection.
-- **OQ-5:** What should `vendor_risk` return for a vendor with an empty history? This depends on how `predict_delay_days` behaves today, which this step did not read.
-- **OQ-6:** Should vendor names and ids be HTML-escaped in `renderOverdueRisk` (CR-6)? The ticket does not say.
-- **OQ-7:** Should this entry be grouped with, or sequenced after, the related open items ZD-48211 and ZD-48501, which share the same overdue rule (unpaid, more than 30 days past due)?
-
-## 7. Notification
-
-This step sent no notification. This entry is the notification content for the PM gate on FEAT-ZD-48600. Sending it is left to the workflow after evaluation. (record:brief)
+- **Q-1**: The Pre Backlog sheet and DevOps board were not available to this step. The duplicate check covered only the related `requirements/` intake files. Can the PM confirm that no existing board item covers this? Should this item share one overdue definition with ZD-48501 and ZD-48211, or be merged with them?
+- **Q-2**: Is the vendor feed (feed v3, new `paid_date` column) a registered source-system connector? If so, the connector inventory needs an entry and a version update. The current inventory speaks only about the ap_aging library.
+- **Q-3**: A notification channel is pending approval through capability_request. Until it is approved, who notifies the PM of this entry?
+- **Q-4**: How should a row that is unpaid but has a `paid_date` be handled: reject it, or ignore the date? The ticket defines rejection only for an invalid `paid_date`.
+- **Q-5**: Should `renderOverdueRisk` (CR-6) HTML-escape the vendor names and ids it renders? The ticket does not say.

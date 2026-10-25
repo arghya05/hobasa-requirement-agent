@@ -13,6 +13,7 @@
 - org.architecture: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.architecture.md`
 
 ## Other GitHub files the agent read (valid sources when cited as file:<repository>/<path>)
+- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md`
 - `hobasa-agentic-sdlc/org/org.routing_map.md`
 - `hobasa-agentic-sdlc/requirements/FIN-OPS-2026-07.md`
 - `hobasa-agentic-sdlc/requirements/PROV-ACME-2026-11.md`
@@ -34,8 +35,7 @@ Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC re
 Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again.
 
 ## Refusal reasons
-G1 judge found an unsupported statement: "Same vendor feed and same `transform.to_model` reject path as CR-1." (Neither ZD-48600 nor feat.intake says the invalid paid_date rejection goes through transform.to_model. That is inferred from org.architecture (transform.to_mode)
-G1 judge found an unsupported statement: "Only CR-6 is customer-visible on its own; the others are technical building blocks for it." (This is the agent's own judgement and no source states it. CR-4 changes the prompt of the payment-delay explanation, which may be visible to users, and no input)
+G1 judge found an unsupported statement: "Related items grouped with this entry | ZD-48501, ZD-48211, ZD-48470, PROV-ACME-2026-11, FIN-OPS-2026-07 (shared rule or shared code; not duplicates)" (FIN-OPS-2026-07 shares no rule or code with ZD-48600. It changes only the ap_forecast explanation max_tokens setting, which is a configuration value ('No code o)
 
 ## Step brief (unchanged except the attempt number)
 # Step REQ-02: Grouping (attempt 2) for FEAT-ZD-48600
@@ -45,12 +45,14 @@ Technical has to be a sub-category under each and should be classified as Techni
 This could go as a qualifier during requirement approval or as applicable ²
 - Workbook action: New Ticket gets created
 - Workbook outcome: Entry classified by category, duplicates merged
+- Owner of this step: PM
+- Gate (who approves this output): no gate: automated checks, the independent judge and sampled human evaluation
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.prebacklog (Pre-backlog entry linked to roadmap and trace ID): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/feat.prebacklog.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md at commit fd588b3)
-- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit fd588b3)
-- org.routing_map (Component-to-owner routing for defects): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.routing_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.routing_map.md at commit bf63f34)
-- org.architecture (Platform architecture, contracts and tenancy rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.architecture.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md at commit bf63f34)
+- feat.prebacklog (Pre-backlog entry linked to roadmap and trace ID): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/feat.prebacklog.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md at commit 9919dd4)
+- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit 9919dd4)
+- org.routing_map (Component-to-owner routing for defects): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.routing_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.routing_map.md at commit 9fbbfba)
+- org.architecture (Platform architecture, contracts and tenancy rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.architecture.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
 - feat.classification (Category, qualifier and merged duplicates): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md`

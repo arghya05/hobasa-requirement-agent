@@ -1,6 +1,5 @@
 {
   "failures": [
-    "G1 judge found an unsupported statement: \"Same vendor feed and same `transform.to_model` reject path as CR-1.\" (Neither ZD-48600 nor feat.intake says the invalid paid_date rejection goes through transform.to_model. That is inferred from org.architecture (transform.to_mode)",
-    "G1 judge found an unsupported statement: \"Only CR-6 is customer-visible on its own; the others are technical building blocks for it.\" (This is the agent's own judgement and no source states it. CR-4 changes the prompt of the payment-delay explanation, which may be visible to users, and no input)"
+    "G1 judge found an unsupported statement: \"Related items grouped with this entry | ZD-48501, ZD-48211, ZD-48470, PROV-ACME-2026-11, FIN-OPS-2026-07 (shared rule or shared code; not duplicates)\" (FIN-OPS-2026-07 shares no rule or code with ZD-48600. It changes only the ap_forecast explanation max_tokens setting, which is a configuration value ('No code o)"
   ]
 }

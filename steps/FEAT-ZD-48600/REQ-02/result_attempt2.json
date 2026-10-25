@@ -1,69 +1,94 @@
 {
   "structured": {
-    "approach": "Attempt 2 fixes both G1 refusals, and I rewrote feat.classification in full. (1) In the ZD-48470 overlap row I removed the inferred claim that both changes use the same transform.to_model reject path. The row now states only what the files say: both change the ap_pipeline vendor feed and both add a row rejection ('InvalidCurrency' in feed v2, 'paid_date' in feed v3). (2) I removed the sentence \"Only CR-6 is customer-visible on its own\" and the per-CR \"customer-visible\" column. The qualifier now rests only on sourced facts: the business need for AP managers, CR-6's new portal table, and how RETRO-2026-19 uses \"Technical only\". Whether other CRs, for example the CR-4 explanation prompt, are visible to users is now open question OQ-E. While re-checking the file I also tightened the FIN-OPS row (\"the ticket does not mention max_tokens\"). Everything else is unchanged from the inputs and requirement files read in attempt 1: same category, routing, impacted repositories and duplicate decisions. Shell use is blocked for this step (G9), so I read files with Read.",
+    "approach": "This attempt fixes the G1 refusal. FIN-OPS-2026-07 had been listed among the related items said to share a rule or code with ZD-48600. It is a configuration-only change to max_tokens and shares neither, so I removed it from the grouped list and marked it \"Not grouped\" in the duplicate table. Its max_tokens conflict with PROV-ACME-2026-11 is kept only as a side observation for the PM (new OQ-5), split out of OQ-3. The grouped list now names four items, each with its link stated: ZD-48501 and ZD-48211 (shared overdue rule), and ZD-48470 and PROV-ACME-2026-11 (shared code). The fixes from earlier attempts are kept: the CR-4 provider/model statement is scoped to this ticket, there is no status or oracle-field statement, and every cited file was opened with Read. The classification is unchanged: New Feature, Not Technical Only, a Technical sub-category for each CR, no duplicates merged, and the impacted repositories taken from the routing maps. I rewrote the file in full.",
     "tools_used": [
       "Skill:requirement-steps",
       "Read",
       "Glob",
       "Grep",
       "Write",
-      "Edit"
+      "Edit",
+      "Agent:verifier"
     ],
     "claims": [
       {
-        "text": "FEAT-ZD-48600 is classified as New Feature. The source file records expected_type New Feature, and the ticket asks for new functions, a new optional feed column and a new optional argument.",
-        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48600.md; feat.intake; feat.prebacklog"
+        "text": "FEAT-ZD-48600 is classified as New Feature. It adds four new functions (delays_by_vendor, vendor_risk, overdue_with_risk, renderOverdueRisk) and an optional paid_date feed column, and existing signatures are kept.",
+        "source": "feat.intake; org.architecture"
       },
       {
-        "text": "The entry is not qualified as Technical Only, because CR-6 adds a new portal table (renderOverdueRisk) for the AP managers' need. RETRO-2026-19 uses 'Technical only' for an item with no customer-visible change.",
-        "source": "feat.intake; file:hobasa-agentic-sdlc/requirements/RETRO-2026-19.md"
+        "text": "It is not Compliance, because no regulatory source applies to this change.",
+        "source": "feat.prebacklog"
       },
       {
-        "text": "Technical sub-categories: CR-1 and CR-2 data engineering (ap_pipeline), CR-3 and CR-4 AI / data science (ap_forecast), CR-5 backend (ap_aging), CR-6 frontend (ap_portal), CR-7 integration and end-to-end tests across all four.",
-        "source": "feat.intake; org.routing_map"
+        "text": "The qualifier is Not Technical Only, because the item adds a customer-visible overdue-risk table in ap_portal for AP managers. Each change request has a Technical sub-category.",
+        "source": "feat.intake; record:brief; org.architecture"
       },
       {
-        "text": "Impacted repositories: ap_pipeline, ap_forecast, ap_aging, ap_portal. The feature routing map routes each to a coding agent and the end-to-end tests to the Testing Agent. The organisation-level routing map lists only ap_aging.",
-        "source": "org.routing_map; file:hobasa-agentic-sdlc/org/org.routing_map.md; feat.intake"
+        "text": "ap_forecast currently uses provider acme-llm, model acme-text-2, for the payment-delay explanation. Ticket ZD-48600 itself asks for no change of provider or model.",
+        "source": "feat.prebacklog"
       },
       {
-        "text": "No duplicate was found, so nothing was merged. ZD-48211 and ZD-48501 share the overdue rule (unpaid, more than 30 days past due) with CR-5, but each asks for a different function or view.",
-        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48211.md; file:hobasa-agentic-sdlc/requirements/ZD-48501.md; feat.intake"
-      },
-      {
-        "text": "ZD-48470 adds a currency column to the vendor feed (v2) and rejects invalid rows with reason 'InvalidCurrency'. This entry adds paid_date (feed v3) with reject reason 'paid_date', and its v3 column list does not include currency.",
-        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48470.md; file:hobasa-agentic-sdlc/requirements/ZD-48600.md; feat.intake"
-      },
-      {
-        "text": "PROV-ACME-2026-11 replaces acme-text-2 with acme-text-3 and adds a system field to the explanation requests. CR-4 changes the prompt built by build_explanation_request.",
+        "text": "PROV-ACME-2026-11 replaces acme-text-2 (deprecated on 2026-12-01) with acme-text-3 and adds a system field. CR-4 changes the same function (build_explanation_request), so PROV-ACME-2026-11 is grouped as related through shared code and needs ordering.",
         "source": "file:hobasa-agentic-sdlc/requirements/PROV-ACME-2026-11.md; feat.intake"
       },
       {
-        "text": "ZD-48377 reports an invoice exactly 30 days past due landing in the 31-60 bucket instead of 1-30. CR-5 uses the same more-than-30-days boundary, and L-007 requires testing it explicitly.",
-        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48377.md; feat.intake; record:memory"
+        "text": "ZD-48501 and ZD-48211 are grouped as related through the shared rule (unpaid invoices more than 30 days past due) but ask for different outputs. They are not duplicates.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48501.md; file:hobasa-agentic-sdlc/requirements/ZD-48211.md; feat.intake"
       },
       {
-        "text": "The architecture requires keeping every existing signature and adding new functions.",
-        "source": "org.architecture"
+        "text": "ZD-48470 (feed v2 adds currency) changes the same vendor feed as CR-1 (feed v3 adds paid_date). It is grouped as related through shared code, not as a duplicate.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48470.md; feat.intake"
+      },
+      {
+        "text": "FIN-OPS-2026-07 is a configuration-only change (max_tokens from 300 to 200, with no code or behaviour change). It shares no rule or code with ZD-48600 and is not grouped.",
+        "source": "file:hobasa-agentic-sdlc/requirements/FIN-OPS-2026-07.md; feat.intake"
+      },
+      {
+        "text": "Outside this item, FIN-OPS-2026-07 (max_tokens 200) conflicts with PROV-ACME-2026-11 (keep max_tokens at 300).",
+        "source": "file:hobasa-agentic-sdlc/requirements/FIN-OPS-2026-07.md; file:hobasa-agentic-sdlc/requirements/PROV-ACME-2026-11.md"
+      },
+      {
+        "text": "ZD-48455 highlights rows of the portal aging table with class row-overdue. It is neither grouped nor a duplicate.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48455.md; feat.intake"
+      },
+      {
+        "text": "ZD-48510 asks for payment execution, which is out of scope for this item. It is not grouped.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48510.md; feat.intake"
+      },
+      {
+        "text": "ZD-48377, RETRO-2026-19, ZD-48480 and REG-LPR-2026-4.2 concern ap_aging buckets, error messages, README definitions and the Late rule at more than 60 days. They are not duplicates.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48377.md; file:hobasa-agentic-sdlc/requirements/RETRO-2026-19.md; file:hobasa-agentic-sdlc/requirements/ZD-48480.md; file:hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md"
+      },
+      {
+        "text": "The risk tier is T2 with no payment execution, and the risk label is advisory only. The ticket is linked to roadmap item R-AP-12.",
+        "source": "feat.intake; feat.prebacklog"
+      },
+      {
+        "text": "Impacted repositories: ap_pipeline (Data Engineering Coding Agent), ap_forecast (Data Science Agent), ap_aging (Backend Coding Agent), ap_portal (Frontend Coding Agent). End-to-end tests go to the Testing Agent.",
+        "source": "org.routing_map; file:hobasa-agentic-sdlc/org/org.routing_map.md"
+      },
+      {
+        "text": "CR-5 has to follow D-2026-044 and L-011 (Decimal amounts) and D-2026-050 (paid invoices excluded).",
+        "source": "record:memory; feat.prebacklog"
       }
     ],
     "open_questions": [
-      "OQ-A: Should ap_aging have one shared overdue rule (unpaid, more than 30 days past due) for ZD-48211, ZD-48501 and CR-5, and in which order should they be built?",
-      "OQ-B: Should ZD-48470 (feed v2, currency) land first, and should feed v3 include currency? Its column list in the ZD-48600 source file does not.",
-      "OQ-C: PROV-ACME-2026-11 changes the model and adds a system field to the same explanation request that CR-4 changes. Which lands first?",
-      "OQ-D: Should the ZD-48377 boundary fix land before CR-5?",
-      "OQ-E: Are any change requests besides CR-6 visible to users (for example, does the CR-4 explanation prompt reach users)? The inputs do not say.",
-      "OQ-F: The Pre Backlog sheet and the DevOps board were not available; the duplicate check covered only the repository's requirement files (as OQ-1 in feat.prebacklog)."
+      "OQ-1: Should ZD-48501, ZD-48211 and CR-5 share one overdue definition in ap_aging ('unpaid and more than 30 days past due')? Nothing was merged.",
+      "OQ-2: CR-1 names feed v3, and ZD-48470 brings feed v2 (currency). Must ZD-48470 be delivered first?",
+      "OQ-3: PROV-ACME-2026-11 (acme-text-2 to acme-text-3, plus a system field) and CR-4 (risk argument) both change build_explanation_request. Which order should they land in, and should the CR-4 tests run against the model current at delivery?",
+      "OQ-4: Should org/org.routing_map.md be updated with the owners of ap_pipeline, ap_forecast and ap_portal? Today they exist only in the feature override.",
+      "OQ-5 (outside this item, for the PM): PROV-ACME-2026-11 keeps max_tokens at 300, while FIN-OPS-2026-07 lowers it from 300 to 200. Which one applies?",
+      "Carried forward from feat.prebacklog: Q-1 (duplicate check against the board), Q-2 (is feed v3 a registered connector), Q-3 (notification channel), Q-4 (unpaid row with a paid_date), Q-5 (HTML escaping in renderOverdueRisk)."
     ],
-    "summary": "I rewrote feat.classification for FEAT-ZD-48600 to fix both G1 refusals. The unsupported transform.to_model claim and the per-CR \"customer-visible\" judgement are removed; visibility beyond CR-6 is now open question OQ-E. The classification itself is unchanged: New Feature, not Technical Only, a technical sub-category and routing owner for each CR, and impacted repositories ap_pipeline, ap_forecast, ap_aging and ap_portal. No duplicates were merged. Related items ZD-48211, ZD-48501, ZD-48470, PROV-ACME-2026-11 and ZD-48377 are kept separate, with sequencing raised as non-blocking questions."
+    "summary": "I rewrote feat.classification for FEAT-ZD-48600 in full. FIN-OPS-2026-07 is no longer grouped, because it is configuration-only and shares no rule or code with this item. Its max_tokens conflict with PROV-ACME-2026-11 is now a separate PM question (OQ-5). Four items are grouped: ZD-48501 and ZD-48211 share the overdue rule, and ZD-48470 and PROV-ACME-2026-11 change the same code. The classification is unchanged: New Feature with the qualifier Not Technical Only, a Technical sub-category for each of CR-1 to CR-7, and no duplicates merged. Impacted repositories: ap_pipeline, ap_forecast, ap_aging, ap_portal. All open questions are non-blocking."
   },
   "meta": {
     "subtype": "success",
     "is_error": false,
     "num_turns": 3,
-    "session_id": "92d0c88a-9f85-44a8-adc1-f736989927ff",
-    "total_cost_usd": 0.830727,
+    "session_id": "d7bf5547-f517-4ab0-acd1-17f70b183cd6",
+    "total_cost_usd": 2.1156753999999998,
     "permission_denials": [],
-    "result": "{\"approach\":\"Attempt 2 fixes both G1 refusals, and I rewrote feat.classification in full. (1) In the ZD-48470 overlap row I removed the inferred claim that both changes use the same transform.to_model reject path. The row now states only what the files say: both change the ap_pipeline vendor feed and both add a row rejection ('InvalidCurrency' in feed v2, 'paid_date' in feed v3). (2) I removed the sentence \\\"Only CR-6 is customer-visible on its own\\\" and the per-CR \\\"customer-visible\\\" column. The qualifier now rests only on sourced facts: the business need for AP managers, CR-6's new portal table, and how RETRO-2026-19 uses \\\"Technical only\\\". Whether other CRs, for example the CR-4 explanation prompt, are visible to users is now open question OQ-E. While re-checking the file I also tightened the FIN-OPS row (\\\"the ticket does not mention max_tokens\\\"). Everything else is unchanged from the inputs and requirement files read in attempt 1: same category, routing, impacted repositories and duplicate decisions. Shell use is blocked for this step (G9), so I read files with Read.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"Grep\",\"Write\",\"Edit\"],\"claims\":[{\"text\":\"FEAT-ZD-48600 is classified as New Feature. The source file records expected_type New Feature, and the ticket asks for new functions, a new optional feed column and a new optional argument.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48600.md; feat.intake; feat.prebacklog\"},{\"text\":\"The entry is not qualified as Technical Only, because CR-6 adds a new portal table (renderOverdueRisk) for the AP managers' need. RETRO-2026-19 uses 'Technical only' for an item with no customer-visible change.\",\"source\":\"feat.intake; file:hobasa-agentic-sdlc/requirements/RETRO-2026-19.md\"},{\"text\":\"Technical sub-categories: CR-1 and CR-2 data engineering (ap_pipeline), CR-3 and CR-4 AI / data science (ap_forecast), CR-5 backend (ap_aging), CR-6 frontend (ap_portal), CR-7 integration and end-to-end tests across all four.\",\"source\":\"feat.intake; org.routing_map\"},{\"text\":\"Impacted repositories: ap_pipeline, ap_forecast, ap_aging, ap_portal. The feature routing map routes each to a coding agent and the end-to-end tests to the Testing Agent. The organisation-level routing map lists only ap_aging.\",\"source\":\"org.routing_map; file:hobasa-agentic-sdlc/org/org.routing_map.md; feat.intake\"},{\"text\":\"No duplicate was found, so nothing was merged. ZD-48211 and ZD-48501 share the overdue rule (unpaid, more than 30 days past due) with CR-5, but each asks for a different function or view.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48211.md; file:hobasa-agentic-sdlc/requirements/ZD-48501.md; feat.intake\"},{\"text\":\"ZD-48470 adds a currency column to the vendor feed (v2) and rejects invalid rows with reason 'InvalidCurrency'. This entry adds paid_date (feed v3) with reject reason 'paid_date', and its v3 column list does not include currency.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48470.md; file:hobasa-agentic-sdlc/requirements/ZD-48600.md; feat.intake\"},{\"text\":\"PROV-ACME-2026-11 replaces acme-text-2 with acme-text-3 and adds a system field to the explanation requests. CR-4 changes the prompt built by build_explanation_request.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/PROV-ACME-2026-11.md; feat.intake\"},{\"text\":\"ZD-48377 reports an invoice exactly 30 days past due landing in the 31-60 bucket instead of 1-30. CR-5 uses the same more-than-30-days boundary, and L-007 requires testing it explicitly.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48377.md; feat.intake; record:memory\"},{\"text\":\"The architecture requires keeping every existing signature and adding new functions.\",\"source\":\"org.architecture\"}],\"open_questions\":[\"OQ-A: Should ap_aging have one shared overdue rule (unpaid, more than 30 days past due) for ZD-48211, ZD-48501 and CR-5, and in which order should they be built?\",\"OQ-B: Should ZD-48470 (feed v2, currency) land first, and should feed v3 include currency? Its column list in the ZD-48600 source file does not.\",\"OQ-C: PROV-ACME-2026-11 changes the model and adds a system field to the same explanation request that CR-4 changes. Which lands first?\",\"OQ-D: Should the ZD-48377 boundary fix land before CR-5?\",\"OQ-E: Are any change requests besides CR-6 visible to users (for example, does the CR-4 explanation prompt reach users)? The inputs do not say.\",\"OQ-F: The Pre Backlog sheet and the DevOps board were not available; the duplicate check covered only the repository's requirement files (as OQ-1 in feat.prebacklog).\"],\"summary\":\"I rewrote feat.classification for FEAT-ZD-48600 to fix both G1 refusals. The unsupported transform.to_model claim and the per-CR \\\"customer-visible\\\" judgement are removed; visibility beyond CR-6 is now open question OQ-E. The classification itself is unchanged: New Feature, not Technical Only, a technical sub-category and routing owner for each CR, and impacted repositories ap_pipeline, ap_forecast, ap_aging and ap_portal. No duplicates were merged. Related items ZD-48211, ZD-48501, ZD-48470, PROV-ACME-2026-11 and ZD-48377 are kept separate, with sequencing raised as non-blocking questions.\"}"
+    "result": "{\"approach\":\"This attempt fixes the G1 refusal. FIN-OPS-2026-07 had been listed among the related items said to share a rule or code with ZD-48600. It is a configuration-only change to max_tokens and shares neither, so I removed it from the grouped list and marked it \\\"Not grouped\\\" in the duplicate table. Its max_tokens conflict with PROV-ACME-2026-11 is kept only as a side observation for the PM (new OQ-5), split out of OQ-3. The grouped list now names four items, each with its link stated: ZD-48501 and ZD-48211 (shared overdue rule), and ZD-48470 and PROV-ACME-2026-11 (shared code). The fixes from earlier attempts are kept: the CR-4 provider/model statement is scoped to this ticket, there is no status or oracle-field statement, and every cited file was opened with Read. The classification is unchanged: New Feature, Not Technical Only, a Technical sub-category for each CR, no duplicates merged, and the impacted repositories taken from the routing maps. I rewrote the file in full.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"Grep\",\"Write\",\"Edit\",\"Agent:verifier\"],\"claims\":[{\"text\":\"FEAT-ZD-48600 is classified as New Feature. It adds four new functions (delays_by_vendor, vendor_risk, overdue_with_risk, renderOverdueRisk) and an optional paid_date feed column, and existing signatures are kept.\",\"source\":\"feat.intake; org.architecture\"},{\"text\":\"It is not Compliance, because no regulatory source applies to this change.\",\"source\":\"feat.prebacklog\"},{\"text\":\"The qualifier is Not Technical Only, because the item adds a customer-visible overdue-risk table in ap_portal for AP managers. Each change request has a Technical sub-category.\",\"source\":\"feat.intake; record:brief; org.architecture\"},{\"text\":\"ap_forecast currently uses provider acme-llm, model acme-text-2, for the payment-delay explanation. Ticket ZD-48600 itself asks for no change of provider or model.\",\"source\":\"feat.prebacklog\"},{\"text\":\"PROV-ACME-2026-11 replaces acme-text-2 (deprecated on 2026-12-01) with acme-text-3 and adds a system field. CR-4 changes the same function (build_explanation_request), so PROV-ACME-2026-11 is grouped as related through shared code and needs ordering.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/PROV-ACME-2026-11.md; feat.intake\"},{\"text\":\"ZD-48501 and ZD-48211 are grouped as related through the shared rule (unpaid invoices more than 30 days past due) but ask for different outputs. They are not duplicates.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48501.md; file:hobasa-agentic-sdlc/requirements/ZD-48211.md; feat.intake\"},{\"text\":\"ZD-48470 (feed v2 adds currency) changes the same vendor feed as CR-1 (feed v3 adds paid_date). It is grouped as related through shared code, not as a duplicate.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48470.md; feat.intake\"},{\"text\":\"FIN-OPS-2026-07 is a configuration-only change (max_tokens from 300 to 200, with no code or behaviour change). It shares no rule or code with ZD-48600 and is not grouped.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/FIN-OPS-2026-07.md; feat.intake\"},{\"text\":\"Outside this item, FIN-OPS-2026-07 (max_tokens 200) conflicts with PROV-ACME-2026-11 (keep max_tokens at 300).\",\"source\":\"file:hobasa-agentic-sdlc/requirements/FIN-OPS-2026-07.md; file:hobasa-agentic-sdlc/requirements/PROV-ACME-2026-11.md\"},{\"text\":\"ZD-48455 highlights rows of the portal aging table with class row-overdue. It is neither grouped nor a duplicate.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48455.md; feat.intake\"},{\"text\":\"ZD-48510 asks for payment execution, which is out of scope for this item. It is not grouped.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48510.md; feat.intake\"},{\"text\":\"ZD-48377, RETRO-2026-19, ZD-48480 and REG-LPR-2026-4.2 concern ap_aging buckets, error messages, README definitions and the Late rule at more than 60 days. They are not duplicates.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48377.md; file:hobasa-agentic-sdlc/requirements/RETRO-2026-19.md; file:hobasa-agentic-sdlc/requirements/ZD-48480.md; file:hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md\"},{\"text\":\"The risk tier is T2 with no payment execution, and the risk label is advisory only. The ticket is linked to roadmap item R-AP-12.\",\"source\":\"feat.intake; feat.prebacklog\"},{\"text\":\"Impacted repositories: ap_pipeline (Data Engineering Coding Agent), ap_forecast (Data Science Agent), ap_aging (Backend Coding Agent), ap_portal (Frontend Coding Agent). End-to-end tests go to the Testing Agent.\",\"source\":\"org.routing_map; file:hobasa-agentic-sdlc/org/org.routing_map.md\"},{\"text\":\"CR-5 has to follow D-2026-044 and L-011 (Decimal amounts) and D-2026-050 (paid invoices excluded).\",\"source\":\"record:memory; feat.prebacklog\"}],\"open_questions\":[\"OQ-1: Should ZD-48501, ZD-48211 and CR-5 share one overdue definition in ap_aging ('unpaid and more than 30 days past due')? Nothing was merged.\",\"OQ-2: CR-1 names feed v3, and ZD-48470 brings feed v2 (currency). Must ZD-48470 be delivered first?\",\"OQ-3: PROV-ACME-2026-11 (acme-text-2 to acme-text-3, plus a system field) and CR-4 (risk argument) both change build_explanation_request. Which order should they land in, and should the CR-4 tests run against the model current at delivery?\",\"OQ-4: Should org/org.routing_map.md be updated with the owners of ap_pipeline, ap_forecast and ap_portal? Today they exist only in the feature override.\",\"OQ-5 (outside this item, for the PM): PROV-ACME-2026-11 keeps max_tokens at 300, while FIN-OPS-2026-07 lowers it from 300 to 200. Which one applies?\",\"Carried forward from feat.prebacklog: Q-1 (duplicate check against the board), Q-2 (is feed v3 a registered connector), Q-3 (notification channel), Q-4 (unpaid row with a paid_date), Q-5 (HTML escaping in renderOverdueRisk).\"],\"summary\":\"I rewrote feat.classification for FEAT-ZD-48600 in full. FIN-OPS-2026-07 is no longer grouped, because it is configuration-only and shares no rule or code with this item. Its max_tokens conflict with PROV-ACME-2026-11 is now a separate PM question (OQ-5). Four items are grouped: ZD-48501 and ZD-48211 share the overdue rule, and ZD-48470 and PROV-ACME-2026-11 change the same code. The classification is unchanged: New Feature with the qualifier Not Technical Only, a Technical sub-category for each of CR-1 to CR-7, and no duplicates merged. Impacted repositories: ap_pipeline, ap_forecast, ap_aging, ap_portal. All open questions are non-blocking.\"}"
   }
 }

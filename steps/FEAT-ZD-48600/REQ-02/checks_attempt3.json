@@ -1,7 +1,6 @@
 {
   "failures": [
-    "G1 judge found an unsupported statement: \"The routing map is not one of this step's contract inputs, so this routing rests on the role each repository has in the brief (see OQ-C2).\" (This contradicts the brief. The brief's 'Impacted repositories' section names `hobasa-agentic-sdlc/org/org.routing_map.md`, says 'read it' and says 'Cite the ro)",
-    "G1 judge found an unsupported statement: \"OQ-C2: Please add the routing map to this step's contract inputs, and confirm the routing of each repository to its area agent and of the end-to-end flow (CR-7)\" (The routing map is already in the brief, so the request rests on a false premise. Routing CR-7 'to testing' appears in no input, in the brief or in the routing )",
-    "G1 judge found an unsupported statement: \"Items that touch the same overdue rule in ap_aging, the same vendor feed in ap_pipeline, the `build_explanation_request` signature in ap_forecast, or the portal\" (This is left over from the out-of-context search the last refusal flagged: ZD-48211/ZD-48501 (overdue rule), ZD-48470 (feed), PROV-ACME-2026-11 (keep the signat)"
+    "G1 judge found an unsupported statement: \"The pre-backlog entry status stays \"Draft entry for review\".\" (feat.prebacklog does record the status as \"Draft entry for review; gate: PM\". But the workspace history (commit 0648784 \"FEAT-ZD-48600 REQ-01 Requirement Intake)",
+    "G1 judge found an unsupported statement: \"The source item's own type tag is `New Feature`, which matches this classification.\" (In requirements/ZD-48600.md the field is `expected_type: New Feature`, an expected or oracle value, not a type tag on the ticket. The value is correct, but the )"
   ]
 }
