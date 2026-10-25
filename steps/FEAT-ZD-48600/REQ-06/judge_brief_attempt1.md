@@ -4,16 +4,16 @@
 - Workbook outcome: Low Fidelity Wireframes
 
 ## Outputs to evaluate
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md`
 
 ## Inputs the agent was given
-- feat.prd: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/feat.prd.md`
-- org.design_library: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/org.design_library.md`
+- feat.prd: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/feat.prd.md`
+- org.design_library: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/org.design_library.md`
 
 ## Other GitHub files the agent read (valid sources when cited as file:<repository>/<path>)
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md`
-- `ap-portal-sample/README.md`
-- `ap-portal-sample/src/ap_portal/index.js`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/ap_portal/README.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/ap_portal/src/ap_portal/index.js`
 
 Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC repository.
 
@@ -35,11 +35,11 @@ G1 judge found an unsupported statement: "| SD-1 | Synthetic data only: ids pref
 - Gate (who approves this output): UX lead
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.prd (Approved PRD): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
-- org.design_library (Hobasa design library and variables (tokens)): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/org.design_library.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.design_library.md at commit 9fbbfba)
+- feat.prd (Approved PRD): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
+- org.design_library (Hobasa design library and variables (tokens)): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-06/org.design_library.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.design_library.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.prototype (FigJam flow and Figma Make prototype): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md`
+- feat.prototype (FigJam flow and Figma Make prototype): write `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md`
 
 
 ## How to work
