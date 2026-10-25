@@ -14,14 +14,14 @@ G1 judge found an unsupported statement: "journey:feat.prebacklog / journey:feat
 - Gate (who approves this output): Leadership
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.fitment (Fitment verdict with evidence and reason code): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.fitment.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md at commit 2bf67bd)
-- feat.intake (Original intake item with source link): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit 9919dd4)
-- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit 9fbbfba)
-- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
-- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
+- feat.fitment (Fitment verdict with evidence and reason code): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.fitment.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md at commit 2bf67bd)
+- feat.intake (Original intake item with source link): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/feat.intake.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md at commit 9919dd4)
+- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit 9fbbfba)
+- org.strategy_capability (Product capability, strategy and vision for fitment): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
+- org.decision_log (Prior leadership and product decisions): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-04/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.brd (Approved BRD): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md`
+- feat.brd (Approved BRD): write `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md`
 
 
 ## How to work
