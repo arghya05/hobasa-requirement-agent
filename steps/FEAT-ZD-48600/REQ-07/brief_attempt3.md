@@ -31,12 +31,12 @@ G2 claim cites file:ap_portal/package.json but the agent never read that file in
 - Gate (who approves this output): Architect
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.prd (Approved PRD): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
-- feat.prototype (FigJam flow and Figma Make prototype): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prototype.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md at commit 8fce3b3)
-- org.architecture (Platform architecture, contracts and tenancy rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/org.architecture.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md at commit a6b3e2a)
+- feat.prd (Approved PRD): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
+- feat.prototype (FigJam flow and Figma Make prototype): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prototype.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md at commit 8fce3b3)
+- org.architecture (Platform architecture, contracts and tenancy rules): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/org.architecture.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md at commit a6b3e2a)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.trd (Approved TRD): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
+- feat.trd (Approved TRD): write `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
 
 
 ## How to work

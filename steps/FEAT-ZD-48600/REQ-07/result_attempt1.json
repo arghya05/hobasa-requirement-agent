@@ -107,7 +107,7 @@
         "tool_name": "Bash",
         "tool_use_id": "toolu_01TsgAz3ezNqispVRcrJDuJ5",
         "tool_input": {
-          "command": "cd run/workspace; ls agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/ 2>/dev/null; ls agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07 2>/dev/null; git -C hobasa-agentic-sdlc diff --stat; ls hobasa-agentic-sdlc/features/FEAT-ZD-48600/ hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides; for r in ap_pipeline ap_forecast ap_aging ap_portal; do echo \"== $r\"; git -C $r ls-files | head -40; done",
+          "command": "cd final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace; ls agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/ 2>/dev/null; ls agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07 2>/dev/null; git -C hobasa-agentic-sdlc diff --stat; ls hobasa-agentic-sdlc/features/FEAT-ZD-48600/ hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides; for r in ap_pipeline ap_forecast ap_aging ap_portal; do echo \"== $r\"; git -C $r ls-files | head -40; done",
           "description": "Inspect step records, feature folder and app repo files"
         }
       }

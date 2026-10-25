@@ -4,42 +4,42 @@
 - Workbook outcome: Technical Requirement Document
 
 ## Outputs to evaluate
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
 
 ## Inputs the agent was given
-- feat.prd: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prd.md`
-- feat.prototype: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prototype.md`
-- org.architecture: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/org.architecture.md`
+- feat.prd: `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prd.md`
+- feat.prototype: `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prototype.md`
+- org.architecture: `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/org.architecture.md`
 
 ## Other GitHub files the agent read (valid sources when cited as file:<repository>/<path>)
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
-- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/README.md`
-- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/judge_attempt1.json`
-- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/judge_attempt3.json`
-- `hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/judge_brief_attempt3.md`
-- `ap-aging-sample/ci.py`
-- `ap-aging-sample/src/ap_aging/__init__.py`
-- `ap-aging-sample/src/ap_aging/aging.py`
-- `ap-forecast-sample/ci.py`
-- `ap-forecast-sample/src/ap_forecast/__init__.py`
-- `ap-forecast-sample/src/ap_forecast/explain.py`
-- `ap-forecast-sample/src/ap_forecast/models.json`
-- `ap-forecast-sample/src/ap_forecast/predict.py`
-- `ap-pipeline-sample/ci.py`
-- `ap-pipeline-sample/src/ap_pipeline/__init__.py`
-- `ap-pipeline-sample/src/ap_pipeline/dq.py`
-- `ap-pipeline-sample/src/ap_pipeline/ingest.py`
-- `ap-pipeline-sample/src/ap_pipeline/pipeline.py`
-- `ap-pipeline-sample/src/ap_pipeline/schedule.json`
-- `ap-pipeline-sample/src/ap_pipeline/transform.py`
-- `ap-portal-sample/ci.mjs`
-- `ap-portal-sample/package.json`
-- `ap-portal-sample/src/ap_portal/index.js`
-- `ap-portal-sample/tests/portal.test.js`
-- `hobasa-agentic-sdlc/memory/MEMORY.md`
-- `hobasa-agentic-sdlc/org/org.decision_log.md`
-- `hobasa-agentic-sdlc/org/org.templates.md`
-- `hobasa-agentic-sdlc/requirements/ZD-48600.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/README.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/judge_attempt1.json`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/judge_attempt3.json`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/steps/FEAT-ZD-48600/REQ-07/judge_brief_attempt3.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_aging/ci.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_aging/src/ap_aging/__init__.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_aging/src/ap_aging/aging.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_forecast/ci.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_forecast/src/ap_forecast/__init__.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_forecast/src/ap_forecast/explain.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_forecast/src/ap_forecast/models.json`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_forecast/src/ap_forecast/predict.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/ci.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/src/ap_pipeline/__init__.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/src/ap_pipeline/dq.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/src/ap_pipeline/ingest.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/src/ap_pipeline/pipeline.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/src/ap_pipeline/schedule.json`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_pipeline/src/ap_pipeline/transform.py`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_portal/ci.mjs`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_portal/package.json`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_portal/src/ap_portal/index.js`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/ap_portal/tests/portal.test.js`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/hobasa-agentic-sdlc/memory/MEMORY.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/hobasa-agentic-sdlc/org/org.decision_log.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/hobasa-agentic-sdlc/org/org.templates.md`
+- `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/hobasa-agentic-sdlc/requirements/ZD-48600.md`
 
 Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC repository.
 
@@ -78,12 +78,12 @@ G2 claim cites file:ap_portal/package.json but the agent never read that file in
 - Gate (who approves this output): Architect
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.prd (Approved PRD): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
-- feat.prototype (FigJam flow and Figma Make prototype): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prototype.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md at commit 8fce3b3)
-- org.architecture (Platform architecture, contracts and tenancy rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/org.architecture.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md at commit a6b3e2a)
+- feat.prd (Approved PRD): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
+- feat.prototype (FigJam flow and Figma Make prototype): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/feat.prototype.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md at commit 8fce3b3)
+- org.architecture (Platform architecture, contracts and tenancy rules): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-07/org.architecture.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md at commit a6b3e2a)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.trd (Approved TRD): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
+- feat.trd (Approved TRD): write `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md`
 
 
 ## How to work
