@@ -1,11 +1,8 @@
-Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again.
+Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again. The outputs describe the work itself: never mention earlier attempts, refusals or this review in them.
 
 ## Refusal reasons
-G1 judge found an unsupported statement: "Title | Overdue invoices ranked by vendor late-payment risk (feed -> delays -> risk -> overdue list -> portal table)" (The title is cited to record:intake, but the ticket does not rank by risk. overdue_with_risk sorts 'by days descending then id', and risk is only a label attach)
-G1 judge found an unsupported statement: "Next step | REQ-02 Grouping (classification, duplicate merge)" (This is cited to record:brief, but the brief never mentions REQ-02, Grouping, classification or duplicate merge. The same unsourced step name comes back in 'Rel)
-G1 judge found an unsupported statement: "No rule is changed or new, so CMP-P01 is not triggered." (No input, the brief or the trigger mentions CMP-P01. The step ID is invented, and the cited source (org.regulatory_sources) only says 'No regulatory source appl)
-G1 judge found an unsupported statement: "The Requirement agent does not approve or prioritize backlog items." (No cited input or the brief states this. The brief only says the gate (PM) approves the output. Nothing in the sources mentions prioritization.)
-G1 judge found an unsupported statement: "This agent cannot send notifications in this step." (This is cited to record:brief. The brief lists only api:github as an approved connector, but it also offers capability_request for missing capabilities. 'Cannot)
+G1 judge found an unsupported statement: "When the PM approves this entry at the gate, the spine notifies the PM and starts REQ-02 Grouping. ... (record:brief)" (No source says the spine notifies the PM. The brief only says the spine commits and pushes after evaluation and approval. REQ-02 Grouping comes from the require)
+G1 judge found an unsupported statement: "| Status | Draft, waiting for the PM gate; next step REQ-02 Grouping | record:brief |" (The brief does not mention REQ-02 or Grouping. The fact comes from file:hobasa-agentic-sdlc requirement-steps SKILL.md and JOURNEY.md ('REQ-01 → REQ-02'), so th)
 
 ## Step brief (unchanged except the attempt number)
 # Step REQ-01: Requirement Intake (attempt 2) for FEAT-ZD-48600
@@ -52,19 +49,19 @@ Entry created in the Pre Backlog requirement sheet, linked to the roadmap item a
 - Gate (who approves this output): PM
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 9fbbfba)
-- org.regulatory_sources (Named regulatory sources with section and page): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md` (from hobasa-agentic-sdlc/org/org.regulatory_sources.md at commit 9fbbfba)
-- org.connector_inventory (Source-system connectors and versions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md` (from hobasa-agentic-sdlc/org/org.connector_inventory.md at commit 9fbbfba)
-- org.model_dependency_map (LLM providers and models per feature): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md at commit 9fbbfba)
-- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
+- org.roadmap (Structured roadmap items): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 88b3b5b)
+- org.regulatory_sources (Named regulatory sources with section and page): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md` (from hobasa-agentic-sdlc/org/org.regulatory_sources.md at commit 88b3b5b)
+- org.connector_inventory (Source-system connectors and versions): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md` (from hobasa-agentic-sdlc/org/org.connector_inventory.md at commit 88b3b5b)
+- org.model_dependency_map (LLM providers and models per feature): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md at commit 88b3b5b)
+- org.decision_log (Prior leadership and product decisions): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 88b3b5b)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.intake (Original intake item with source link): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md`
-- feat.prebacklog (Pre-backlog entry linked to roadmap and trace ID): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md`
+- feat.intake (Original intake item with source link): write `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md`
+- feat.prebacklog (Pre-backlog entry linked to roadmap and trace ID): write `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md`
 
 
 ## How to work
-Decide the best way to do this step from the inputs and the workbook action, plan it (TodoWrite for multi-part work), then do it. Helper subagents you can delegate to: explorer, verifier (use the verifier before you finish when the output makes many factual statements). Use the shared memory (memory_search) for decisions and lessons. Connectors approved for you: api:github (GitHub REST API for the Hobasa repositories: issues, pull requests, checks (GET /repos/<owner>/<repo>/...)). Use one only when your inputs do not hold what you need; request a missing one with capability_request. You may also read any other file in the GitHub checkouts your step needs (for example other requirements when grouping, or code); cite it as file:<repository>/<path>.
+Decide the best way to do this step from the inputs and the workbook action, plan it (TodoWrite for multi-part work), then do it. Helper subagents you can delegate to: explorer, verifier (use the verifier before you finish when the output makes many factual statements). Use the shared memory (memory_search) for decisions and lessons. Connectors approved for you: none. Use one only when your inputs do not hold what you need; request a missing one with capability_request. You may also read any other file in the GitHub checkouts your step needs (for example other requirements when grouping, or code); cite it as file:<repository>/<path>.
 
 ## Trigger event (cite as record:intake)
 {

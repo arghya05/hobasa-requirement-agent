@@ -42,19 +42,19 @@ Entry created in the Pre Backlog requirement sheet, linked to the roadmap item a
 - Gate (who approves this output): PM
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 9fbbfba)
-- org.regulatory_sources (Named regulatory sources with section and page): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md` (from hobasa-agentic-sdlc/org/org.regulatory_sources.md at commit 9fbbfba)
-- org.connector_inventory (Source-system connectors and versions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md` (from hobasa-agentic-sdlc/org/org.connector_inventory.md at commit 9fbbfba)
-- org.model_dependency_map (LLM providers and models per feature): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md at commit 9fbbfba)
-- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
+- org.roadmap (Structured roadmap items): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 88b3b5b)
+- org.regulatory_sources (Named regulatory sources with section and page): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md` (from hobasa-agentic-sdlc/org/org.regulatory_sources.md at commit 88b3b5b)
+- org.connector_inventory (Source-system connectors and versions): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md` (from hobasa-agentic-sdlc/org/org.connector_inventory.md at commit 88b3b5b)
+- org.model_dependency_map (LLM providers and models per feature): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md at commit 88b3b5b)
+- org.decision_log (Prior leadership and product decisions): `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 88b3b5b)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.intake (Original intake item with source link): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md`
-- feat.prebacklog (Pre-backlog entry linked to roadmap and trace ID): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md`
+- feat.intake (Original intake item with source link): write `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md`
+- feat.prebacklog (Pre-backlog entry linked to roadmap and trace ID): write `final_document/e2e-run/runs/run-20261025-202734-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md`
 
 
 ## How to work
-Decide the best way to do this step from the inputs and the workbook action, plan it (TodoWrite for multi-part work), then do it. Helper subagents you can delegate to: explorer, verifier (use the verifier before you finish when the output makes many factual statements). Use the shared memory (memory_search) for decisions and lessons. Connectors approved for you: api:github (GitHub REST API for the Hobasa repositories: issues, pull requests, checks (GET /repos/<owner>/<repo>/...)). Use one only when your inputs do not hold what you need; request a missing one with capability_request. You may also read any other file in the GitHub checkouts your step needs (for example other requirements when grouping, or code); cite it as file:<repository>/<path>.
+Decide the best way to do this step from the inputs and the workbook action, plan it (TodoWrite for multi-part work), then do it. Helper subagents you can delegate to: explorer, verifier (use the verifier before you finish when the output makes many factual statements). Use the shared memory (memory_search) for decisions and lessons. Connectors approved for you: none. Use one only when your inputs do not hold what you need; request a missing one with capability_request. You may also read any other file in the GitHub checkouts your step needs (for example other requirements when grouping, or code); cite it as file:<repository>/<path>.
 
 ## Trigger event (cite as record:intake)
 {

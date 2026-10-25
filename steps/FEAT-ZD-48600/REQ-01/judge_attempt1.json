@@ -1,25 +1,22 @@
 {
   "unsupported": [
     {
-      "text": "Title | Overdue invoices ranked by vendor late-payment risk (feed -> delays -> risk -> overdue list -> portal table)",
-      "why": "The title is cited to record:intake, but the ticket does not rank by risk. overdue_with_risk sorts 'by days descending then id', and risk is only a label attached to each row. 'Ranked by vendor late-payment risk' gets the requested behaviour wrong."
+      "text": "When the PM approves this entry at the gate, the spine notifies the PM and starts REQ-02 Grouping. ... (record:brief)",
+      "why": "No source says the spine notifies the PM. The brief only says the spine commits and pushes after evaluation and approval. REQ-02 Grouping comes from the requirement-steps SKILL.md (trigger: 'Previous Requirement Intake') and JOURNEY.md, not from the brief. The notification is an invented behaviour, and the record:brief citation does not support either part of the sentence."
     },
     {
-      "text": "Next step | REQ-02 Grouping (classification, duplicate merge)",
-      "why": "This is cited to record:brief, but the brief never mentions REQ-02, Grouping, classification or duplicate merge. The same unsourced step name comes back in 'Related items (not duplicates; for REQ-02 Grouping)' and in Q-1 ('REQ-02 decides any merge')."
-    },
-    {
-      "text": "No rule is changed or new, so CMP-P01 is not triggered.",
-      "why": "No input, the brief or the trigger mentions CMP-P01. The step ID is invented, and the cited source (org.regulatory_sources) only says 'No regulatory source applies to this change.'"
-    },
-    {
-      "text": "The Requirement agent does not approve or prioritize backlog items.",
-      "why": "No cited input or the brief states this. The brief only says the gate (PM) approves the output. Nothing in the sources mentions prioritization."
-    },
-    {
-      "text": "This agent cannot send notifications in this step.",
-      "why": "This is cited to record:brief. The brief lists only api:github as an approved connector, but it also offers capability_request for missing capabilities. 'Cannot' is stated as a fact when it is really an inference, and the agent made no capability_request (capability_requests: [])."
+      "text": "| Status | Draft, waiting for the PM gate; next step REQ-02 Grouping | record:brief |",
+      "why": "The brief does not mention REQ-02 or Grouping. The fact comes from file:hobasa-agentic-sdlc requirement-steps SKILL.md and JOURNEY.md ('REQ-01 \u2192 REQ-02'), so this citation does not support the statement."
     }
+  ],
+  "improvements": [
+    "The related-items scan opened only 6 of the 12 files in requirements/. It missed ZD-48470, which is an open change to the same vendor feed in ap_pipeline: feed v2 adds a 'currency' column with reason 'InvalidCurrency' rejections through transform.to_model. ZD-48600's org.data_model and customer_mappings describe feed v3 without currency, so REQ-02 needs this item for sequencing and feed-version conflicts.",
+    "It also missed FIN-OPS-2026-07, which changes the ap_forecast explanation max_tokens from 300 to 200. That item touches the same explanation request as CR-5. It also conflicts with PROV-ACME-2026-11, which says to keep max_tokens at 300. List it under Related items and OQ-3.",
+    "The 'No duplicate was found' statement is correct for the whole folder, but the agent did not read FIN-OPS-2026-07, REG-LPR-2026-4.2, RETRO-2026-19, ZD-48377, ZD-48470 or ZD-48480. The scope of the check should say that, or the agent should read all of them.",
+    "OQ-1 is partly answered by ZD-48600.md org_overrides. They say paid_date is added in vendor feed v3, the mapping is paid_date -> Invoice.paid_date, and the daily 02:00 Asia/Kolkata schedule is unchanged. Cite this, and narrow the question to whether a connector version bump is needed.",
+    "ZD-48600.md org_overrides also give org.routing_map (component to agent), org.risk_map (tier T2, risk label advisory only) and org.design_library (row classes, including 'risk-unknown'). These would strengthen 'Matches the item to the affected component' and the A2/OQ-4 context.",
+    "The workbook action 'Gathers external patterns and cites each source' is not addressed. State that it was not applicable or not done.",
+    "ZD-48510 (payment execution from the aging screen, which mentions overdue invoices) could be noted as unrelated or excluded, to show the check covered it."
   ],
   "scores": {
     "correct": 4,
@@ -27,5 +24,5 @@
     "grounded": 4,
     "useful": 4
   },
-  "notes": "I read both outputs, all five REQ-01 inputs, requirements/ZD-48600.md, ZD-48211.md, ZD-48501.md, ZD-48455.md, REQ-01_attempt1.json and org.trace_ledger.md.\n\nWhat holds up:\n- feat.intake copies the ticket text word for word. It matches both record:intake and requirements/ZD-48600.md, and the channel, source, received date (2026-10-24) and repos all match.\n- CR-0 to CR-7 follow the ticket's own wording without adding anything.\n- The summaries of the org overrides (data model, customer mappings, architecture, risk map) match the frontmatter of ZD-48600.md.\n- The prebacklog links correctly to R-AP-12 (Q4 2026, AP module, owner PM) and correctly leaves out R-AP-14 (export).\n- The regulatory, connector and model-dependency checks quote their inputs accurately. Q-2 correctly points out that the connector inventory covers only the ap_aging library and says nothing about the vendor feed v3 change.\n- The decision check against D-2026-031, D-2026-044 and D-2026-050, and the lessons L-007 and L-011 (from memory/MEMORY.md), is accurate and finds no conflicts.\n- The three related items (ZD-48501, ZD-48211, ZD-48455) are all status 'open' and are described accurately: the same >30-day overdue rule; row-overdue in the aging-summary table versus overdue-risk.\n- A-1 to A-6 and Q-1 to Q-5 are clearly labelled as assumptions or questions and invent no facts.\n\nProblems:\n- The title says items are 'ranked by risk', which gets the sort order wrong.\n- 'REQ-02 Grouping' and 'CMP-P01' are step names that appear in no source.\n\nCompleteness against the workbook outcome:\n- An entry was created and linked to the roadmap item.\n- No notification was sent. The output says so openly (Q-3), but no capability_request was made.\n- The Pre Backlog sheet and DevOps board check was swapped for a search of requirements/. This is disclosed (Q-1).\n\nTool-view note: the attempt JSON records automated G2 failures saying ZD-48211, ZD-48501 and ZD-48455 were never read in the session. The brief lists them as files the agent read, and the output's statements about them match their content, so I did not count them as ungrounded."
+  "notes": "The intake file is accurate. It reproduces the ticket verbatim, and every CR-1 to CR-8 row matches record:intake and requirements/ZD-48600.md. In the pre-backlog file, these all match their sources: the roadmap link (R-AP-12; Q4 2026; AP module; owner PM), the three decision checks (D-2026-031/044/050), the regulatory, connector and model-dependency checks, and the descriptions of PROV-ACME-2026-11, ZD-48211, ZD-48501 and ZD-48455. The assumptions and open questions are clearly labelled, and the outputs openly say that no notification was sent and that the Pre Backlog sheet and DevOps board were not checked. The only grounding defect is the Notification/next-step text, which cites record:brief for spine behaviour the brief does not state. The main completeness gap is that two open related items were missed (ZD-48470 on the same vendor feed, and FIN-OPS-2026-07 on the same explanation request config), because only half of the requirements folder was read."
 }
