@@ -1,50 +1,43 @@
-# REQ-02 Grouping (Requirement agent)
+# REQ-02 · Grouping
 
-**Item:** FEAT-ZD-48600 · **status:** done
-**Trigger:** Previous Requirement Intake
+**Agent:** Requirement · **Item:** FEAT-ZD-48600 · **Status:** ✅ done · approved in run-20261025-201308-feat-zd-48600, reused
+**Approved by:** PM: approve by sim.pm
+
+**What this step does:** New Ticket gets created
+
+**Expected outcome:** Entry classified by category, duplicates merged
+
+**Started by:** Previous Requirement Intake
 Technical has to be a sub-category under each and should be classified as Technical Only
-This could go as a qualifier during requirement approval or as applicable ²  
-**Action:** New Ticket gets created  
-**Outcome expected:** Entry classified by category, duplicates merged
+This could go as a qualifier during requirement approval or as applicable ²
 
-## Inputs (what the agent was given)
+## Input: what the agent received
 
-| Item | Prepared input (this repository) | Read from (producer in GitHub) | Commit | Produced by |
+| # | Input | What it is | Produced by | Open |
 |---|---|---|---|---|
-| feat.prebacklog | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/feat.prebacklog.md | hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prebacklog.md | 9919dd4 | REQ-01 |
-| feat.intake | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/feat.intake.md | hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md | 9919dd4 | REQ-01 |
-| org.routing_map | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.routing_map.md | hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.routing_map.md | 9fbbfba | source |
-| org.architecture | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-02/org.architecture.md | hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.architecture.md | 9fbbfba | source |
+| 1 | `feat.prebacklog` | Pre-backlog entry linked to roadmap and trace ID | — | not applicable for this item, or passed by reference |
+| 2 | `feat.intake` | Original intake item with source link | — | not applicable for this item, or passed by reference |
+| 3 | `org.routing_map` | Component-to-owner routing for defects | — | not applicable for this item, or passed by reference |
+| 4 | `org.architecture` | Platform architecture, contracts and tenancy rules | — | not applicable for this item, or passed by reference |
 
-Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, tool view, refusal reasons).
+The full brief the agent was given, attempt by attempt: `brief_attempt<N>.md` in this folder.
 
-## Outputs (what the agent produced)
+## Output: what the agent produced
 
-| Item | GitHub file |
-|---|---|
-| feat.classification | hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md |
-
-## How the agent worked
-
-- Approach: This attempt fixes the G1 refusal. FIN-OPS-2026-07 had been listed among the related items said to share a rule or code with ZD-48600. It is a configuration-only change to max_tokens and shares neither, so I removed it from the grouped list and marked it "Not grouped" in the duplicate table. Its max_tokens conflict with PROV-ACME-2026-11 is kept only as a side observation for the PM (new OQ-5), split out of OQ-3. The grouped list now names four items, each with its link stated: ZD-48501 and ZD-48211 (shared overdue rule), and ZD-48470 and PROV-ACME-2026-11 (shared code). The fixes from earlier attempts are kept: the CR-4 provider/model statement is scoped to this ticket, there is no status or oracle-field statement, and every cited file was opened with Read. The classification is unchanged: New Feature, Not Technical Only, a Technical sub-category for each CR, no duplicates merged, and the impacted repositories taken from the routing maps. I rewrote the file in full.
-- Tools used: Skill:requirement-steps, Read, Glob, Grep, Write, Edit, Agent:verifier
-- Helper subagents: Agent
-- Connector calls: none
-
-## Attempts (checks before any person saw the output)
-
-| Attempt | Session | Checks failed | Judge unsupported | Judge scores |
-|---|---|---|---|---|
-| 1 | new | 4 | — | — |
-| 2 | resumed | 1 | 1 | {'correct': 5, 'complete': 5, 'grounded': 5, 'useful': 5} |
-| 3 | resumed | 2 | 2 | {'correct': 5, 'complete': 5, 'grounded': 4, 'useful': 5} |
-| 1 | resumed | 1 | 1 | {'correct': 5, 'complete': 5, 'grounded': 4, 'useful': 5} |
-| 2 | resumed | 0 | 0 | {'correct': 5, 'complete': 5, 'grounded': 5, 'useful': 5} |
-
-Details: `result_attempt<N>.json` (claims with sources), `checks_attempt<N>.json`, `judge_attempt<N>.json`.
+| # | Output | What it is | Open |
+|---|---|---|---|
+| 1 | `feat.classification` | Category, qualifier and merged duplicates | [Markdown](https://github.com/arghya05/hobasa-requirement-agent/blob/main/outputs/FEAT-ZD-48600/feat.classification.md) · [HTML](https://htmlpreview.github.io/?https://raw.githubusercontent.com/arghya05/hobasa-requirement-agent/main/docs/FEAT-ZD-48600/REQ-02_feat-classification.html) · [PDF](https://github.com/arghya05/hobasa-requirement-agent/blob/main/docs/FEAT-ZD-48600/REQ-02_feat-classification.pdf) |
 
 ## Human evaluation
 
-| Role | By | Decision | Scores | Comment or reason |
+| Role | By | Decision | Scores (correct, complete, grounded, useful) | Comment or reason |
 |---|---|---|---|---|
 | PM | sim.pm | approve | — | automated checks and the independent judge passed |
+
+## Files in this folder (audit trail)
+
+- `brief_attempt<N>.md`: the exact brief the agent received
+- `result_attempt<N>.json`: the agent's structured answer (approach, tools, claims with their sources, open questions)
+- `checks_attempt<N>.json`: what the automated guardrail checks found
+- `judge_attempt<N>.json`, `judge_brief_attempt<N>.md`: the independent judge
+- `outputs/`: the outputs as approved
