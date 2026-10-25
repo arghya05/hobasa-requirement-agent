@@ -1,7 +1,7 @@
 Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again.
 
 ## Refusal reasons
-G1 judge found an unsupported statement: "No source-system connector is affected. The inventory says so for ap_aging." (org.connector_inventory says only 'No source-system connector is affected by the ap_aging library.' The first sentence makes that a blanket claim for the whole )
+G1 judge found an unsupported statement: "A-2: `amount` in the CR-5 output is Decimal, and it is formatted to two decimals only when rendered in CR-6. (org.decision_log; file:hobasa-agentic-sdlc/require" (The source it cites says the opposite of 'only when rendered'. requirements/ZD-48600.md (org.architecture) says 'JSON between services carries amounts as string)
 
 ## Step brief (unchanged except the attempt number)
 # Step REQ-01: Requirement Intake (attempt 3) for FEAT-ZD-48600
@@ -44,13 +44,15 @@ Entry created in the Pre Backlog requirement sheet, linked to the roadmap item a
 Entry created in the Pre Backlog requirement sheet, linked to the roadmap item and Notification sent
 Entry created in the Pre Backlog requirement sheet, linked to the roadmap item and Notification sent
 Entry created in the Pre Backlog requirement sheet, linked to the roadmap item and Notification sent
+- Owner of this step: PM
+- Gate (who approves this output): PM
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit bf63f34)
-- org.regulatory_sources (Named regulatory sources with section and page): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md` (from hobasa-agentic-sdlc/org/org.regulatory_sources.md at commit bf63f34)
-- org.connector_inventory (Source-system connectors and versions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md` (from hobasa-agentic-sdlc/org/org.connector_inventory.md at commit bf63f34)
-- org.model_dependency_map (LLM providers and models per feature): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md at commit bf63f34)
-- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit bf63f34)
+- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 9fbbfba)
+- org.regulatory_sources (Named regulatory sources with section and page): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md` (from hobasa-agentic-sdlc/org/org.regulatory_sources.md at commit 9fbbfba)
+- org.connector_inventory (Source-system connectors and versions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md` (from hobasa-agentic-sdlc/org/org.connector_inventory.md at commit 9fbbfba)
+- org.model_dependency_map (LLM providers and models per feature): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md` (from hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md at commit 9fbbfba)
+- org.decision_log (Prior leadership and product decisions): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md` (from hobasa-agentic-sdlc/org/org.decision_log.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
 - feat.intake (Original intake item with source link): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.intake.md`

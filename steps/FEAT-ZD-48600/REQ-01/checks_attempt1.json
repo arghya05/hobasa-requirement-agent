@@ -1,7 +1,9 @@
 {
   "failures": [
-    "G2 claim cites file:hobasa-agentic-sdlc/requirements/ZD-48211.md but the agent never read that file in this session",
-    "G2 claim cites file:hobasa-agentic-sdlc/requirements/ZD-48501.md but the agent never read that file in this session",
-    "G2 claim cites file:hobasa-agentic-sdlc/requirements/ZD-48455.md but the agent never read that file in this session"
+    "G1 judge found an unsupported statement: \"Title | Overdue invoices ranked by vendor late-payment risk (feed -> delays -> risk -> overdue list -> portal table)\" (The title is cited to record:intake, but the ticket does not rank by risk. overdue_with_risk sorts 'by days descending then id', and risk is only a label attach)",
+    "G1 judge found an unsupported statement: \"Next step | REQ-02 Grouping (classification, duplicate merge)\" (This is cited to record:brief, but the brief never mentions REQ-02, Grouping, classification or duplicate merge. The same unsourced step name comes back in 'Rel)",
+    "G1 judge found an unsupported statement: \"No rule is changed or new, so CMP-P01 is not triggered.\" (No input, the brief or the trigger mentions CMP-P01. The step ID is invented, and the cited source (org.regulatory_sources) only says 'No regulatory source appl)",
+    "G1 judge found an unsupported statement: \"The Requirement agent does not approve or prioritize backlog items.\" (No cited input or the brief states this. The brief only says the gate (PM) approves the output. Nothing in the sources mentions prioritization.)",
+    "G1 judge found an unsupported statement: \"This agent cannot send notifications in this step.\" (This is cited to record:brief. The brief lists only api:github as an approved connector, but it also offers capability_request for missing capabilities. 'Cannot)"
   ]
 }

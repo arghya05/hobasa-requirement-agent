@@ -44,11 +44,11 @@ Entry created in the Pre Backlog requirement sheet, linked to the roadmap item a
 
 | Item | Prepared input (this repository) | Read from (producer in GitHub) | Commit | Produced by |
 |---|---|---|---|---|
-| org.roadmap | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md | hobasa-agentic-sdlc/org/org.roadmap.md | bf63f34 | source |
-| org.regulatory_sources | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md | hobasa-agentic-sdlc/org/org.regulatory_sources.md | bf63f34 | source |
-| org.connector_inventory | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md | hobasa-agentic-sdlc/org/org.connector_inventory.md | bf63f34 | source |
-| org.model_dependency_map | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md | hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md | bf63f34 | source |
-| org.decision_log | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md | hobasa-agentic-sdlc/org/org.decision_log.md | bf63f34 | source |
+| org.roadmap | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md | hobasa-agentic-sdlc/org/org.roadmap.md | 9fbbfba | source |
+| org.regulatory_sources | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md | hobasa-agentic-sdlc/org/org.regulatory_sources.md | 9fbbfba | source |
+| org.connector_inventory | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md | hobasa-agentic-sdlc/org/org.connector_inventory.md | 9fbbfba | source |
+| org.model_dependency_map | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md | hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md | 9fbbfba | source |
+| org.decision_log | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md | hobasa-agentic-sdlc/org/org.decision_log.md | 9fbbfba | source |
 
 Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, tool view, refusal reasons).
 
@@ -61,8 +61,12 @@ Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, too
 
 ## How the agent worked
 
-- Approach: Attempt 3 fixes the G1 refusal on the connector check. I removed the blanket sentence "No source-system connector is affected". The connector row in feat.prebacklog now matches what org.connector_inventory says: no connector is affected by the ap_aging library, and the inventory says nothing about ap_pipeline, ap_forecast or ap_portal. That gap is now open question OQ-3, which asks whether the CR-1 vendor-feed change or the other repositories affect a connector. While re-checking for similar overreach, I also changed "The ticket asks for no change of provider or model" to "The ticket does not mention any change of provider or model". Both files are rewritten in full; feat.intake has no content change. Everything else carries over from attempt 2. The ticket is split into CR-0 to CR-7 and linked to R-AP-12. The entry is checked against D-2026-031, D-2026-044, D-2026-050, L-007 and L-011, the regulatory sources and the model dependency map. ZD-48211, ZD-48501 and ZD-48455 were read in this session and are listed as related, not duplicates. The Pre Backlog sheet and DevOps board were not available, so their absence is disclosed as OQ-1. Shell use is denied in this step, so I used only Read, Glob, Grep and Write.
-- Tools used: Skill:requirement-steps, Read, Glob, Grep, Write
+- Approach: Attempt 3 fixes the one refusal reason. A-2 said amounts were formatted to two decimals "only when rendered". That contradicted the architecture override in requirements/ZD-48600.md, which says JSON between services carries amounts as strings with two decimals.
+
+A-2 now follows the sources. Inside ap_aging the amount is the Invoice amount (Decimal, 2 dp). It travels to ap_portal as a two-decimal string in JSON, and ap_portal shows it to two decimals. It never passes through float. I aligned the D-2026-044 row's result with this wording.
+
+Everything else is unchanged from attempt 2, which already fixed the earlier refusals (title, REQ-02/CMP-P01 references, statement about the agent's role, notification). That includes the pending capability_request for a notification channel. I rewrote both output files in full from the inputs already read this session: the five contracted inputs, requirements/ZD-48600.md, ZD-48211, ZD-48501 and ZD-48455.
+- Tools used: Skill:requirement-steps, Read, Glob, Grep, Write, ToolSearch, mcp__hobasa-context__capabilities_list, mcp__hobasa-context__capability_request
 - Helper subagents: none
 - Connector calls: none
 
@@ -70,8 +74,8 @@ Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, too
 
 | Attempt | Session | Checks failed | Judge unsupported | Judge scores |
 |---|---|---|---|---|
-| 1 | new | 3 | — | — |
-| 2 | resumed | 1 | 1 | {'correct': 5, 'complete': 4, 'grounded': 4, 'useful': 5} |
+| 1 | new | 5 | 5 | {'correct': 4, 'complete': 3, 'grounded': 4, 'useful': 4} |
+| 2 | resumed | 1 | 1 | {'correct': 4, 'complete': 4, 'grounded': 4, 'useful': 4} |
 | 3 | resumed | 0 | 0 | {'correct': 5, 'complete': 4, 'grounded': 5, 'useful': 5} |
 
 Details: `result_attempt<N>.json` (claims with sources), `checks_attempt<N>.json`, `judge_attempt<N>.json`.
