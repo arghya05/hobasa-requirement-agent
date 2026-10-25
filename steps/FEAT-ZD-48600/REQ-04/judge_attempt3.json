@@ -1,0 +1,15 @@
+{
+  "unsupported": [
+    {
+      "text": "| PM | Owner of the Pre Backlog entry. | Pending | journey:feat.prebacklog |",
+      "why": "SKILL.md names the REQ-04 gate as Leadership only. No source says a PM approval of the BRD is pending. feat.prebacklog only says the PM owns the entry. Listing PM in the Approvals table with status 'Pending' suggests a PM sign-off that no input asks for. Minor: the row is labelled as ownership, not as a gate."
+    }
+  ],
+  "scores": {
+    "correct": 5,
+    "complete": 5,
+    "grounded": 4,
+    "useful": 5
+  },
+  "notes": "I checked the BRD statement by statement against feat.fitment, feat.intake, org.templates, org.strategy_capability and org.decision_log. I also checked it against the other files the agent read: requirement-steps SKILL.md, feat.classification, feat.prebacklog, COMMUNICATION.md and requirements/ZD-48600.md.\n\nAll three earlier refusal points are fixed:\n(1) The REQ-04 gate is now cited to SKILL.md ('REQ-04 ... Gate: Leadership', line 80), which supports it.\n(2) The Leadership row in Approvals now asks only for the REQ-04 gate decision, with SKILL.md as the source. The OQ-B1 and OQ-B2 owners are carried over exactly as feat.fitment records them for OQ-F1 and OQ-F3.\n(3) BR-10 now says the *prompt* built by build_explanation_request ends with ' Risk level: <risk>.', matching CR-4. The no-risk case is correctly moved to a stated assumption (B-A5).\n\nEvery number checks out against its cited source:\n- 30 and 10, the >30 / >10 thresholds, and 'two decimals' are in feat.intake CR-3, CR-5 and CR-6.\n- The bucket ranges (current, 1-30, 31-60, 61-90, 90+) are in org.strategy_capability.\n- T2, Q4 2026 and R-AP-12/14 are in feat.fitment.\n- 2026-10-24 is in feat.intake.\n- feed v2 and v3 are in feat.classification.\n- D-2026-031, D-2026-044 and D-2026-050 are in org.decision_log.\n- L-007 and L-011 are in memory.\n\nThe derived boundary statements follow directly from the strict > rules: exactly 30 days past due is not overdue, a predicted delay of exactly 30 is medium, and exactly 10 is low. 'PM and Leadership approved REQ-03' matches COMMUNICATION.md.\n\nThe BRD covers all eight template sections, a business question set and a validation check. It correctly flags that org.templates holds no separate question set, even though the brief says it does (OQ-B7). The decision-log check finds no conflict, which is accurate. The open questions from REQ-01 to REQ-03 are carried forward faithfully: OQ-2, OQ-4, OQ-5 and OQ-6; OQ-A to OQ-D; and OQ-F1 to OQ-F4.\n\nTwo minor points:\n- Citations of the form 'journey:feat.prebacklog' and 'journey:feat.classification' do not use the file:<repository>/<path> form the brief asks for. The content they point to is accurate.\n- Section 9 says the questions were 'asked'. In fact they were answered from the inputs, and no owner was asked; the document says this openly.\n\nThe single unsupported item is the minor PM 'Pending' row in Approvals."
+}

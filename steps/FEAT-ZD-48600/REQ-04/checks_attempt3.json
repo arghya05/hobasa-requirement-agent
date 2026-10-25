@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"| PM | Owner of the Pre Backlog entry. | Pending | journey:feat.prebacklog |\" (SKILL.md names the REQ-04 gate as Leadership only. No source says a PM approval of the BRD is pending. feat.prebacklog only says the PM owns the entry. Listing )"
+  ]
+}

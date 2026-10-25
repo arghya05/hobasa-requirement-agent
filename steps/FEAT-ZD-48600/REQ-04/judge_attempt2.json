@@ -1,0 +1,23 @@
+{
+  "unsupported": [
+    {
+      "text": "**Business Requirement Document, status: Draft for the Leadership gate.** ... Leadership approves; the PM owns the item. (record:brief; feat.fitment)",
+      "why": "Neither the brief nor feat.fitment says who approves the REQ-04 BRD gate. The brief names no gate role for this step. feat.fitment only names PM as the R-AP-12 owner and PM/Leadership for the REQ-03 Yes/No decision. 'Leadership approves' the BRD is asserted without a source."
+    },
+    {
+      "text": "Leadership | Approve this BRD (REQ-04 gate); decide OQ-B1 with the PM; decide OQ-B2 | Pending | record:brief; feat.fitment (OQ-F1, OQ-F3)",
+      "why": "The cited sources do not establish that the REQ-04 gate is a Leadership approval. record:brief does not name an approver role for the BRD. The OQ-B1 and OQ-B2 assignments are supported by OQ-F1 and OQ-F3."
+    },
+    {
+      "text": "BR-10 | When a risk level is given, the payment-delay explanation ends with \" Risk level: <risk>.\". Without it, the explanation is unchanged.",
+      "why": "CR-4 in feat.intake says the *prompt* built by build_explanation_request ends with ' Risk level: <risk>.', not the explanation itself. The explanation is the model's output, so this misstates the rule. The 'without it, unchanged' half is a reasonable inference from 'Keep every existing signature' but is not stated directly in the cited feat.intake."
+    }
+  ],
+  "scores": {
+    "correct": 4,
+    "complete": 4,
+    "grounded": 4,
+    "useful": 4
+  },
+  "notes": "I checked the BRD line by line against feat.fitment, feat.intake, org.templates, org.strategy_capability, org.decision_log, feat.classification, feat.prebacklog, COMMUNICATION.md and requirements/ZD-48600.md. The earlier refusal point is fixed: the output file contains no mcp:hobasa-context citation.\n\nWhat holds up:\n- **Template sections:** all eight from org.templates are present (problem, business outcome, users, scope, out of scope, business rules, success measures, approvals).\n- **Business rules:** BR-1 to BR-9, BR-11 and BR-12 trace accurately to CR-1 to CR-6, D-2026-031/044/050, L-011 and the org_overrides in ZD-48600.md (amounts as strings with two decimals; advisory risk label; tier T2). The boundary statements (exactly 30 days past due is not overdue; a predicted delay of exactly 30 is medium; exactly 10 is low) follow directly from the '> 30' and '> 10' rules.\n- **Out of scope:** OS-4 (R-AP-14), OS-5 (ZD-48211/ZD-48501 kept separate) and OS-6 (PROV-ACME-2026-11) match feat.fitment and feat.classification.\n- **Numbers and dates:** every one appears in a cited source: 30, 10, two decimals, 2026-10-24, Q4 2026, T2, the aging buckets, and feed v2/v3.\n- **Approval status:** 'PM and Leadership approved REQ-03' is supported by COMMUNICATION.md.\n- **Missing question set:** the BRD correctly reports that org.templates contains no business question set, even though the brief describes it as holding one. It raises this as OQ-B7 instead of inventing a list.\n- **Open points:** strategy fit (OQ-F1) and audit traceability (OQ-F3) are carried forward honestly rather than resolved silently.\n- **Validation check:** it was run and its findings are accurate.\n\nProblems:\n1. The output says Leadership is the BRD approver, but no source names the REQ-04 gate role.\n2. BR-10 says the explanation ends with ' Risk level: <risk>.'; CR-4 says the prompt ends with it.\n\nOn the workbook action: 'asks the business question set' was done by answering questions from the inputs. Unanswered questions (Q3, Q7, the KPI) became non-blocking open questions; no stakeholder was asked. That is acceptable given the brief's rules on unknowns. The BRD has no business KPI because the inputs give none, and it says so.\n\nMinor: citations use 'journey:feat.prebacklog' and 'journey:feat.classification', a prefix the brief's citation list does not include. The underlying files were read and are valid sources, and earlier approved steps used the same prefix."
+}

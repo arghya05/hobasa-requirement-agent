@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G2 claim cites mcp:hobasa-context but that connector was not used in this session"
+  ]
+}
