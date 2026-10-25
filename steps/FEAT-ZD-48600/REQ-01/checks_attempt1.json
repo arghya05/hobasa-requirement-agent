@@ -1,0 +1,9 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"Entry status | NEW in pre-backlog. Classification, duplicate merge and fitment are left to REQ-02 and REQ-03. | record:brief\" (The brief does not name REQ-02 or REQ-03 and does not say which later steps handle classification, duplicate merge or fitment. The cited source does not contain)",
+    "G1 judge found an unsupported statement: \"Status: **Draft, waiting for PM review** (gate: PM).\" (None of the inputs or the brief names a PM gate for REQ-01. The brief says only that 'the spine commits and pushes after evaluation and approval'.)",
+    "G1 judge found an unsupported statement: \"No regulatory impact analysis (CMP-P01) is triggered.\" (No input or the brief mentions CMP-P01. The step ID is invented.)",
+    "G1 judge found an unsupported statement: \"This entry is recorded as NEW. The duplicate merge belongs to REQ-02 (Grouping) (record:brief).\" (The brief does not mention REQ-02 or 'Grouping'. The citation to record:brief is wrong.)",
+    "G1 judge found an unsupported statement: \"When this entry passes the PM gate, the spine notifies the PM and starts REQ-02 (Grouping) (record:brief).\" (The brief says nothing about the spine notifying the PM or starting REQ-02 (Grouping). The workbook outcome says only 'Notification sent / Triggered another age)"
+  ]
+}

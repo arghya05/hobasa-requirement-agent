@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"`delay_days` is `(paid_date - due_date)` in days. Both should count calendar days after the due date. (feat.prebacklog.md, Decision log row D-2026-031)\" (Minor overreach. D-2026-031 covers only aging buckets ('aging buckets use calendar days after due date'). Applying it to the ap_pipeline delay_days history is t)"
+  ]
+}
