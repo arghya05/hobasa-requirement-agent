@@ -4,15 +4,15 @@
 - Workbook outcome: Product Requirement Document
 
 ## Outputs to evaluate
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md`
 
 ## Inputs the agent was given
-- feat.brd: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/feat.brd.md`
-- org.templates: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/org.templates.md`
+- feat.brd: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/feat.brd.md`
+- org.templates: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/org.templates.md`
 
 ## Other GitHub files the agent read (valid sources when cited as file:<repository>/<path>)
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md`
-- `hobasa-agentic-sdlc/requirements/ZD-48600.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/hobasa-agentic-sdlc/requirements/ZD-48600.md`
 
 Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC repository.
 
@@ -27,11 +27,11 @@ Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC re
 - Gate (who approves this output): PM
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.brd (Approved BRD): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/feat.brd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md at commit 517ceb7)
-- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit 9fbbfba)
+- feat.brd (Approved BRD): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/feat.brd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.brd.md at commit 517ceb7)
+- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-05/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.prd (Approved PRD): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md`
+- feat.prd (Approved PRD): write `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md`
 
 
 ## How to work
