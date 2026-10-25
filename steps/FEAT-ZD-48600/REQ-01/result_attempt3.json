@@ -1,74 +1,81 @@
 {
   "structured": {
-    "approach": "Attempt 3 rewrites both files in full and fixes the one remaining G1 refusal. D-2026-031 is now applied only to overdue_with_risk in ap_aging, which is the aging case, and that link is stated as assumption A-1. The output now says the decision covers aging buckets only and does not settle the day unit for delay_days in ap_pipeline. That question is raised as new open question OQ-6. The attempt-2 fixes are kept: no later-step names, no PM-gate claim and no notification claim. Everything else is unchanged. I read the ticket from the trigger record and the five contracted inputs, and used the shared memory (D-2026-031/044/050, L-007, L-011). The work extracts the change requests, links the item to roadmap R-AP-12, and checks it against decisions, connectors, regulatory sources and model dependencies. The Pre Backlog sheet and DevOps board were not in context, so they are listed as an open question rather than guessed.",
+    "approach": "Attempt 3 fixes the G1 refusal on the connector check. I removed the blanket sentence \"No source-system connector is affected\". The connector row in feat.prebacklog now matches what org.connector_inventory says: no connector is affected by the ap_aging library, and the inventory says nothing about ap_pipeline, ap_forecast or ap_portal. That gap is now open question OQ-3, which asks whether the CR-1 vendor-feed change or the other repositories affect a connector. While re-checking for similar overreach, I also changed \"The ticket asks for no change of provider or model\" to \"The ticket does not mention any change of provider or model\". Both files are rewritten in full; feat.intake has no content change. Everything else carries over from attempt 2. The ticket is split into CR-0 to CR-7 and linked to R-AP-12. The entry is checked against D-2026-031, D-2026-044, D-2026-050, L-007 and L-011, the regulatory sources and the model dependency map. ZD-48211, ZD-48501 and ZD-48455 were read in this session and are listed as related, not duplicates. The Pre Backlog sheet and DevOps board were not available, so their absence is disclosed as OQ-1. Shell use is denied in this step, so I used only Read, Glob, Grep and Write.",
     "tools_used": [
       "Skill:requirement-steps",
       "Read",
       "Glob",
-      "mcp__hobasa-context__context_list",
-      "mcp__hobasa-context__memory_search",
-      "Write",
-      "Edit"
+      "Grep",
+      "Write"
     ],
     "claims": [
       {
-        "text": "The intake is Zendesk ticket ZD-48600 (sample, synthetic), received 2026-10-24 through the Customer Feedback channel. Its GitHub source is hobasa-agentic-sdlc/requirements/ZD-48600.md.",
-        "source": "record:intake"
+        "text": "The intake is Zendesk ticket ZD-48600 (sample, synthetic) from the Customer Feedback channel, received 2026-10-24, with source link hobasa-agentic-sdlc/requirements/ZD-48600.md.",
+        "source": "record:intake;file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
       },
       {
-        "text": "The item links to roadmap item R-AP-12 (give AP managers earlier visibility of overdue payables) on the Q4 2026 AP roadmap, which the PM owns. R-AP-14 (aging export for finance close) is not linked.",
+        "text": "The ticket asks for changes in ap_pipeline, ap_forecast, ap_aging and ap_portal, and an end-to-end proof: feed -> delays -> risk -> overdue list -> portal table.",
+        "source": "record:intake;file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The entry is linked to roadmap item R-AP-12 (give AP managers earlier visibility of overdue payables, Q4 2026, AP module, owner PM). It is not linked to R-AP-14 (aging export for finance close).",
         "source": "org.roadmap;record:intake"
       },
       {
-        "text": "The change affects four repositories: ap_pipeline (paid_date column and delays_by_vendor), ap_forecast (vendor_risk and an optional risk argument on build_explanation_request), ap_aging (overdue_with_risk) and ap_portal (renderOverdueRisk).",
-        "source": "record:intake"
-      },
-      {
-        "text": "No conflict with a prior decision was found. overdue_with_risk returns only unpaid invoices, which is consistent with D-2026-050. It counts days past due, which is consistent with D-2026-031 (calendar days, aging buckets) if assumption A-1 holds. Amounts must stay Decimal under D-2026-044.",
-        "source": "org.decision_log;record:intake"
-      },
-      {
-        "text": "D-2026-031 covers aging buckets only. It does not settle the day unit for delay_days in ap_pipeline, so this is raised as open question OQ-6.",
-        "source": "org.decision_log;record:intake"
-      },
-      {
-        "text": "No regulatory source applies to this change, so no section, page or rule impact is captured.",
+        "text": "No regulatory source applies to this change.",
         "source": "org.regulatory_sources"
       },
       {
-        "text": "The connector inventory states that no source-system connector is affected by the ap_aging library. It does not cover the ap_pipeline vendor feed, which gains a paid_date column, so this is raised as an open question.",
-        "source": "org.connector_inventory;record:intake"
+        "text": "No source-system connector is affected by the ap_aging library. The inventory does not cover ap_pipeline, ap_forecast or ap_portal, so whether those are affected is left open.",
+        "source": "org.connector_inventory"
       },
       {
-        "text": "The payment-delay explanation, which uses acme-llm model acme-text-2, is affected: when risk is given, its prompt ends with ' Risk level: <risk>.'. vendor_risk uses no LLM.",
-        "source": "org.model_dependency_map;record:intake"
+        "text": "ap_forecast uses provider acme-llm, model acme-text-2 (config src/ap_forecast/models.json), for the payment-delay explanation. vendor_risk uses no LLM; it is a rule on the predicted delay.",
+        "source": "org.model_dependency_map"
       },
       {
-        "text": "Three thresholds need explicit boundary tests: more than 30 days past due, a predicted delay > 30 for 'high', and > 10 for 'medium'.",
-        "source": "record:intake;record:memory"
+        "text": "No conflict with prior decisions: overdue_with_risk covers unpaid invoices only (D-2026-050), amounts stay Decimal (D-2026-044), and days past due are assumed to be calendar days (D-2026-031).",
+        "source": "org.decision_log;record:intake"
       },
       {
-        "text": "The entry is created for review in the Pre Backlog requirement sheet, as the workbook outcome describes. The check against the Pre Backlog sheet and the DevOps board could not be done because neither was in the step's context.",
-        "source": "record:brief"
+        "text": "Lesson L-007 requires explicit boundary tests: exactly 30 days past due, and predicted delays of exactly 30 and 10.",
+        "source": "record:memory;record:intake"
+      },
+      {
+        "text": "ZD-48211 (received 2026-10-20, open, ap_aging) asks to flag open invoices more than 30 days past their due date as overdue, and says paid invoices never count as overdue.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48211.md"
+      },
+      {
+        "text": "ZD-48501 (received 2026-10-24, open, ap_aging and ap_portal) adds overdue_summary(invoices, as_of) for unpaid invoices more than 30 days past due, plus a badge-overdue portal badge.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48501.md"
+      },
+      {
+        "text": "ZD-48455 (received 2026-10-22, open, ap_portal) highlights the 61-90 and 'Over 90 days' aging rows with CSS class row-overdue and adds a total row.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48455.md"
+      },
+      {
+        "text": "According to the source file, the change is tier T2 with no finance posting, authentication, tenancy or payment execution, and the risk label is advisory only.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
       }
     ],
     "open_questions": [
-      "OQ-1: Which source-system connector supplies the ap_pipeline vendor feed, and does it already provide a paid date? org.connector_inventory covers only the ap_aging library.",
-      "OQ-2: The Pre Backlog sheet and the DevOps board were not in this step's context. Is there a duplicate or related open item for this request?",
-      "OQ-3: What should vendor_risk return for a vendor with an empty payment history?",
-      "OQ-4: Please confirm the assumptions: an invoice exactly 30 days past due is excluded; zero or negative delay_days are kept; risk thresholds are strict (exactly 30 is 'medium', exactly 10 is 'low'); the id tie-break is ascending.",
-      "OQ-5: Which rounding rule applies to amounts shown to two decimals in the portal? Should vendor names be HTML-escaped in renderOverdueRisk?",
-      "OQ-6: Should delay_days in delays_by_vendor count calendar days? The ticket says only 'in days', and D-2026-031 covers aging buckets, not payment-delay history."
+      "OQ-1: The Pre Backlog sheet and the DevOps board were not in context, so the duplicate check covered only the requirement files. PM: please confirm there is no existing entry.",
+      "OQ-2: Is delay_days in calendar days, and should early payments (zero or negative delay) be included? D-2026-031 covers aging buckets only.",
+      "OQ-3: The connector inventory covers only ap_aging. Is any source-system connector affected by the ap_pipeline vendor-feed change (paid_date) or by the ap_forecast or ap_portal changes, and should the feed change be recorded in the inventory?",
+      "OQ-4: How should a row be handled when paid and paid_date disagree?",
+      "OQ-5: What should vendor_risk return for a vendor with an empty history?",
+      "OQ-6: Should renderOverdueRisk HTML-escape vendor names and ids?",
+      "OQ-7: Should this entry be grouped with, or sequenced after, the related open items ZD-48211 and ZD-48501, which share the same overdue rule?"
     ],
-    "summary": "Attempt 3 rewrites both outputs. D-2026-031 is now applied only to the aging check in ap_aging (assumption A-1). The day unit for delay_days in ap_pipeline is a new open question, OQ-6. feat.intake holds the verbatim ticket, its source link and seven extracted change requests. feat.prebacklog is the entry created for review, linked to R-AP-12 and trace FEAT-ZD-48600. The checks found no decision conflict and no regulatory impact. One LLM feature is affected: the payment-delay explanation prompt on acme-text-2. Two gaps remain: the inventory does not cover the vendor-feed connector, and the Pre Backlog sheet and DevOps board were not available for a duplicate check. The entry lists six assumptions and six non-blocking open questions. This agent has not sent a notification."
+    "summary": "Both REQ-01 outputs are rewritten in full and the G1 refusal is fixed. The connector check now says only what org.connector_inventory supports: no connector is affected by the ap_aging library. Connector impact for ap_pipeline, ap_forecast and ap_portal is not covered by the inventory and is raised as OQ-3. One inferred phrase about the model was also tightened. The entry is still linked to R-AP-12, has no decision-log conflict and lists ZD-48211, ZD-48501 and ZD-48455 as related open items. The Pre Backlog sheet and DevOps board were still not available, so the duplicate check covers only the repository's requirement files (OQ-1). There are four assumptions and seven non-blocking open questions; none blocks the step. This step sent no notification; the entry is the content for the PM gate."
   },
   "meta": {
     "subtype": "success",
     "is_error": false,
     "num_turns": 4,
-    "session_id": "5277867b-e4cb-4405-af0f-e0355cd6e208",
-    "total_cost_usd": 1.0379425999999998,
+    "session_id": "0a4b99d4-0848-4c3e-8f3c-73cee1874656",
+    "total_cost_usd": 1.2647122000000002,
     "permission_denials": [],
-    "result": "{\"approach\":\"Attempt 3 rewrites both files in full and fixes the one remaining G1 refusal. D-2026-031 is now applied only to overdue_with_risk in ap_aging, which is the aging case, and that link is stated as assumption A-1. The output now says the decision covers aging buckets only and does not settle the day unit for delay_days in ap_pipeline. That question is raised as new open question OQ-6. The attempt-2 fixes are kept: no later-step names, no PM-gate claim and no notification claim. Everything else is unchanged. I read the ticket from the trigger record and the five contracted inputs, and used the shared memory (D-2026-031/044/050, L-007, L-011). The work extracts the change requests, links the item to roadmap R-AP-12, and checks it against decisions, connectors, regulatory sources and model dependencies. The Pre Backlog sheet and DevOps board were not in context, so they are listed as an open question rather than guessed.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"mcp__hobasa-context__context_list\",\"mcp__hobasa-context__memory_search\",\"Write\",\"Edit\"],\"claims\":[{\"text\":\"The intake is Zendesk ticket ZD-48600 (sample, synthetic), received 2026-10-24 through the Customer Feedback channel. Its GitHub source is hobasa-agentic-sdlc/requirements/ZD-48600.md.\",\"source\":\"record:intake\"},{\"text\":\"The item links to roadmap item R-AP-12 (give AP managers earlier visibility of overdue payables) on the Q4 2026 AP roadmap, which the PM owns. R-AP-14 (aging export for finance close) is not linked.\",\"source\":\"org.roadmap;record:intake\"},{\"text\":\"The change affects four repositories: ap_pipeline (paid_date column and delays_by_vendor), ap_forecast (vendor_risk and an optional risk argument on build_explanation_request), ap_aging (overdue_with_risk) and ap_portal (renderOverdueRisk).\",\"source\":\"record:intake\"},{\"text\":\"No conflict with a prior decision was found. overdue_with_risk returns only unpaid invoices, which is consistent with D-2026-050. It counts days past due, which is consistent with D-2026-031 (calendar days, aging buckets) if assumption A-1 holds. Amounts must stay Decimal under D-2026-044.\",\"source\":\"org.decision_log;record:intake\"},{\"text\":\"D-2026-031 covers aging buckets only. It does not settle the day unit for delay_days in ap_pipeline, so this is raised as open question OQ-6.\",\"source\":\"org.decision_log;record:intake\"},{\"text\":\"No regulatory source applies to this change, so no section, page or rule impact is captured.\",\"source\":\"org.regulatory_sources\"},{\"text\":\"The connector inventory states that no source-system connector is affected by the ap_aging library. It does not cover the ap_pipeline vendor feed, which gains a paid_date column, so this is raised as an open question.\",\"source\":\"org.connector_inventory;record:intake\"},{\"text\":\"The payment-delay explanation, which uses acme-llm model acme-text-2, is affected: when risk is given, its prompt ends with ' Risk level: <risk>.'. vendor_risk uses no LLM.\",\"source\":\"org.model_dependency_map;record:intake\"},{\"text\":\"Three thresholds need explicit boundary tests: more than 30 days past due, a predicted delay > 30 for 'high', and > 10 for 'medium'.\",\"source\":\"record:intake;record:memory\"},{\"text\":\"The entry is created for review in the Pre Backlog requirement sheet, as the workbook outcome describes. The check against the Pre Backlog sheet and the DevOps board could not be done because neither was in the step's context.\",\"source\":\"record:brief\"}],\"open_questions\":[\"OQ-1: Which source-system connector supplies the ap_pipeline vendor feed, and does it already provide a paid date? org.connector_inventory covers only the ap_aging library.\",\"OQ-2: The Pre Backlog sheet and the DevOps board were not in this step's context. Is there a duplicate or related open item for this request?\",\"OQ-3: What should vendor_risk return for a vendor with an empty payment history?\",\"OQ-4: Please confirm the assumptions: an invoice exactly 30 days past due is excluded; zero or negative delay_days are kept; risk thresholds are strict (exactly 30 is 'medium', exactly 10 is 'low'); the id tie-break is ascending.\",\"OQ-5: Which rounding rule applies to amounts shown to two decimals in the portal? Should vendor names be HTML-escaped in renderOverdueRisk?\",\"OQ-6: Should delay_days in delays_by_vendor count calendar days? The ticket says only 'in days', and D-2026-031 covers aging buckets, not payment-delay history.\"],\"summary\":\"Attempt 3 rewrites both outputs. D-2026-031 is now applied only to the aging check in ap_aging (assumption A-1). The day unit for delay_days in ap_pipeline is a new open question, OQ-6. feat.intake holds the verbatim ticket, its source link and seven extracted change requests. feat.prebacklog is the entry created for review, linked to R-AP-12 and trace FEAT-ZD-48600. The checks found no decision conflict and no regulatory impact. One LLM feature is affected: the payment-delay explanation prompt on acme-text-2. Two gaps remain: the inventory does not cover the vendor-feed connector, and the Pre Backlog sheet and DevOps board were not available for a duplicate check. The entry lists six assumptions and six non-blocking open questions. This agent has not sent a notification.\"}"
+    "result": "{\"approach\":\"Attempt 3 fixes the G1 refusal on the connector check. I removed the blanket sentence \\\"No source-system connector is affected\\\". The connector row in feat.prebacklog now matches what org.connector_inventory says: no connector is affected by the ap_aging library, and the inventory says nothing about ap_pipeline, ap_forecast or ap_portal. That gap is now open question OQ-3, which asks whether the CR-1 vendor-feed change or the other repositories affect a connector. While re-checking for similar overreach, I also changed \\\"The ticket asks for no change of provider or model\\\" to \\\"The ticket does not mention any change of provider or model\\\". Both files are rewritten in full; feat.intake has no content change. Everything else carries over from attempt 2. The ticket is split into CR-0 to CR-7 and linked to R-AP-12. The entry is checked against D-2026-031, D-2026-044, D-2026-050, L-007 and L-011, the regulatory sources and the model dependency map. ZD-48211, ZD-48501 and ZD-48455 were read in this session and are listed as related, not duplicates. The Pre Backlog sheet and DevOps board were not available, so their absence is disclosed as OQ-1. Shell use is denied in this step, so I used only Read, Glob, Grep and Write.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"Grep\",\"Write\"],\"claims\":[{\"text\":\"The intake is Zendesk ticket ZD-48600 (sample, synthetic) from the Customer Feedback channel, received 2026-10-24, with source link hobasa-agentic-sdlc/requirements/ZD-48600.md.\",\"source\":\"record:intake;file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The ticket asks for changes in ap_pipeline, ap_forecast, ap_aging and ap_portal, and an end-to-end proof: feed -> delays -> risk -> overdue list -> portal table.\",\"source\":\"record:intake;file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The entry is linked to roadmap item R-AP-12 (give AP managers earlier visibility of overdue payables, Q4 2026, AP module, owner PM). It is not linked to R-AP-14 (aging export for finance close).\",\"source\":\"org.roadmap;record:intake\"},{\"text\":\"No regulatory source applies to this change.\",\"source\":\"org.regulatory_sources\"},{\"text\":\"No source-system connector is affected by the ap_aging library. The inventory does not cover ap_pipeline, ap_forecast or ap_portal, so whether those are affected is left open.\",\"source\":\"org.connector_inventory\"},{\"text\":\"ap_forecast uses provider acme-llm, model acme-text-2 (config src/ap_forecast/models.json), for the payment-delay explanation. vendor_risk uses no LLM; it is a rule on the predicted delay.\",\"source\":\"org.model_dependency_map\"},{\"text\":\"No conflict with prior decisions: overdue_with_risk covers unpaid invoices only (D-2026-050), amounts stay Decimal (D-2026-044), and days past due are assumed to be calendar days (D-2026-031).\",\"source\":\"org.decision_log;record:intake\"},{\"text\":\"Lesson L-007 requires explicit boundary tests: exactly 30 days past due, and predicted delays of exactly 30 and 10.\",\"source\":\"record:memory;record:intake\"},{\"text\":\"ZD-48211 (received 2026-10-20, open, ap_aging) asks to flag open invoices more than 30 days past their due date as overdue, and says paid invoices never count as overdue.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48211.md\"},{\"text\":\"ZD-48501 (received 2026-10-24, open, ap_aging and ap_portal) adds overdue_summary(invoices, as_of) for unpaid invoices more than 30 days past due, plus a badge-overdue portal badge.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48501.md\"},{\"text\":\"ZD-48455 (received 2026-10-22, open, ap_portal) highlights the 61-90 and 'Over 90 days' aging rows with CSS class row-overdue and adds a total row.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48455.md\"},{\"text\":\"According to the source file, the change is tier T2 with no finance posting, authentication, tenancy or payment execution, and the risk label is advisory only.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"}],\"open_questions\":[\"OQ-1: The Pre Backlog sheet and the DevOps board were not in context, so the duplicate check covered only the requirement files. PM: please confirm there is no existing entry.\",\"OQ-2: Is delay_days in calendar days, and should early payments (zero or negative delay) be included? D-2026-031 covers aging buckets only.\",\"OQ-3: The connector inventory covers only ap_aging. Is any source-system connector affected by the ap_pipeline vendor-feed change (paid_date) or by the ap_forecast or ap_portal changes, and should the feed change be recorded in the inventory?\",\"OQ-4: How should a row be handled when paid and paid_date disagree?\",\"OQ-5: What should vendor_risk return for a vendor with an empty history?\",\"OQ-6: Should renderOverdueRisk HTML-escape vendor names and ids?\",\"OQ-7: Should this entry be grouped with, or sequenced after, the related open items ZD-48211 and ZD-48501, which share the same overdue rule?\"],\"summary\":\"Both REQ-01 outputs are rewritten in full and the G1 refusal is fixed. The connector check now says only what org.connector_inventory supports: no connector is affected by the ap_aging library. Connector impact for ap_pipeline, ap_forecast and ap_portal is not covered by the inventory and is raised as OQ-3. One inferred phrase about the model was also tightened. The entry is still linked to R-AP-12, has no decision-log conflict and lists ZD-48211, ZD-48501 and ZD-48455 as related open items. The Pre Backlog sheet and DevOps board were still not available, so the duplicate check covers only the repository's requirement files (OQ-1). There are four assumptions and seven non-blocking open questions; none blocks the step. This step sent no notification; the entry is the content for the PM gate.\"}"
   }
 }

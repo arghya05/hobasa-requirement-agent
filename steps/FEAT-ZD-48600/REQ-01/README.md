@@ -44,11 +44,11 @@ Entry created in the Pre Backlog requirement sheet, linked to the roadmap item a
 
 | Item | Prepared input (this repository) | Read from (producer in GitHub) | Commit | Produced by |
 |---|---|---|---|---|
-| org.roadmap | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md | hobasa-agentic-sdlc/org/org.roadmap.md | 5988080 | source |
-| org.regulatory_sources | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md | hobasa-agentic-sdlc/org/org.regulatory_sources.md | 5988080 | source |
-| org.connector_inventory | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md | hobasa-agentic-sdlc/org/org.connector_inventory.md | 5988080 | source |
-| org.model_dependency_map | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md | hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md | 5988080 | source |
-| org.decision_log | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md | hobasa-agentic-sdlc/org/org.decision_log.md | 5988080 | source |
+| org.roadmap | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.roadmap.md | hobasa-agentic-sdlc/org/org.roadmap.md | bf63f34 | source |
+| org.regulatory_sources | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.regulatory_sources.md | hobasa-agentic-sdlc/org/org.regulatory_sources.md | bf63f34 | source |
+| org.connector_inventory | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.connector_inventory.md | hobasa-agentic-sdlc/org/org.connector_inventory.md | bf63f34 | source |
+| org.model_dependency_map | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.model_dependency_map.md | hobasa-agentic-sdlc/features/FEAT-ZD-48600/org-overrides/org.model_dependency_map.md | bf63f34 | source |
+| org.decision_log | hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-01/org.decision_log.md | hobasa-agentic-sdlc/org/org.decision_log.md | bf63f34 | source |
 
 Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, tool view, refusal reasons).
 
@@ -61,8 +61,8 @@ Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, too
 
 ## How the agent worked
 
-- Approach: Attempt 3 rewrites both files in full and fixes the one remaining G1 refusal. D-2026-031 is now applied only to overdue_with_risk in ap_aging, which is the aging case, and that link is stated as assumption A-1. The output now says the decision covers aging buckets only and does not settle the day unit for delay_days in ap_pipeline. That question is raised as new open question OQ-6. The attempt-2 fixes are kept: no later-step names, no PM-gate claim and no notification claim. Everything else is unchanged. I read the ticket from the trigger record and the five contracted inputs, and used the shared memory (D-2026-031/044/050, L-007, L-011). The work extracts the change requests, links the item to roadmap R-AP-12, and checks it against decisions, connectors, regulatory sources and model dependencies. The Pre Backlog sheet and DevOps board were not in context, so they are listed as an open question rather than guessed.
-- Tools used: Skill:requirement-steps, Read, Glob, mcp__hobasa-context__context_list, mcp__hobasa-context__memory_search, Write, Edit
+- Approach: Attempt 3 fixes the G1 refusal on the connector check. I removed the blanket sentence "No source-system connector is affected". The connector row in feat.prebacklog now matches what org.connector_inventory says: no connector is affected by the ap_aging library, and the inventory says nothing about ap_pipeline, ap_forecast or ap_portal. That gap is now open question OQ-3, which asks whether the CR-1 vendor-feed change or the other repositories affect a connector. While re-checking for similar overreach, I also changed "The ticket asks for no change of provider or model" to "The ticket does not mention any change of provider or model". Both files are rewritten in full; feat.intake has no content change. Everything else carries over from attempt 2. The ticket is split into CR-0 to CR-7 and linked to R-AP-12. The entry is checked against D-2026-031, D-2026-044, D-2026-050, L-007 and L-011, the regulatory sources and the model dependency map. ZD-48211, ZD-48501 and ZD-48455 were read in this session and are listed as related, not duplicates. The Pre Backlog sheet and DevOps board were not available, so their absence is disclosed as OQ-1. Shell use is denied in this step, so I used only Read, Glob, Grep and Write.
+- Tools used: Skill:requirement-steps, Read, Glob, Grep, Write
 - Helper subagents: none
 - Connector calls: none
 
@@ -70,8 +70,8 @@ Full brief per attempt: `brief_attempt<N>.md` (trigger event, owner answers, too
 
 | Attempt | Session | Checks failed | Judge unsupported | Judge scores |
 |---|---|---|---|---|
-| 1 | new | 5 | 5 | {'correct': 4, 'complete': 4, 'grounded': 4, 'useful': 4} |
-| 2 | resumed | 1 | 1 | {'correct': 5, 'complete': 4, 'grounded': 5, 'useful': 5} |
+| 1 | new | 3 | — | — |
+| 2 | resumed | 1 | 1 | {'correct': 5, 'complete': 4, 'grounded': 4, 'useful': 5} |
 | 3 | resumed | 0 | 0 | {'correct': 5, 'complete': 4, 'grounded': 5, 'useful': 5} |
 
 Details: `result_attempt<N>.json` (claims with sources), `checks_attempt<N>.json`, `judge_attempt<N>.json`.

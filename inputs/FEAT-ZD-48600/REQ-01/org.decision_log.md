@@ -1,4 +1,4 @@
-<!-- input org.decision_log for REQ-01: from hobasa-agentic-sdlc/org/org.decision_log.md at commit 5988080, produced by source -->
+<!-- input org.decision_log for REQ-01: from hobasa-agentic-sdlc/org/org.decision_log.md at commit bf63f34, produced by source -->
 # org.decision_log
 
 D-2026-031: aging buckets use calendar days after due date. D-2026-044: monetary amounts use Decimal, never float. D-2026-050: paid invoices are excluded from aging.

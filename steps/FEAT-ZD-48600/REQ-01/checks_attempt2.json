@@ -1,5 +1,5 @@
 {
   "failures": [
-    "G1 judge found an unsupported statement: \"`delay_days` is `(paid_date - due_date)` in days. Both should count calendar days after the due date. (feat.prebacklog.md, Decision log row D-2026-031)\" (Minor overreach. D-2026-031 covers only aging buckets ('aging buckets use calendar days after due date'). Applying it to the ap_pipeline delay_days history is t)"
+    "G1 judge found an unsupported statement: \"No source-system connector is affected. The inventory says so for ap_aging.\" (org.connector_inventory says only 'No source-system connector is affected by the ap_aging library.' The first sentence makes that a blanket claim for the whole )"
   ]
 }
