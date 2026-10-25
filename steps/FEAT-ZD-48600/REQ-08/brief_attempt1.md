@@ -9,13 +9,13 @@ Document all the assumptions, and if there are any unresolved open items ⁶
 - Gate (who approves this output): PM
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.prd (Approved PRD): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
-- feat.prototype (FigJam flow and Figma Make prototype): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/feat.prototype.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md at commit 8fce3b3)
-- feat.trd (Approved TRD): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/feat.trd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md at commit 3637e51)
-- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit a6b3e2a)
+- feat.prd (Approved PRD): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/feat.prd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prd.md at commit 908b58d)
+- feat.prototype (FigJam flow and Figma Make prototype): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/feat.prototype.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.prototype.md at commit 8fce3b3)
+- feat.trd (Approved TRD): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/feat.trd.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.trd.md at commit 3637e51)
+- org.templates (BRD, PRD, TRD and story templates; business question set; EARS/Gherkin rules): `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-08/org.templates.md` (from hobasa-agentic-sdlc/org/org.templates.md at commit a6b3e2a)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.stories (Epics, stories and tasks with numbered AC, frame links, assumptions and open items (latest revision)): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.stories.md`
+- feat.stories (Epics, stories and tasks with numbered AC, frame links, assumptions and open items (latest revision)): write `final_document/e2e-run/runs/run-20261025-123936-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.stories.md`
 
 
 ## How to work
