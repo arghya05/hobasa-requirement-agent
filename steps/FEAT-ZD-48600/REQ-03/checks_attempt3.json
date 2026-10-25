@@ -1,0 +1,5 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"REQ-02 linked the entry to R-AP-12.\" (feat.classification (the REQ-02 output) cites feat.prebacklog as the source of the Linked roadmap item R-AP-12 (lines 16 and 70). The link was made earlier, in )"
+  ]
+}

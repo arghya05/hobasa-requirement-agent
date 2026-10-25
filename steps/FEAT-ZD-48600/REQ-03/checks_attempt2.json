@@ -1,3 +1,6 @@
 {
-  "failures": []
+  "failures": [
+    "G1 judge found an unsupported statement: \"ap_pipeline, ap_forecast and ap_portal are described only in the feature's architecture override.\" (The cited sources (org.strategy_capability and ZD-48600) cannot show that the override is the only place these repositories are described. org/org.engineering_s)",
+    "G1 judge found an unsupported statement: \"Agent judgement: explicit rules and named reject reasons support auditability and traceability.\" (This is minor and is marked as agent judgement. The plural 'named reject reasons' overstates the sources: ZD-48600 and feat.classification name only one new rej)"
+  ]
 }

@@ -1,72 +1,92 @@
 {
   "structured": {
-    "approach": "I followed the REQ-03 procedure in the requirement-steps skill and checked the entry against the roadmap, the capability and the strategy. I read the three contracted inputs: feat.classification, org.strategy_capability and org.roadmap. For background I also read the approved REQ-01 outputs feat.intake and feat.prebacklog through context_get, with receipts, and the source file requirements/ZD-48600.md. I searched shared memory for related decisions and found none beyond the three already logged. The output is a recommended Yes verdict with reason code FIT-YES-ROADMAP. It shows the evidence for each check (roadmap, capability, strategy), checks the decision log and declares its assumptions. The final Yes or No is left to the PM and Leadership gate. I did not use a verifier subagent: the output makes few factual statements, and I checked each one against the quoted input text. No connector was needed.",
+    "approach": "This attempt fixes the single G1 refusal in feat.fitment. The sentence 'REQ-02 linked the entry to R-AP-12' wrongly said REQ-02 made the link. It now reads: 'feat.classification records R-AP-12 as the entry's linked roadmap item, citing feat.prebacklog as the source of the link.' I searched the file for other statements that credit an action to a step and reworded one more: the ZD-48510 row now says feat.classification marks it 'Not grouped', not 'REQ-02 did not group it'. Nothing else changed: the verdict, reason code, evidence, notification and open questions are the same as in the previous attempt. Inputs used: feat.classification, org.strategy_capability and org.roadmap, plus requirements/ZD-48600.md and REG-LPR-2026-4.2.md for exact wording, and shared memory for decisions.",
     "tools_used": [
-      "Skill:requirement-steps",
       "Read",
-      "Glob",
-      "mcp__hobasa-context__context_list",
-      "mcp__hobasa-context__context_get",
-      "mcp__hobasa-context__memory_search",
-      "Write"
+      "Write",
+      "Edit",
+      "Grep"
     ],
     "claims": [
       {
-        "text": "Roadmap item R-AP-12 in the Q4 2026 AP roadmap is 'give AP managers earlier visibility of overdue payables', owned by the PM; R-AP-14 is 'aging export for finance close'.",
+        "text": "The Q4 2026 AP roadmap contains R-AP-12 'give AP managers earlier visibility of overdue payables', owned by the PM.",
         "source": "org.roadmap"
       },
       {
-        "text": "The entry is classified New Feature, qualifier Not Technical Only, linked to roadmap item R-AP-12, with change requests across ap_pipeline, ap_forecast, ap_aging and ap_portal.",
+        "text": "feat.classification records R-AP-12 as the entry's linked roadmap item, citing feat.prebacklog as the source of the link.",
         "source": "feat.classification"
       },
       {
-        "text": "The business need is that AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first; this matches R-AP-12, so roadmap fit is Yes.",
-        "source": "journey:feat.intake; org.roadmap"
+        "text": "The ticket says AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first. It asks for unpaid invoices more than 30 days past due, sorted by days descending then id, each with a risk level.",
+        "source": "file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
       },
       {
-        "text": "R-AP-14 is not linked because the ticket asks for no export.",
-        "source": "journey:feat.prebacklog; org.roadmap"
+        "text": "R-AP-14 is 'aging export for finance close', and none of CR-1 to CR-7 adds an export.",
+        "source": "org.roadmap; feat.classification"
       },
       {
-        "text": "The documented capability is that the ap_aging service computes aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices; the strategy is to help finance teams pay on time and avoid late-payment penalties, and auditability and traceability are core product promises.",
+        "text": "The current capability is ap_aging computing aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices. The entry keeps every existing signature and adds new functions.",
+        "source": "org.strategy_capability; feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "org.strategy_capability does not mention ap_pipeline, ap_forecast or ap_portal. The ZD-48600 architecture override describes them.",
+        "source": "org.strategy_capability; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "org.strategy_capability states no explicit out-of-scope list.",
         "source": "org.strategy_capability"
       },
       {
-        "text": "CR-5 returns unpaid invoices more than 30 days past due with a risk label, sorted by days descending then id, and CR-6 renders them in a new portal table; this extends the ap_aging capability rather than replacing it.",
-        "source": "journey:feat.intake; feat.classification"
+        "text": "The feature risk map records 'No finance posting, authentication, tenancy or payment execution in this change' with advisory tier T2. feat.classification marks ZD-48510 (payment execution) 'Not grouped'.",
+        "source": "feat.classification"
       },
       {
-        "text": "org.strategy_capability describes only ap_aging and does not describe ap_pipeline, ap_forecast or ap_portal.",
-        "source": "org.strategy_capability; feat.classification"
+        "text": "The strategy is to help finance teams pay on time and avoid late-payment penalties, and auditability and traceability are core product promises.",
+        "source": "org.strategy_capability"
       },
       {
-        "text": "The source file records no finance posting, authentication, tenancy or payment execution, tier T2, and an advisory-only risk label.",
+        "text": "vendor_risk uses no LLM and is a rule on the predicted delay with thresholds > 30 and > 10. An invalid paid_date rejects the row with reason 'paid_date'. A vendor not in risk_by_vendor gets risk 'unknown'.",
         "source": "feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
       },
       {
-        "text": "No conflict with the decision log: D-2026-050 excludes paid invoices from aging and CR-5 covers unpaid invoices only; D-2026-031 and D-2026-044 were checked at intake with no conflict.",
-        "source": "record:memory; journey:feat.prebacklog; feat.classification"
+        "text": "The entry is consistent with D-2026-050 (paid invoices excluded) and D-2026-044 (Decimal amounts). It is assumed to follow D-2026-031 (calendar days).",
+        "source": "record:memory; feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
       },
       {
-        "text": "The recommended verdict is Yes with reason code FIT-YES-ROADMAP; the decision is left to the PM and Leadership gate, and no notification was sent by this step.",
-        "source": "record:brief; org.roadmap; org.strategy_capability"
+        "text": "PROV-ACME-2026-11 replaces acme-text-2, deprecated on 2026-12-01, and changes the same function as CR-4.",
+        "source": "feat.classification"
+      },
+      {
+        "text": "REG-LPR-2026-4.2 defines Late as a payable more than 60 days past its due date that remains unpaid. This entry's overdue means more than 30 days past due.",
+        "source": "file:hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md; file:hobasa-agentic-sdlc/requirements/ZD-48600.md"
+      },
+      {
+        "text": "The connector approved for this step is api:github, limited to GET requests, and the notification channel is still open, so the output file is the notification record.",
+        "source": "record:brief; feat.classification"
+      },
+      {
+        "text": "Fitment verdict: Yes (recommended), reason code FIT-Y-ROADMAP, to be decided by the PM and Leadership.",
+        "source": "org.roadmap; org.strategy_capability; feat.classification; record:brief"
       }
     ],
     "open_questions": [
-      "OQ-F1 (PM): Please confirm what 'vendors that usually pay late' and 'chase them first' mean for an AP (payables) module. The verdict assumes it means ranking overdue payables by how late that vendor's invoices have been paid in the past (assumption F-1). A receivables reading would not match R-AP-12.",
-      "OQ-F2 (PM/Leadership): org.strategy_capability describes only ap_aging. Should it be updated to cover ap_pipeline, ap_forecast, ap_portal and a vendor risk capability if this entry is approved?",
-      "OQ-F3 (Leadership): Given the auditability and traceability promise, should the vendor risk label, and the delay history and predicted delay behind it, be recorded or explainable for audit? This could become a BRD business rule.",
-      "OQ-F4 (PM): Is there an approved list of fitment reason codes that should replace the proposed FIT-YES-ROADMAP?"
+      "FQ-1: The roadmap says 'overdue payables', while the ticket says 'vendors that usually pay late' and 'chase them first'. In the agent's judgement this wording is ambiguous in an AP context. The verdict assumes the risk level helps AP managers decide which overdue payables to act on first. The PM or Leadership should confirm this at the gate.",
+      "FQ-2: Keep 'overdue' (more than 30 days) and the regulatory 'Late' (more than 60 days, REG-LPR-2026-4.2) as distinct labels.",
+      "FQ-3: Should org.strategy_capability be extended to cover ap_pipeline, ap_forecast and ap_portal? Today it does not mention them.",
+      "FQ-4: Confirm that days past due in overdue_with_risk uses calendar days (D-2026-031), and test the boundary of exactly 30 days (L-007).",
+      "FQ-5: Is there an approved list of fitment reason codes? FIT-Y-ROADMAP is the agent's own code.",
+      "FQ-6: org.strategy_capability states no product out-of-scope list. Should one be added?",
+      "Carried forward from feat.classification: OQ-1 to OQ-5, and feat.prebacklog Q-1 to Q-5."
     ],
-    "summary": "I wrote feat.fitment for FEAT-ZD-48600 with a recommended verdict of Yes and reason code FIT-YES-ROADMAP. It matches roadmap item R-AP-12 ('give AP managers earlier visibility of overdue payables'). It supports the strategy of helping finance teams pay on time and avoid late-payment penalties. It extends the documented ap_aging capability, which covers aging buckets for open invoices, with a new overdue-with-risk list and a portal table. R-AP-14 is not linked. No decision-log conflict was found. Four non-blocking open questions go to PM and Leadership. The most important is OQ-F1: the business meaning of 'vendors that usually pay late' in an AP module, which the verdict depends on. The others are a capability document that covers only ap_aging, whether the risk label must be auditable, and the reason-code list. The final Yes or No decision rests with PM and Leadership."
+    "summary": "feat.fitment fixes the G1 refusal. The R-AP-12 link is no longer credited to REQ-02; the file now says feat.classification records the link and cites feat.prebacklog as its source. One more step-credit statement about ZD-48510 was reworded the same way. The recommendation is unchanged: Yes (FIT-Y-ROADMAP). The entry matches R-AP-12, builds on the ap_aging capability and supports both strategy statements, with no decision-log conflict. FQ-1, the business meaning of the ticket, goes to the PM and Leadership at the gate."
   },
   "meta": {
     "subtype": "success",
     "is_error": false,
-    "num_turns": 15,
-    "session_id": "6f200a65-7ffb-4fcf-b286-5d6d3f6ebe87",
-    "total_cost_usd": 0.526456,
+    "num_turns": 5,
+    "session_id": "ea70ba49-f81f-4f9b-b158-5001a9043fb4",
+    "total_cost_usd": 1.0146874,
     "permission_denials": [],
-    "result": "{\"approach\":\"I followed the REQ-03 procedure in the requirement-steps skill and checked the entry against the roadmap, the capability and the strategy. I read the three contracted inputs: feat.classification, org.strategy_capability and org.roadmap. For background I also read the approved REQ-01 outputs feat.intake and feat.prebacklog through context_get, with receipts, and the source file requirements/ZD-48600.md. I searched shared memory for related decisions and found none beyond the three already logged. The output is a recommended Yes verdict with reason code FIT-YES-ROADMAP. It shows the evidence for each check (roadmap, capability, strategy), checks the decision log and declares its assumptions. The final Yes or No is left to the PM and Leadership gate. I did not use a verifier subagent: the output makes few factual statements, and I checked each one against the quoted input text. No connector was needed.\",\"tools_used\":[\"Skill:requirement-steps\",\"Read\",\"Glob\",\"mcp__hobasa-context__context_list\",\"mcp__hobasa-context__context_get\",\"mcp__hobasa-context__memory_search\",\"Write\"],\"claims\":[{\"text\":\"Roadmap item R-AP-12 in the Q4 2026 AP roadmap is 'give AP managers earlier visibility of overdue payables', owned by the PM; R-AP-14 is 'aging export for finance close'.\",\"source\":\"org.roadmap\"},{\"text\":\"The entry is classified New Feature, qualifier Not Technical Only, linked to roadmap item R-AP-12, with change requests across ap_pipeline, ap_forecast, ap_aging and ap_portal.\",\"source\":\"feat.classification\"},{\"text\":\"The business need is that AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first; this matches R-AP-12, so roadmap fit is Yes.\",\"source\":\"journey:feat.intake; org.roadmap\"},{\"text\":\"R-AP-14 is not linked because the ticket asks for no export.\",\"source\":\"journey:feat.prebacklog; org.roadmap\"},{\"text\":\"The documented capability is that the ap_aging service computes aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices; the strategy is to help finance teams pay on time and avoid late-payment penalties, and auditability and traceability are core product promises.\",\"source\":\"org.strategy_capability\"},{\"text\":\"CR-5 returns unpaid invoices more than 30 days past due with a risk label, sorted by days descending then id, and CR-6 renders them in a new portal table; this extends the ap_aging capability rather than replacing it.\",\"source\":\"journey:feat.intake; feat.classification\"},{\"text\":\"org.strategy_capability describes only ap_aging and does not describe ap_pipeline, ap_forecast or ap_portal.\",\"source\":\"org.strategy_capability; feat.classification\"},{\"text\":\"The source file records no finance posting, authentication, tenancy or payment execution, tier T2, and an advisory-only risk label.\",\"source\":\"feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"No conflict with the decision log: D-2026-050 excludes paid invoices from aging and CR-5 covers unpaid invoices only; D-2026-031 and D-2026-044 were checked at intake with no conflict.\",\"source\":\"record:memory; journey:feat.prebacklog; feat.classification\"},{\"text\":\"The recommended verdict is Yes with reason code FIT-YES-ROADMAP; the decision is left to the PM and Leadership gate, and no notification was sent by this step.\",\"source\":\"record:brief; org.roadmap; org.strategy_capability\"}],\"open_questions\":[\"OQ-F1 (PM): Please confirm what 'vendors that usually pay late' and 'chase them first' mean for an AP (payables) module. The verdict assumes it means ranking overdue payables by how late that vendor's invoices have been paid in the past (assumption F-1). A receivables reading would not match R-AP-12.\",\"OQ-F2 (PM/Leadership): org.strategy_capability describes only ap_aging. Should it be updated to cover ap_pipeline, ap_forecast, ap_portal and a vendor risk capability if this entry is approved?\",\"OQ-F3 (Leadership): Given the auditability and traceability promise, should the vendor risk label, and the delay history and predicted delay behind it, be recorded or explainable for audit? This could become a BRD business rule.\",\"OQ-F4 (PM): Is there an approved list of fitment reason codes that should replace the proposed FIT-YES-ROADMAP?\"],\"summary\":\"I wrote feat.fitment for FEAT-ZD-48600 with a recommended verdict of Yes and reason code FIT-YES-ROADMAP. It matches roadmap item R-AP-12 ('give AP managers earlier visibility of overdue payables'). It supports the strategy of helping finance teams pay on time and avoid late-payment penalties. It extends the documented ap_aging capability, which covers aging buckets for open invoices, with a new overdue-with-risk list and a portal table. R-AP-14 is not linked. No decision-log conflict was found. Four non-blocking open questions go to PM and Leadership. The most important is OQ-F1: the business meaning of 'vendors that usually pay late' in an AP module, which the verdict depends on. The others are a capability document that covers only ap_aging, whether the risk label must be auditable, and the reason-code list. The final Yes or No decision rests with PM and Leadership.\"}"
+    "result": "{\"approach\":\"This attempt fixes the single G1 refusal in feat.fitment. The sentence 'REQ-02 linked the entry to R-AP-12' wrongly said REQ-02 made the link. It now reads: 'feat.classification records R-AP-12 as the entry's linked roadmap item, citing feat.prebacklog as the source of the link.' I searched the file for other statements that credit an action to a step and reworded one more: the ZD-48510 row now says feat.classification marks it 'Not grouped', not 'REQ-02 did not group it'. Nothing else changed: the verdict, reason code, evidence, notification and open questions are the same as in the previous attempt. Inputs used: feat.classification, org.strategy_capability and org.roadmap, plus requirements/ZD-48600.md and REG-LPR-2026-4.2.md for exact wording, and shared memory for decisions.\",\"tools_used\":[\"Read\",\"Write\",\"Edit\",\"Grep\"],\"claims\":[{\"text\":\"The Q4 2026 AP roadmap contains R-AP-12 'give AP managers earlier visibility of overdue payables', owned by the PM.\",\"source\":\"org.roadmap\"},{\"text\":\"feat.classification records R-AP-12 as the entry's linked roadmap item, citing feat.prebacklog as the source of the link.\",\"source\":\"feat.classification\"},{\"text\":\"The ticket says AP managers want to see which overdue invoices belong to vendors that usually pay late, so they can chase them first. It asks for unpaid invoices more than 30 days past due, sorted by days descending then id, each with a risk level.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"R-AP-14 is 'aging export for finance close', and none of CR-1 to CR-7 adds an export.\",\"source\":\"org.roadmap; feat.classification\"},{\"text\":\"The current capability is ap_aging computing aging buckets (current, 1-30, 31-60, 61-90, 90+) for open invoices. The entry keeps every existing signature and adds new functions.\",\"source\":\"org.strategy_capability; feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"org.strategy_capability does not mention ap_pipeline, ap_forecast or ap_portal. The ZD-48600 architecture override describes them.\",\"source\":\"org.strategy_capability; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"org.strategy_capability states no explicit out-of-scope list.\",\"source\":\"org.strategy_capability\"},{\"text\":\"The feature risk map records 'No finance posting, authentication, tenancy or payment execution in this change' with advisory tier T2. feat.classification marks ZD-48510 (payment execution) 'Not grouped'.\",\"source\":\"feat.classification\"},{\"text\":\"The strategy is to help finance teams pay on time and avoid late-payment penalties, and auditability and traceability are core product promises.\",\"source\":\"org.strategy_capability\"},{\"text\":\"vendor_risk uses no LLM and is a rule on the predicted delay with thresholds > 30 and > 10. An invalid paid_date rejects the row with reason 'paid_date'. A vendor not in risk_by_vendor gets risk 'unknown'.\",\"source\":\"feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The entry is consistent with D-2026-050 (paid invoices excluded) and D-2026-044 (Decimal amounts). It is assumed to follow D-2026-031 (calendar days).\",\"source\":\"record:memory; feat.classification; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"PROV-ACME-2026-11 replaces acme-text-2, deprecated on 2026-12-01, and changes the same function as CR-4.\",\"source\":\"feat.classification\"},{\"text\":\"REG-LPR-2026-4.2 defines Late as a payable more than 60 days past its due date that remains unpaid. This entry's overdue means more than 30 days past due.\",\"source\":\"file:hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md; file:hobasa-agentic-sdlc/requirements/ZD-48600.md\"},{\"text\":\"The connector approved for this step is api:github, limited to GET requests, and the notification channel is still open, so the output file is the notification record.\",\"source\":\"record:brief; feat.classification\"},{\"text\":\"Fitment verdict: Yes (recommended), reason code FIT-Y-ROADMAP, to be decided by the PM and Leadership.\",\"source\":\"org.roadmap; org.strategy_capability; feat.classification; record:brief\"}],\"open_questions\":[\"FQ-1: The roadmap says 'overdue payables', while the ticket says 'vendors that usually pay late' and 'chase them first'. In the agent's judgement this wording is ambiguous in an AP context. The verdict assumes the risk level helps AP managers decide which overdue payables to act on first. The PM or Leadership should confirm this at the gate.\",\"FQ-2: Keep 'overdue' (more than 30 days) and the regulatory 'Late' (more than 60 days, REG-LPR-2026-4.2) as distinct labels.\",\"FQ-3: Should org.strategy_capability be extended to cover ap_pipeline, ap_forecast and ap_portal? Today it does not mention them.\",\"FQ-4: Confirm that days past due in overdue_with_risk uses calendar days (D-2026-031), and test the boundary of exactly 30 days (L-007).\",\"FQ-5: Is there an approved list of fitment reason codes? FIT-Y-ROADMAP is the agent's own code.\",\"FQ-6: org.strategy_capability states no product out-of-scope list. Should one be added?\",\"Carried forward from feat.classification: OQ-1 to OQ-5, and feat.prebacklog Q-1 to Q-5.\"],\"summary\":\"feat.fitment fixes the G1 refusal. The R-AP-12 link is no longer credited to REQ-02; the file now says feat.classification records the link and cites feat.prebacklog as its source. One more step-credit statement about ZD-48510 was reworded the same way. The recommendation is unchanged: Yes (FIT-Y-ROADMAP). The entry matches R-AP-12, builds on the ap_aging capability and supports both strategy statements, with no decision-log conflict. FQ-1, the business meaning of the ticket, goes to the PM and Leadership at the gate.\"}"
   }
 }

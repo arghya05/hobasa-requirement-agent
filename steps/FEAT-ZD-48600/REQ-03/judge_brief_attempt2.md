@@ -13,6 +13,8 @@ Yes or No ³
 - org.roadmap: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md`
 
 ## Other GitHub files the agent read (valid sources when cited as file:<repository>/<path>)
+- `hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md`
+- `hobasa-agentic-sdlc/requirements/ZD-48510.md`
 - `hobasa-agentic-sdlc/requirements/ZD-48600.md`
 
 Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC repository.
@@ -22,8 +24,9 @@ Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC re
 Your previous result for this step was refused. Fix every point, rewrite the output files in full, and return the structured result again.
 
 ## Refusal reasons
-G1 judge found an unsupported statement: "Showing overdue invoices, ordered by days overdue and labelled with vendor risk, helps AP managers decide which overdue invoices to act on first. This supports " (No source says this supports 'help finance teams pay on time and avoid late-payment penalties'. That is the agent's own reasoning. The ticket's wording ('vendor)
-G1 judge found an unsupported statement: "Risk to the existing capability | The source file records no finance posting, authentication, tenancy or payment execution, tier T2, and an advisory-only risk l" (The quoted content is supported (ZD-48600.md org.risk_map; feat.classification). Labelling it as 'risk to the existing capability' is the agent's framing: the s)
+G1 judge found an unsupported statement: "Vendors without a risk level are shown as `'unknown'`. Nothing is inferred silently." (The first sentence is supported by ZD-48600 (risk 'unknown' for vendors not in risk_by_vendor). The claim that nothing is inferred silently goes further than th)
+G1 judge found an unsupported statement: "The ticket says "vendors that usually pay late" and "chase them first", which is wording usually used for receivables." (No input says this wording is usually used for receivables. It is the agent's general domain knowledge, offered as fact rather than marked as the agent's judgem)
+G1 judge found an unsupported statement: "Out of scope for the product? | No. The change has "No finance posting, authentication, tenancy or payment execution"." (The quote comes from the feature's risk map (org.risk_map override), which sets the risk tier. It does not say what is in or out of product scope, and org.strat)
 
 ## Step brief (unchanged except the attempt number)
 # Step REQ-03: Product Fitment Validation (attempt 2) for FEAT-ZD-48600
@@ -32,11 +35,13 @@ G1 judge found an unsupported statement: "Risk to the existing capability | The 
 - Workbook action: Checks the entry against capability, roadmap and strategy and returns a verdict with its evidence : Yes or No
 - Workbook outcome: Fitment verdict with evidence. Notification to PM and Leadership to decide
 Yes or No ³
+- Owner of this step: PM
+- Gate (who approves this output): PM, Leadership
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.classification (Category, qualifier and merged duplicates): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/feat.classification.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md at commit 59cf8bf)
-- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit bf63f34)
-- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit bf63f34)
+- feat.classification (Category, qualifier and merged duplicates): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/feat.classification.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md at commit b25a15f)
+- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
+- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
 - feat.fitment (Fitment verdict with evidence and reason code): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md`

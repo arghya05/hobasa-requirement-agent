@@ -1,6 +1,3 @@
 {
-  "failures": [
-    "G1 judge found an unsupported statement: \"Showing overdue invoices, ordered by days overdue and labelled with vendor risk, helps AP managers decide which overdue invoices to act on first. This supports \" (No source says this supports 'help finance teams pay on time and avoid late-payment penalties'. That is the agent's own reasoning. The ticket's wording ('vendor)",
-    "G1 judge found an unsupported statement: \"Risk to the existing capability | The source file records no finance posting, authentication, tenancy or payment execution, tier T2, and an advisory-only risk l\" (The quoted content is supported (ZD-48600.md org.risk_map; feat.classification). Labelling it as 'risk to the existing capability' is the agent's framing: the s)"
-  ]
+  "failures": []
 }
