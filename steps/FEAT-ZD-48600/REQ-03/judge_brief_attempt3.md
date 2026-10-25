@@ -5,17 +5,17 @@
 Yes or No ³
 
 ## Outputs to evaluate
-- `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md`
 
 ## Inputs the agent was given
-- feat.classification: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/feat.classification.md`
-- org.strategy_capability: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.strategy_capability.md`
-- org.roadmap: `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md`
+- feat.classification: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/feat.classification.md`
+- org.strategy_capability: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.strategy_capability.md`
+- org.roadmap: `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md`
 
 ## Other GitHub files the agent read (valid sources when cited as file:<repository>/<path>)
-- `hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md`
-- `hobasa-agentic-sdlc/requirements/ZD-48510.md`
-- `hobasa-agentic-sdlc/requirements/ZD-48600.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/hobasa-agentic-sdlc/requirements/REG-LPR-2026-4.2.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/hobasa-agentic-sdlc/requirements/ZD-48510.md`
+- `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/hobasa-agentic-sdlc/requirements/ZD-48600.md`
 
 Shared memory and conventions: `memory/MEMORY.md` and `CLAUDE.md` in the SDLC repository.
 
@@ -38,12 +38,12 @@ Yes or No ³
 - Gate (who approves this output): PM, Leadership
 
 ## Inputs (GitHub checkout; read them with Read, or context_get for a receipt)
-- feat.classification (Category, qualifier and merged duplicates): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/feat.classification.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md at commit b25a15f)
-- org.strategy_capability (Product capability, strategy and vision for fitment): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
-- org.roadmap (Structured roadmap items): `hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 9fbbfba)
+- feat.classification (Category, qualifier and merged duplicates): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/feat.classification.md` (from hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.classification.md at commit b25a15f)
+- org.strategy_capability (Product capability, strategy and vision for fitment): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.strategy_capability.md` (from hobasa-agentic-sdlc/org/org.strategy_capability.md at commit 9fbbfba)
+- org.roadmap (Structured roadmap items): `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/inputs/FEAT-ZD-48600/REQ-03/org.roadmap.md` (from hobasa-agentic-sdlc/org/org.roadmap.md at commit 9fbbfba)
 
 ## Outputs (write each file in full; the spine commits and pushes after evaluation and approval)
-- feat.fitment (Fitment verdict with evidence and reason code): write `hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md`
+- feat.fitment (Fitment verdict with evidence and reason code): write `final_document/e2e-run/runs/run-20261025-111239-feat-zd-48600/workspace/agents/hobasa-requirement-agent/outputs/FEAT-ZD-48600/feat.fitment.md`
 
 
 ## How to work
