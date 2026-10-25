@@ -1,5 +1,6 @@
 {
   "failures": [
-    "G3 numbers ['11'] in \"The open items ZD-48211 and ZD-48501 use the same 'more than 30 days past due' rule in ap_aging, ZD-\" do not appear in Grep:hobasa-agentic-sdlc/requirements; feat.intake"
+    "G1 judge found an unsupported statement: \"Same vendor feed and same `transform.to_model` reject path as CR-1.\" (Neither ZD-48600 nor feat.intake says the invalid paid_date rejection goes through transform.to_model. That is inferred from org.architecture (transform.to_mode)",
+    "G1 judge found an unsupported statement: \"Only CR-6 is customer-visible on its own; the others are technical building blocks for it.\" (This is the agent's own judgement and no source states it. CR-4 changes the prompt of the payment-delay explanation, which may be visible to users, and no input)"
   ]
 }
