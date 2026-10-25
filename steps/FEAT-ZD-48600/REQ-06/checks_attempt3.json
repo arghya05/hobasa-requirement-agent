@@ -1,0 +1,6 @@
+{
+  "failures": [
+    "G1 judge found an unsupported statement: \"No secrets or personal data in outputs (G8) | record:brief\" (Neither the step brief nor any input mentions a gate or rule called \"G8\", or a rule against secrets or personal data. The only gate ID in the brief is G2, in th)",
+    "G1 judge found an unsupported statement: \"| SD-1 | Synthetic data only: ids prefixed `SYN-INV-`, vendor names \"Synthetic Vendor <letter>\"; no real vendor, person, bank or contact data | ... | record:bri\" (The brief names synthetic data rules in the workbook action, but it defines none. Section 6 and PQ-P5 correctly say that SD-1 to SD-6 are agent judgement, yet S)"
+  ]
+}
